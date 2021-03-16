@@ -19,14 +19,14 @@ Login para teste:
 
 ## Índice
 
-<p align="center">
+<p>
  <a href="#desafio">Desafio</a> •
  <a href="#introdução">Introdução</a> •
  <a href="#processo-de-criação">Processo de criação</a> • 
  <a href="#como-executar-o-projeto">Como executar o projeto</a> • 
  <a href="#tecnologias">Tecnologias</a> • 
  <a href="#créditos">Créditos</a> • 
- <a href="#desenvolvedoras">Desenvolvedoras</a> • 
+ <a href="#desenvolvedoras">Desenvolvedoras</a>
 </p>
 
 ---
