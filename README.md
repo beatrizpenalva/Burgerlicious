@@ -236,10 +236,13 @@ $ git push origin my-feature
 [Laboratoria](https://www.laboratoria.la/) 💛
 
 &nbsp;
-Logo por [Icons8](https://icons8.com/vector-creator/) 🍔 
+Logo: [Icons8](https://icons8.com/vector-creator/) 🍔 
 
 &nbsp;
-Ícones por [Material Design](https://material.io/) e fonte [Poppins](https://fonts.google.com/specimen/Poppins?) ✏️
+Ícones: [Material Design](https://material.io/) ✒️
+
+&nbsp;
+Fonte: [Poppins](https://fonts.google.com/specimen/Poppins?) ✏️
 
 ---
 
