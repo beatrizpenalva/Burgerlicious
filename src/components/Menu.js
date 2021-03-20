@@ -80,7 +80,7 @@ const Menu = () => {
 
     const handleMinusClick = (index) => {
         const productsList = [...products];
-        if (productsList[index].quantity > 0) {
+        if (productsList[index].quantity > 1) {
             productsList[index].quantity--;
             setProducts(productsList);
         }
