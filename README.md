@@ -64,6 +64,15 @@ A paleta de cores foi desenvolvida em tons pastéis com base nas cores dos ingre
 <p align="center">
   <img alt="color-palette" title="#color-palette" src="./src/img/color-palette.svg" />
  </p>
+ 
+&nbsp;
+Icons: [Material Design](https://material.io/)
+
+&nbsp;
+Typography: [Poppins](https://fonts.google.com/specimen/Poppins?)
+
+&nbsp;
+Logo: [Icons8](https://icons8.com/vector-creator/) 
 
 ##
 
@@ -119,7 +128,7 @@ Os protótipos foram desenvolvidos priorizando o formato de tablet, conforme req
 
 ##
 
-### 🔎 Testes de usabilidade
+### 🧪 Testes de usabilidade
 
 Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a aplicação à medida que cada história de usuário era concluída. Os pontos levantados foram:
 
@@ -177,7 +186,7 @@ Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a apl
 
 ---
 
-## 🧭 Como executar o projeto
+## 🚀 Como executar o projeto
 
 Antes de rodar a aplicação, você precisa ter instalado em sua máquina as ferramentas: 
 
@@ -240,21 +249,7 @@ $ git push origin my-feature
 
 ---
 
-## 👩‍💻 Acknowledgments and credits
-
-&nbsp;
-Icons: [Material Design](https://material.io/)
-&nbsp;
-Typography: [Poppins](https://fonts.google.com/specimen/Poppins?)
-&nbsp;
-Logo: [Icons8](https://icons8.com/vector-creator/) 
-
-&nbsp;
-Project developed in [Laboratoria](https://www.laboratoria.la/) Bootcamp 💛
-
----
-
-## 💻 Authors
+## 👩‍💻 Authors
 
 Developed with ❤️ by:
 
@@ -263,3 +258,6 @@ Developed with ❤️ by:
 
 &nbsp;
 🦸 [Camila Oliveira](https://github.com/cbalieiro)
+
+&nbsp;
+Project developed in [Laboratoria](https://www.laboratoria.la/) Bootcamp 💛
