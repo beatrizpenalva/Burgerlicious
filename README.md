@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="350" src="./img/logo.png"></img>
+    <img width="350" src="./src/img/logo.png"></img>
 </p>
 
 <p align="center">
@@ -249,15 +249,40 @@ $ git push origin my-feature
 
 ---
 
-## 👩‍💻 Authors
+## 🦸 Authors
 
-Developed with ❤️ by:
+<table>
+  <tr>
+    <td align="center">
+        <a href="https://www.linkedin.com/in/beatrizpenalva/">
+            <img 
+                 style="border-radius: 50%" 
+                 src="https://avatars2.githubusercontent.com/u/2254731?s=400&u=0ba16a79456c2f250e7579cb388fa18c5c2d7d65&v=4" 
+                 width="100px"
+            />
+            <br/>
+            <sub> <b> Beatriz Penalva </b> </sub>
+        </a>
+        <br/>
+        <a href="https://github.com/beatrizpenalva/" title="GitHub"> 👩‍💻 </a>
+    </td>
+    <td align="center">
+        <a href="https://www.linkedin.com/in/camilabalieiro/">
+            <img 
+                 style="border-radius: 50%" 
+                 src="https://avatars.githubusercontent.com/u/71615963?v=4" 
+                 width="100px" 
+             />
+             <br/>
+             <sub> <b> Camila Oliveira </b> </sub>
+        </a>
+        <br/>
+        <a href="https://github.com/cbalieiro" title="GitHub"> 👩‍💻 </a>
+    </td>
+  </tr>
+</table>
 
-&nbsp;
-🦸 [Beatriz Penalva](https://github.com/beatrizpenalva)
-
-&nbsp;
-🦸 [Camila Oliveira](https://github.com/cbalieiro)
-
-&nbsp;
-Project developed in [Laboratoria](https://www.laboratoria.la/) Bootcamp 💛
+<p align="center">
+    Project developed in [Laboratoria](https://www.laboratoria.la/) Bootcamp 💛
+</p>    
+    
