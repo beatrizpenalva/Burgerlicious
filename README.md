@@ -251,7 +251,7 @@ $ git push origin my-feature
 
 ## 🦸 Authors
 
-<table lign="center">
+<table align="center">
   <tr>
     <td align="center">
         <a href="https://www.linkedin.com/in/beatrizpenalva/">
@@ -283,6 +283,6 @@ $ git push origin my-feature
 </table>
 
 <p align="center">
-    Project developed in <a href="https://www.laboratoria.la/">Laboratoria]</a> Bootcamp 💛
+    Project developed in <a href="https://www.laboratoria.la/">Laboratoria</a> Bootcamp 💛
 </p>    
     
