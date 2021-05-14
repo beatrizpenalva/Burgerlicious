@@ -2,6 +2,7 @@
 
 <p align="center">
     A web app to manage orders in a restaurant
+    <br>
     ⚡ To access click <a href="https://burgerlicious-git-main-cbalieiro.vercel.app/">here</a>! ⚡
 </p>
 
@@ -25,19 +26,19 @@ Login for testing:
 >
 > Login - camilaoliveira@burgerlicious.com
 > 
-> Password - burguinho
+> Password - *burguinho*
 
 > 👨‍🍳 **Kitchen**  
 > 
 > Login - biapenalva@burgerlicious.com
 > 
-> Password - burguinho
+> Password - *burguinho*
 
 ---
 
 ## 🎯 Challenge
 
-Esse projeto foi desenvolvido em dupla durante o bootcamp da Laboratoria. A [proposta]((https://github.com/Laboratoria/SAP005-burger-queen)) foi desenvolver uma aplicação  gerenciamento de pedidos em uma hamburgueria, priorizando uma interface para tablets, utilizando o React.JS e consumindo uma [API](https://lab-api-bq.herokuapp.com/api-docs/).
+The proposal was to develop an app to manage orders in a restaurant to a tablet interface, using React.JS and consuming the [API](https://lab-api-bq.herokuapp.com/api-docs/). The project was develop in groups of two people during four sprints of one week. To know more about the challenge click [here](https://github.com/Laboratoria/SAP005-burger-queen).
 
 <p align="center">
     <img src="https://media4.giphy.com/media/xT3i1ibda1zFQF1wbe/giphy.gif?cid=ecf05e47xiar1m6clhf9t7ov2088ehrs2bh1hhtwq4nstfaq&rid=giphy.gif"></img>
@@ -64,49 +65,48 @@ A interface deve mostrar os dois menus servidos no restaurante, café da manhã 
 
 ### 📋 Planning
 
-Esse trabalho foi desenvolvido sob demanda e já recebemos as definições de histórias de usuário do Product Owner, a partir disso o [planejamento](https://trello.com/b/iATzyG7R/burgerlicious-%F0%9F%8D%94) foi organizado seguindo o modelo de Kanban e dividindo uma história de usuário por sprint. No total foram implementadas quatro histórias em quatro sprints de uma semanda cada. A estratégia adotada para escrever o código foi o code review, sendo um dos itens da definição de pronto de cada história. 📋
+Esse trabalho foi desenvolvido sob demanda e já recebemos as definições de histórias de usuário do Product Owner, a partir disso o [planejamento](https://trello.com/b/iATzyG7R/burgerlicious-%F0%9F%8D%94) foi organizado seguindo o modelo de Kanban e dividindo uma história de usuário por sprint. No total foram implementadas quatro histórias em quatro sprints de uma semanda cada. A estratégia adotada para escrever o código foi o code review, sendo um dos itens da definição de pronto de cada história.
 
 ### ⚙️ Features
 
-##### 👨‍🍳 Cadastro e login
-- [x] Funcionários do salão e da cozinha podem se cadastrar na plataforma web fornecendo:
-  - [x] nome e sobrenome
+##### 👨‍🍳 Sign up and sign in
+- [x] Employees can sign up in the app giving their information: 
+  - [x] name and last name
   - [x] e-mail
-  - [x] senha
-  - [x] função
-    - salão
-    - cozinha  
-- [x] Ao concluir o registro com êxito o usuário é redirecionado à página de login
-- [x] O login é realizado com e-mail e senha e o funcionário é redirecionado para a página referente à sua função.
+  - [x] password
+  - [x] team-work
+    - hall
+    - kitchen
+- [x] When the user is registed, she/he is redirected to sign in page
+- [x] To sign in the users has to type their email and password, then they are redirected to the page refers to their role 
 
 ##
 
-##### 🍟 Criar novos pedidos
-- [x] O atendente pode criar novas comandas informando:
-  - [x] produtos e quantidade
-  - [x] nome do cliente
-  - [x] número da mesa
-- [x] O usuário pode filtrar o menu por café da manhã e cardápio de hambúrguer
-- [x] No resumo do pedido o usuário ainda pode:
-    - [x] Aumentar ou diminuir a quantidade de um produto
-    - [x] Deletar um produto
-    - [x] Visualizar o valor total do pedido à medida que os produtos são selecionados ou deletados
-- [x] O usuário só consegue enviar a comanda para a cozinha com todos os campos obrigatórios preenchidos
+##### 🍟 Create new order
+- [x] The attendant can create new orders by giving this information:
+  - [x] products and their respective quantity
+  - [x] client name
+  - [x] table number
+- [x] User can filter the menu items by breakfast and burger
+- [x] In the orders summary the user can:
+    - [x] increase or decrease the product quantity
+    - [x] delete a product
+    - [x] see the order's final price while the products are added or taken from the bag
+- [x] User can only send the order to the kitchen if all form fields has the necessary information
 
 ##
 
-##### 📋 Gerenciar pedidos
-- [x] Os funcionários da cozinha conseguem:
-  - [x] receber as comandas do salão
-  - [x] informar quando os pedidos começarem a ser preparados
-  - [x] enviar os pedidos finalizados para o salão 
-  - [x] visualizar o histórico de pedidos
+##### 📋 Manage orders
+- [x] The kitchen employees can: 
+  - [x] see the orders summary
+  - [x] update the order status to doing and done
+  - [x] access the orders history
 
 ##
 
 ### 🎨 User Interface
 
-A paleta de cores foi desenvolvida em tons pastéis com base nas cores dos ingredientes clássicos de um hambúrguer:
+The color palette was developed in pastel colors, based on the burger anatomy:
 
 <p align="center">
     🍞 Bread 🥩 Meat 🥬 Lettuce 🍅 Tomato 🧀 Cheese
