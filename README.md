@@ -1,20 +1,21 @@
-<p align="center">
-    <img width="350" src="./src/img/logo.png"></img>
-</p>
+<h1 align="center" id="top"> 🍔🍟 Burgerlicious </h1>
 
 <p align="center">
-    🌟 A web app to manage orders in a restaurant. To access click <a href="https://burgerlicious-git-main-cbalieiro.vercel.app/">here</a>! 🌟 
+    A web app to manage orders in a restaurant
+    ⚡ To access click <a href="https://burgerlicious-git-main-cbalieiro.vercel.app/">here</a>! ⚡
 </p>
 
 <p align="center">
  <a href="#-challenge">Challenge</a> •
  <a href="#-about">About</a> •
  <a href="#-development">Development</a> • 
- <a href="#como-executar-o-projeto">Como executar o projeto</a> • 
+ <a href="#-getting-started">Getting Started</a> • 
  <a href="#-build-with">Build With</a> • 
  <a href="#-acknowledgments-and-credits">Acknowledgments and credits</a> • 
  <a href="#-authors">Authors</a>
 </p>
+
+---
 
 ##
 
@@ -42,41 +43,30 @@ Esse projeto foi desenvolvido em dupla durante o bootcamp da Laboratoria. A [pro
     <img src="https://media4.giphy.com/media/xT3i1ibda1zFQF1wbe/giphy.gif?cid=ecf05e47xiar1m6clhf9t7ov2088ehrs2bh1hhtwq4nstfaq&rid=giphy.gif"></img>
 </p>
 
+<p align="right">
+  <a href="#top"> Back to the top. </a>
+</p>
+
 ---
 
-## 🍔 About
+## 💡 About
 A Burgerlicious é uma rede de fast food 24 horas. Devido ao seu sucesso e expansão, a rede precisa de um sistema para ajudar a gerenciar os pedidos dos clientes, facilitando o trabalho e comunicação entre o atendimento no salão e a cozinha.  
 
 A interface deve mostrar os dois menus servidos no restaurante, café da manhã e resto do dia, detalhando todos os produtos. O atendimento deve anotar o pedido dos clientes, visualizar em tempo real o resumo do pedido com o custo total e enviar para a cozinha. Essa por sua vez pode avisar ao salão os pedidos que estão prontos para serem servidos.
 
+<p align="right">
+  <a href="#top"> Back to the top. </a>
+</p>
+
 ---
 
-## 💡 Development
+## 💻 Development
 
-### 📆 Organização e planejamento
+### 📋 Planning
 
 Esse trabalho foi desenvolvido sob demanda e já recebemos as definições de histórias de usuário do Product Owner, a partir disso o [planejamento](https://trello.com/b/iATzyG7R/burgerlicious-%F0%9F%8D%94) foi organizado seguindo o modelo de Kanban e dividindo uma história de usuário por sprint. No total foram implementadas quatro histórias em quatro sprints de uma semanda cada. A estratégia adotada para escrever o código foi o code review, sendo um dos itens da definição de pronto de cada história. 📋
 
-### 🎨 Identidade visual
-
-A paleta de cores foi desenvolvida em tons pastéis com base nas cores dos ingredientes clássicos de um hambúrguer, pão 🍞, carne 🥩, alface 🥬, tomate 🍅 e queijo 🧀. A logo escolhida compõe com a estética divertida que os tons pastéis trazem para a marca.
-
-<p align="center">
-  <img alt="color-palette" title="#color-palette" src="./src/img/color-palette.svg" />
- </p>
- 
-&nbsp;
-Icons: [Material Design](https://material.io/)
-
-&nbsp;
-Typography: [Poppins](https://fonts.google.com/specimen/Poppins?)
-
-&nbsp;
-Logo: [Icons8](https://icons8.com/vector-creator/) 
-
-##
-
-### ⚙️ Funcionalidades
+### ⚙️ Features
 
 ##### 👨‍🍳 Cadastro e login
 - [x] Funcionários do salão e da cozinha podem se cadastrar na plataforma web fornecendo:
@@ -114,21 +104,55 @@ Logo: [Icons8](https://icons8.com/vector-creator/)
 
 ##
 
-### ✍️ Prototipagem
+### 🎨 User Interface
+
+A paleta de cores foi desenvolvida em tons pastéis com base nas cores dos ingredientes clássicos de um hambúrguer:
+
+<p align="center">
+    🍞 Bread 🥩 Meat 🥬 Lettuce 🍅 Tomato 🧀 Cheese
+</p>
+
+#### Color palette
+
+<p align="center">
+  <img alt="color-palette" title="#color-palette" src="./src/img/color-palette.svg" />
+</p>
+
+#### Logo
+
+A logo escolhida compõe com a estética divertida que os tons pastéis trazem para a marca e foi desenvolvida por [Icons8](https://icons8.com/vector-creator/), feito apenas algumas alterações pelas autoras. 
+
+<p align="center">
+    <img width="350" src="./src/img/logo.png"></img>
+</p>
+
+#### Typography
+
+Icons: [Material Design](https://material.io/) | Typography: [Poppins](https://fonts.google.com/specimen/Poppins?)
+
+#### Prototype
 
 Os protótipos foram desenvolvidos priorizando o formato de tablet, conforme requerido no desafio. Além do desenvolvimento de wireframes, desenvolvemos um protótipo [interativo](https://www.figma.com/proto/VE1qAvPVorjSDtMrSbGmBr/BurguerIicious?node-id=27%3A3175&scaling=scale-down) da história 2, simulando a jornada dos funcionários do salão ao interagir com o app. Para ver os protótipos de baixa fidelidade e de alta fidelidade é só clicar [aqui](https://www.figma.com/file/VE1qAvPVorjSDtMrSbGmBr/BurguerIicious?node-id=28%3A1381).
 
-*Protótipo de baixa fidelidade* 
+##### Low fidelity tablet prototype
 
-![prototype-low-fidelity](./src/img/prototype-low-fidelity.svg)
+<p align="center">
+    <img align="center" src="./src/img/prototype-low-fidelity.svg"></img>
+    <br>
+    🔎 Click on the image to enlarge 
+</p>
 
-*Protótipo de alta fidelidade*
+##### High fidelity tablet prototype
 
-![prototype-high-fidelity](./src/img/prototype-high-fidelity.svg)
+<p align="center">
+    <img align="center" src="./src/img/prototype-high-fidelity.svg"></img>
+    <br>
+    🔎 Click on the image to enlarge 
+</p>
 
 ##
 
-### 🧪 Testes de usabilidade
+### 🕵️‍♀️ Usability test
 
 Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a aplicação à medida que cada história de usuário era concluída. Os pontos levantados foram:
 
@@ -181,46 +205,44 @@ Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a apl
 &nbsp;
 📌 Bloquear o acesso ao menu que não estivesse disponível no turno, evitando transtornos.
 
-&nbsp;
-📌 Testes unitários e de interface.
+<p align="right">
+  <a href="#top"> Back to the top. </a>
+</p>
 
 ---
 
-## 🚀 Como executar o projeto
+## 🚀 Getting Started
 
-Antes de rodar a aplicação, você precisa ter instalado em sua máquina as ferramentas: 
-
-- [Git](https://git-scm.com)
-- [Node.js](https://nodejs.org/en/)
-
+🔰 Before running the app, you need to have installed these tools on your computer: Git and Node.js.
 ```bash
 
-# Clone este repositório na sua máquina usando o seguinte comando no terminal
-$ git clone https://github.com/cbalieiro/Burgerlicious.git
+# Fork the repository
 
-# Acesse a pasta da aplicação e instale as dependências pelo terminal
+# To clone this repository on your computer run:
+$ git clone https://github.com/beatrizpenalva/burgerlicious.git
+
+# To install the dependencies in your project's directory run:
 $ npm install
 
-# Execute a aplicação em modo de desenvolvimento
+# To execute the app on development  mode run:
 $ npm run start
 
-# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
+# The app will be open on port:3000 - access http://localhost:3000
 
 ```
+##
 
-Para contribuir com o projeto:
+👊 To contribute to this project:
 
 ```bash
 
-# Faça um fork e clone desse repositório
-
-# Crie uma nova branch com suas alterações
+# After installing the repository on your computer, create a new branch with your updates:
 $ git checkout -b my-feature
 
 # Save your changes
 $ git add .
 
-# Crie uma mensagem de commit dizendo o que você fez
+# Create a commit message telling what you did: 
 $ git commit -m "feature: My new feature"
 
 # Send your contribution to this repository
@@ -228,24 +250,32 @@ $ git push origin my-feature
 
 ```
 
+<p align="right">
+  <a href="#top"> Back to the top. </a>
+</p>
+
 ---
 
-## 🛠 Build With
+## 👩‍💻 Build With
 
 &nbsp;
-👉 JavaScript (ES6)
+🛠 JavaScript (ES6)
 
 &nbsp;
-👉 HTML5
+🛠 HTML5
 
 &nbsp;
-👉 [React.JS](https://reactjs.org/)
+🛠 [React.JS](https://reactjs.org/)
 
 &nbsp;
-👉 CSS3
+🛠 CSS3
 
 &nbsp;
-👉 [React-Bootstrap](https://react-bootstrap.github.io/)
+🛠 [React-Bootstrap](https://react-bootstrap.github.io/)
+
+<p align="right">
+  <a href="#top"> Back to the top. </a>
+</p>
 
 ---
 
@@ -284,5 +314,13 @@ $ git push origin my-feature
 
 <p align="center">
     Project developed in <a href="https://www.laboratoria.la/">Laboratoria</a> Bootcamp 💛
-</p>    
+</p>
+
+<p align="center">
+  <img src="https://i.giphy.com/media/23is0rmCx5UlBoNxsZ/giphy.webp" alt="Woman saying: two words, girl code"></img>
+</p>
+
+<p align="right">
+  <a href="#top"> Back to the top. </a>
+</p>
     
