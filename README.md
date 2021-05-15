@@ -156,24 +156,28 @@ We apply usability tests using the low fidelity prototype and, then, as user's s
 
 &nbsp;
 ✔️ Every form field has the title and the symbol * (known as a mandatory field) and the example of the info format.
+##
 
 &nbsp;
 ❌ The user did not understand the logout symbol used in the wireframe model.
 
 &nbsp;
 ✔️ We change the icon and use also information in a text.
+##
 
 &nbsp;
 ❌ The user would like to change the product's quantity in the order summary to avoid having to come back in the menu section and save some clicks. 
 
 &nbsp;
-✔️ We put two buttons, minus and plus, to update the product quantity in the order summary. 
+✔️ We put two buttons, minus and plus, to update the product quantity in the order summary.
+##
 
 &nbsp;
 ❌ The user would like to view which burger options were selected before adding in the order.
 
 &nbsp;
 ✔️ We change the color of the items as they were selected.
+##
 
 &nbsp;
 ❌ The user missed receiving a message confirming that the order was sent successfully to the kitchen. 
@@ -185,13 +189,8 @@ We apply usability tests using the low fidelity prototype and, then, as user's s
 
 ### 🚧 Future implementations
 
-&nbsp;
 - [ ] Notify in real-time hall and kitchen staff, without the need to refresh the page.
-
-&nbsp;
 - [ ] Allow making comments about the order.
-
-&nbsp;
 - [ ] Implement a self-attend service.
 
 <p align="right">
