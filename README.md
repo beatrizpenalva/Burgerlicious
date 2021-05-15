@@ -36,7 +36,7 @@ Login for testing:
 
 ## 🎯 Challenge
 
-The proposal was to develop an app to manage orders in a restaurant to a tablet interface, using React.JS and consuming the [API](https://lab-api-bq.herokuapp.com/api-docs/). The project was develop in groups of two people during four sprints of one week. To know more about the challenge click [here](https://github.com/Laboratoria/SAP005-burger-queen).
+The proposal was to develop an app to manage orders in a restaurant to a tablet interface, using React.JS and consuming the [API](https://lab-api-bq.herokuapp.com/api-docs/). The project was developed in groups of two people during four sprints of one week. To know more about the challenge click [here](https://github.com/Laboratoria/SAP005-burger-queen).
 
 <p align="center">
     <img src="https://media4.giphy.com/media/xT3i1ibda1zFQF1wbe/giphy.gif?cid=ecf05e47xiar1m6clhf9t7ov2088ehrs2bh1hhtwq4nstfaq&rid=giphy.gif"></img>
@@ -51,7 +51,7 @@ The proposal was to develop an app to manage orders in a restaurant to a tablet 
 ## 💡 About
 Burgerlicious is a fast-food chain that works for 24 hours. Due to its success and expansion, the chain needs a system to improve the management of orders, making easy the communication between the employees in the hall and the kitchen. 
 
-The interface must present two types of menu, breakfast and all-day, detailing the products. The waiter and waitress have to create the customer's order, view in real-time the summary with the final price to pay, then send it to the kitchen. In turn, the kitchen staff have to notify them when the orders are ready to be served. 
+The interface must present two types of menu, breakfast and all-day, detailing the products. The waiter and waitress have to create the customer's order, view in real-time the summary with the final price to pay, then send it to the kitchen. In turn, the kitchen staff has to notify them when the orders are ready to be served. 
 
 <p align="right">
   <a href="#top"> Back to the top. </a>
@@ -77,8 +77,8 @@ This project was developed under demand, we receive four user's stories defined 
   - [x] team-work
     - hall
     - kitchen
-- [x] When the user is registed, she/he is redirected to sign in page
-- [x] To sign in the users has to type their email and password, then they are redirected to the page refers to their role 
+- [x] When the user is registered, she/he is redirected to the sign-in page
+- [x] To sign in the users has to type their email and password, then they are redirected to the page that refers to their role 
 
 ##
 
@@ -92,7 +92,7 @@ This project was developed under demand, we receive four user's stories defined 
     - [x] increase or decrease the product quantity
     - [x] delete a product
     - [x] see the order's final price while the products are added or taken from the bag
-- [x] User can only send the order to the kitchen if all form fields has the necessary information
+- [x] User can only send the order to the kitchen if all form fields have the necessary information
 
 ##
 
@@ -149,48 +149,50 @@ The prototypes were developed prioritizing the tablet interface since was one of
 
 ### 🕵️‍♀️ Usability test
 
-Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a aplicação à medida que cada história de usuário era concluída. Os pontos levantados foram:
+We apply usability tests using the low fidelity prototype and, then, as user's stories were concluded. The improvement points were:
 
 &nbsp;
-⚠️ O usário sentiu falta de uma declaração de campo obrigatório no preenchimento de formulário.
+❌ The user missed knowing which form field was mandatory.
 
 &nbsp;
-✔️ Inserimos mensagens em todos os campos obrigatórios e informamos o formato da informação requerida.
+✔️ Every form field has the title and the symbol * (known as a mandatory field) and the example of the info format.
 
 &nbsp;
-⚠️ O usário não entendeu o que o ícone de logout simbolizava.
+❌ The user did not understand the logout symbol used in the wireframe model.
 
 &nbsp;
-✔️ Trocamos o ícone e inserimos uma informação em texto.
+✔️ We change the icon and use also information in a text.
 
 &nbsp;
-⚠️ O usuário gostaria de alterar a quantidade de produtos no resumo do pedido para evitar ter que voltar na seção do menu onde o item está listado. 
+❌ The user would like to change the product's quantity in the order summary to avoid having to come back in the menu section and save some clicks. 
 
 &nbsp;
-✔️ Incorporamos o botão de quantidade para cada produto no resumo do pedido. 
+✔️ We put two buttons, minus and plus, to update the product quantity in the order summary. 
 
 &nbsp;
-⚠️ O usuário gostaria de saber visualmente quais opções de hambúrguer foram selecionadas antes de adicionar ao pedido.
+❌ The user would like to view which burger options were selected before adding in the order.
 
 &nbsp;
-✔️ Trocamos a cor dos itens ao serem selecionados. 
+✔️ We change the color of the items as they were selected.
 
 &nbsp;
-⚠️ O usuário sentiu falta de uma mensagem confirmando que o pedido foi enviado com sucesso para a cozinha. 
-
+❌ The user missed receiving a message confirming that the order was sent successfully to the kitchen. 
+ 
 &nbsp;
-✔️ Inserimos micro-interações que avisam ao usuário quando uma ação é cancelada, concluída com sucesso ou mal sucedida.
+✔️ We add micro-interactions that send messages to the user when one action is canceled, concluded with success or unsuccessful.
 
 ##
 
 ### 🚧 Future implementations
 
 &nbsp;
-📌 Notify in real-time hall and kitchen staff, without the need to refresh the page.
+- [ ] Notify in real-time hall and kitchen staff, without the need to refresh the page.
+
 &nbsp;
-📌 Allow making comments about the order.
+- [ ] Allow making comments about the order.
+
 &nbsp;
-📌 Implement a self-attend service.
+- [ ] Implement a self-attend service.
 
 <p align="right">
   <a href="#top"> Back to the top. </a>
