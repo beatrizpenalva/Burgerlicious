@@ -16,8 +16,6 @@
  <a href="#-authors">Authors</a>
 </p>
 
----
-
 ##
 
 Login for testing:
@@ -51,9 +49,9 @@ The proposal was to develop an app to manage orders in a restaurant to a tablet 
 ---
 
 ## 💡 About
-A Burgerlicious é uma rede de fast food 24 horas. Devido ao seu sucesso e expansão, a rede precisa de um sistema para ajudar a gerenciar os pedidos dos clientes, facilitando o trabalho e comunicação entre o atendimento no salão e a cozinha.  
+Burgerlicious is a fast-food chain that works for 24 hours. Due to its success and expansion, the chain needs a system to improve the management of orders, making easy the communication between the employees in the hall and the kitchen. 
 
-A interface deve mostrar os dois menus servidos no restaurante, café da manhã e resto do dia, detalhando todos os produtos. O atendimento deve anotar o pedido dos clientes, visualizar em tempo real o resumo do pedido com o custo total e enviar para a cozinha. Essa por sua vez pode avisar ao salão os pedidos que estão prontos para serem servidos.
+The interface must present two types of menu, breakfast and all-day, detailing the products. The waiter and waitress have to create the customer's order, view in real-time the summary with the final price to pay, then send it to the kitchen. In turn, the kitchen staff have to notify them when the orders are ready to be served. 
 
 <p align="right">
   <a href="#top"> Back to the top. </a>
@@ -65,7 +63,9 @@ A interface deve mostrar os dois menus servidos no restaurante, café da manhã 
 
 ### 📋 Planning
 
-Esse trabalho foi desenvolvido sob demanda e já recebemos as definições de histórias de usuário do Product Owner, a partir disso o [planejamento](https://trello.com/b/iATzyG7R/burgerlicious-%F0%9F%8D%94) foi organizado seguindo o modelo de Kanban e dividindo uma história de usuário por sprint. No total foram implementadas quatro histórias em quatro sprints de uma semanda cada. A estratégia adotada para escrever o código foi o code review, sendo um dos itens da definição de pronto de cada história.
+This project was developed under demand, we receive four user's stories defined by the Product Owner. From that, we follow the Kanban model to [planning](https://trello.com/b/iATzyG7R/burgerlicious-%F0%9F%8D%94) and developing one user story per sprint. In total, we develop four stories in four sprints of one week. The strategy adopted to write the code was to make a code review.
+
+##
 
 ### ⚙️ Features
 
@@ -109,18 +109,13 @@ Esse trabalho foi desenvolvido sob demanda e já recebemos as definições de hi
 The color palette was developed in pastel colors, based on the burger anatomy:
 
 <p align="center">
-    🍞 Bread 🥩 Meat 🥬 Lettuce 🍅 Tomato 🧀 Cheese
-</p>
-
-#### Color palette
-
-<p align="center">
-  <img alt="color-palette" title="#color-palette" src="./src/img/color-palette.svg" />
+    <img src="./src/img/burger-anatomy.png"></img>
+  <img alt="color-palette" title="#color-palette" src="./src/img/color-palette.svg"></img>
 </p>
 
 #### Logo
 
-A logo escolhida compõe com a estética divertida que os tons pastéis trazem para a marca e foi desenvolvida por [Icons8](https://icons8.com/vector-creator/), feito apenas algumas alterações pelas autoras. 
+The chosen logo composes with the fun aesthetic that pastel tones bring to the brand and was developed by [Icons8](https://icons8.com/vector-creator/), made only a few changes by the authors.
 
 <p align="center">
     <img width="350" src="./src/img/logo.png"></img>
@@ -128,11 +123,11 @@ A logo escolhida compõe com a estética divertida que os tons pastéis trazem p
 
 #### Typography
 
-Icons: [Material Design](https://material.io/) | Typography: [Poppins](https://fonts.google.com/specimen/Poppins?)
+It was used [Poppins](https://fonts.google.com/specimen/Poppins?) as the family font and the icons of [Material Design](https://material.io/) in the app. 
 
 #### Prototype
 
-Os protótipos foram desenvolvidos priorizando o formato de tablet, conforme requerido no desafio. Além do desenvolvimento de wireframes, desenvolvemos um protótipo [interativo](https://www.figma.com/proto/VE1qAvPVorjSDtMrSbGmBr/BurguerIicious?node-id=27%3A3175&scaling=scale-down) da história 2, simulando a jornada dos funcionários do salão ao interagir com o app. Para ver os protótipos de baixa fidelidade e de alta fidelidade é só clicar [aqui](https://www.figma.com/file/VE1qAvPVorjSDtMrSbGmBr/BurguerIicious?node-id=28%3A1381).
+The prototypes were developed prioritizing the tablet interface since was one of the requirements of the challenge. Besides that, we model [wireframes](https://www.figma.com/proto/VE1qAvPVorjSDtMrSbGmBr/BurguerIicious?node-id=27%3A3175&scaling=scale-down) and apply a usability test on this face to investigate how the *Create Order* feature could work in the best way. To see all the interface models click [here](https://www.figma.com/file/VE1qAvPVorjSDtMrSbGmBr/BurguerIicious?node-id=28%3A1381).
 
 ##### Low fidelity tablet prototype
 
@@ -317,7 +312,7 @@ $ git push origin my-feature
 </p>
 
 <p align="center">
-  <img src="https://i.giphy.com/media/23is0rmCx5UlBoNxsZ/giphy.webp" alt="Woman saying: two words, girl code"></img>
+  <img src="https://64.media.tumblr.com/tumblr_laiwz2WR8A1qblidn.gif" alt=""></img>
 </p>
 
 <p align="right">
