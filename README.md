@@ -186,19 +186,11 @@ Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a apl
 ### 🚧 Future implementations
 
 &nbsp;
-📌 Implementar comunicação em tempo real entre as aplicações, front e back-end, para notificar a cozinha de novas comandas e o salão de pedidos prontos para entrega. 
-
+📌 Notify in real-time hall and kitchen staff, without the need to refresh the page.
 &nbsp;
-📌 Validação do e-mail dos usuários.
-
+📌 Allow making comments about the order.
 &nbsp;
-📌 Implementar uma interface de autoatendimento. 
-
-&nbsp;
-📌 Criar uma seção de comentários nas comandas.
-
-&nbsp;
-📌 Bloquear o acesso ao menu que não estivesse disponível no turno, evitando transtornos.
+📌 Implement a self-attend service.
 
 <p align="right">
   <a href="#top"> Back to the top. </a>
