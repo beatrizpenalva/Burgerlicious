@@ -1,4 +1,4 @@
-<h1 align="center" id="top"> 🍔🍟 Burgerlicious </h1>
+<h1 align="center" id="top"> 💁👨‍🍳 Burgerlicious </h1>
 
 <p align="center">
     A web app to manage orders in a restaurant
@@ -12,7 +12,6 @@
  <a href="#-development">Development</a> • 
  <a href="#-getting-started">Getting Started</a> • 
  <a href="#-build-with">Build With</a> • 
- <a href="#-acknowledgments-and-credits">Acknowledgments and credits</a> • 
  <a href="#-authors">Authors</a>
 </p>
 
