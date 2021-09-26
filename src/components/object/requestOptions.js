@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const RequestOptions = {
   post(props) {
     const request = {

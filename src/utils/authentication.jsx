@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const isAuthenticated = () => {
   const validation = localStorage.getItem(`token`)
   if (validation !== undefined && validation !== null) {

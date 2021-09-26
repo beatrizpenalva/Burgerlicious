@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const AllModelsObject = {
   authAndUsers: {
     auth: 'https://lab-api-bq.herokuapp.com/auth',
