@@ -1,6 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
-/* eslint-disable import/no-cycle */
 import React from 'react'
 import Sidebar from './Sidebar'
 

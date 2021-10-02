@@ -1,7 +1,6 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import logo from '../img/logo.png'
 import ButtonSidebar from './Buttonsidebar'
 import Button from './Buttonorderstatus'
@@ -9,9 +8,7 @@ import { SidebarStorage } from './SidebarContext'
 
 const Header = ({ role, name }) => {
   const nameFunction = () => {
-    if (role === 'hall') {
-      return 'Attendant'
-    }
+    if (role === 'hall') return 'Attendant'
     return 'Chef'
   }
 
@@ -94,6 +91,11 @@ const Header = ({ role, name }) => {
       </header>
     </>
   )
+}
+
+Header.propTypes = {
+  role: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 }
 
 export default Header

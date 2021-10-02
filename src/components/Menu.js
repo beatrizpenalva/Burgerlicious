@@ -1,18 +1,8 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable consistent-return */
-/* eslint-disable array-callback-return */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/button-has-type */
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-shadow */
-/* eslint-disable no-plusplus */
-/* eslint-disable import/order */
-
 import React, { useEffect, useState } from 'react'
-import CallAPI from '../services/api'
 import 'bootstrap/dist/css/bootstrap.css'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
+import CallAPI from '../services/api'
 import MenuItems from './Menudetails'
 import ToastGroup from './Toast'
 import ModalMessage from './Modal'
@@ -47,8 +37,8 @@ const Menu = () => {
     })
   }, [products])
 
-  const addItem = (item) => {
-    const productToSet = item
+  const addItem = (product) => {
+    const productToSet = product
     const isOnTheList = products.some((item) => item.id === productToSet.id)
 
     if (!isOnTheList) {
@@ -73,26 +63,23 @@ const Menu = () => {
 
   const handlePlusClick = (index) => {
     const productsList = [...products]
-    productsList[index].quantity++
+    productsList[index].quantity = +productsList[index].quantity + 1
     setProducts(productsList)
   }
 
   const handleMinusClick = (index) => {
     const productsList = [...products]
     if (productsList[index].quantity > 1) {
-      productsList[index].quantity--
+      productsList[index].quantity = +productsList[index].quantity - 1
       setProducts(productsList)
     } else {
       deleteProduct(index)
     }
   }
 
-  const handleSendOrder = (event) => {
-    event.preventDefault()
-    const productsList = [...products]
-    const newOrder = { ...order, products: productsList }
-    setOrder(newOrder)
-    createOrder(newOrder)
+  const handleError = (message) => {
+    setCode(message)
+    setShow(true)
   }
 
   const createOrder = ({ client, table, products }) => {
@@ -132,6 +119,14 @@ const Menu = () => {
     }
   }
 
+  const handleSendOrder = (event) => {
+    event.preventDefault()
+    const productsList = [...products]
+    const updateOrder = { ...order, products: productsList }
+    setOrder(updateOrder)
+    createOrder(updateOrder)
+  }
+
   const handleCancel = (event) => {
     event.preventDefault()
     setModalShow(true)
@@ -149,11 +144,6 @@ const Menu = () => {
     }
   }
 
-  const handleError = (message) => {
-    setCode(message)
-    setShow(true)
-  }
-
   return (
     <>
       <section className='menu-info'>
@@ -167,6 +157,7 @@ const Menu = () => {
                 <Card.Body className='card-accordion'>
                   <section className='item-menu'>
                     <button
+                      type='button'
                       className='menu-button'
                       onClick={() => setMenuSection('Snacks')}
                     >
@@ -177,6 +168,7 @@ const Menu = () => {
                       </span>
                     </button>
                     <button
+                      type='button'
                       className='menu-button last-menu-item'
                       onClick={() => setMenuSection('DrinksCoffee')}
                     >
@@ -198,6 +190,7 @@ const Menu = () => {
                 <Card.Body>
                   <section className='item-menu'>
                     <button
+                      type='button'
                       className='menu-button'
                       onClick={() => setMenuSection('Burgers')}
                     >
@@ -208,6 +201,7 @@ const Menu = () => {
                       </span>
                     </button>
                     <button
+                      type='button'
                       className='menu-button'
                       onClick={() => setMenuSection('Sides')}
                     >
@@ -218,6 +212,7 @@ const Menu = () => {
                       </span>
                     </button>
                     <button
+                      type='button'
                       className='menu-button last-menu-item'
                       onClick={() => setMenuSection('Drinks')}
                     >
@@ -248,9 +243,10 @@ const Menu = () => {
         onSubmit={(event) => handleSendOrder(event)}
       >
         <section className='client-info'>
-          <label>
+          <label htmlFor='client-name'>
             Client:
             <input
+              id='client-name'
               type='text'
               placeholder='Client name'
               className='form-input'
@@ -262,9 +258,10 @@ const Menu = () => {
             />
           </label>
 
-          <label>
+          <label htmlFor='table'>
             Table:
             <input
+              id='table'
               type='number'
               placeholder='Table number'
               className='form-input'
@@ -287,6 +284,7 @@ const Menu = () => {
                   <section key={item.id}>
                     <section className='item-description list-items'>
                       <button
+                        type='button'
                         className='delete-item'
                         onClick={() => deleteProduct(index)}
                       >

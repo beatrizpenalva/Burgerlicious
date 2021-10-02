@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable consistent-return */
 const CallAPI = async (url, method) => {
   try {
     const response = await fetch(url, method)

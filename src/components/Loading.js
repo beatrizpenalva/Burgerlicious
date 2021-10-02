@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import Spinner from 'react-bootstrap/Spinner'

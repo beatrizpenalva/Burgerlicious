@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import RequestOptions from '../../components/object/requestOptions'

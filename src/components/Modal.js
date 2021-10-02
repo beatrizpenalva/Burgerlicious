@@ -1,32 +1,25 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
+import PropTypes from 'prop-types'
 import 'bootstrap/dist/css/bootstrap.css'
 import Modal from 'react-bootstrap/Modal'
 
-const ModalMessage = (props) => (
+const ModalMessage = ({ cancelOrder }) => (
   <div className='back'>
-    <Modal
-      {...props}
-      size='lg'
-      aria-labelledby='contained-modal-title-vcenter'
-      centered
-    >
+    <Modal size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
       <Modal.Body>
         <p className='modal-text'>Do you really want to delete?</p>
         <section className='modal-bottom'>
           <button
             type='button'
             className='modal-button yes-button'
-            onClick={() => props.cancelOrder(true)}
+            onClick={() => cancelOrder(true)}
           >
             YES
           </button>
           <button
             type='button'
             className='modal-button'
-            onClick={() => props.cancelOrder(false)}
+            onClick={() => cancelOrder(false)}
           >
             NO
           </button>
@@ -35,5 +28,9 @@ const ModalMessage = (props) => (
     </Modal>
   </div>
 )
+
+ModalMessage.propTypes = {
+  cancelOrder: PropTypes.func.isRequired,
+}
 
 export default ModalMessage

@@ -1,10 +1,15 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable camelcase */
-/* eslint-disable react/prop-types */
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const CardsHeader = ({ children }) => {
-  const { client_name, table, createdAt, processedAt, status, id } = children
+const CardsHeader = ({
+  client_name,
+  table,
+  createdAt,
+  processedAt,
+  status,
+  id,
+}) => {
   const dtcreatedAt = new Date(createdAt)
   const dtprocessedAt = new Date(processedAt)
   const orderTime = `${dtcreatedAt.toLocaleDateString()} - ${dtcreatedAt.getHours()}:${dtcreatedAt.getMinutes()}`
@@ -44,6 +49,15 @@ const CardsHeader = ({ children }) => {
       </div>
     </>
   )
+}
+
+CardsHeader.propTypes = {
+  client_name: PropTypes.string.isRequired,
+  table: PropTypes.number.isRequired,
+  createdAt: PropTypes.shape.isRequired,
+  processedAt: PropTypes.shape.isRequired,
+  status: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 }
 
 export default CardsHeader

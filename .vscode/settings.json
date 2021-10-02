@@ -1,5 +1,6 @@
 {
-  "cSpell.ignoreWords": [
-    "alertstatus"
-  ]
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true 
+  }
 }

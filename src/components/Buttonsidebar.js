@@ -1,8 +1,5 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable import/no-cycle */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { SidebarContext } from './SidebarContext'
 
 const ButtonSidebar = ({ children, ...props }) => {
@@ -23,6 +20,10 @@ const ButtonSidebar = ({ children, ...props }) => {
       </button>
     </>
   )
+}
+
+ButtonSidebar.propTypes = {
+  children: PropTypes.string.isRequired,
 }
 
 export default ButtonSidebar

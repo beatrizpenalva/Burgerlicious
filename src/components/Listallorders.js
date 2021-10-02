@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react'
 import RequestOptions from './object/requestOptions'
 import CallAPI from '../services/api'
@@ -22,12 +21,12 @@ function ListOrders({ filterType }) {
     'Refrigerante 750mL': 'Soda 750mL',
     'Hambúrguer simples': 'Smash burger',
     'Hambúrguer duplo': 'Double burger',
-    'carne': 'Meat',
-    'frango': 'Chicken',
-    'vegetariano': 'Veggie',
-    'queijo': 'Cheese',
-    'ovo': 'Egg'
-}
+    carne: 'Meat',
+    frango: 'Chicken',
+    vegetariano: 'Veggie',
+    queijo: 'Cheese',
+    ovo: 'Egg',
+  }
 
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
   const { token, role } = nameLS

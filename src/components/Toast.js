@@ -1,13 +1,11 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react'
+import PropTypes from 'prop-types'
 import 'bootstrap/dist/css/bootstrap.css'
 import Toast from 'react-bootstrap/Toast'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-const ToastGroup = (props) => {
+const ToastGroup = ({ code, show, onClose }) => {
   const verifyErrorCode = {
     '001': 'You have to chose a burger option. Please, try again.',
     '002': 'Order canceled!',
@@ -19,7 +17,7 @@ const ToastGroup = (props) => {
     404: 'Ops! Something went wrong. Please, try again.',
   }
 
-  let errorMessage = verifyErrorCode[props.code]
+  let errorMessage = verifyErrorCode[code]
 
   if (!errorMessage) {
     errorMessage = 'Ops! Something went wrong. Please, try again.'
@@ -28,7 +26,7 @@ const ToastGroup = (props) => {
   return (
     <Row>
       <Col xs={6}>
-        <Toast show={props.show} onClose={props.onClose}>
+        <Toast show={show} onClose={onClose}>
           <Toast.Header>
             <img
               src='holder.js/20x20?text=%20'
@@ -42,6 +40,12 @@ const ToastGroup = (props) => {
       </Col>
     </Row>
   )
+}
+
+ToastGroup.propTypes = {
+  code: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  show: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 }
 
 export default ToastGroup

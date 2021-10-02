@@ -1,6 +1,5 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 import React from 'react'
+import PropTypes from 'prop-types'
 import CardsHeader from './ComponentsCardsHeader'
 import CardsBody from './ComponentsCardsBody'
 
@@ -15,5 +14,10 @@ const CardsKitchen = ({ children, props }) => (
     </div>
   </>
 )
+
+CardsKitchen.propTypes = {
+  children: PropTypes.string.isRequired,
+  props: PropTypes.func.isRequired,
+}
 
 export default CardsKitchen

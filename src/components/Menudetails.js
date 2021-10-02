@@ -1,18 +1,7 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable eqeqeq */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/button-has-type */
-/* eslint-disable no-use-before-define */
-/* eslint-disable guard-for-in */
-/* eslint-disable no-shadow */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable arrow-body-style */
-/* eslint-disable react/prop-types */
-/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import useFetch from '../services/Hooks/useFetch'
 import requestOptions from './object/requestOptions'
-// import Loading from "../components/errors/loading"
 
 const MenuItems = ({ option, addItem, handleError }) => {
   const translatePTtoEN = {
@@ -35,25 +24,15 @@ const MenuItems = ({ option, addItem, handleError }) => {
     ovo: 'Egg',
   }
 
-  const newBurger = {
-    name: '',
-    flavor: '',
-    complement: '',
-    quantity: 1,
-  }
-
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
   const { data, request } = useFetch()
 
-  const [burger, setBurger] = useState(newBurger)
-  const [items, setItems] = useState({})
   const [snacksList, setSnacksList] = useState([])
   const [coffeeList, setCoffeeList] = useState([])
   const [burgerList, setBurgerList] = useState([])
   const [drinksList, setDrinksList] = useState([])
   const [sidesList, setSidesList] = useState([])
   const [dataTranslated, setDataTranslated] = useState([])
-  // const [loading, setLoading] = useState(true); //passar todas as chamadas para o elemento pai
 
   useEffect(() => {
     async function fetchProducts() {
@@ -68,14 +47,12 @@ const MenuItems = ({ option, addItem, handleError }) => {
     if (!data) return
 
     const allProducts = data
-    const productsTranslated = allProducts.map((item) => {
-      return {
-        ...item,
-        name: translatePTtoEN[item.name],
-        flavor: translatePTtoEN[item.flavor],
-        complement: translatePTtoEN[item.complement],
-      }
-    })
+    const productsTranslated = allProducts.map((item) => ({
+      ...item,
+      name: translatePTtoEN[item.name],
+      flavor: translatePTtoEN[item.flavor],
+      complement: translatePTtoEN[item.complement],
+    }))
 
     setDataTranslated(productsTranslated)
 
@@ -96,20 +73,10 @@ const MenuItems = ({ option, addItem, handleError }) => {
     setSidesList(
       productsTranslated.filter((item) => item.sub_type.includes('side'))
     )
-
-    // setLoading(false);
   }, [data])
 
-  const handleClick = (items) => {
-    for (const property in items) {
-      createItemObject(property, items[property])
-    }
-
-    setItems({})
-  }
-
-  const getBurgerId = (burger) => {
-    if (burger.name === '') {
+  const getBurgerId = (burgerObj) => {
+    if (burgerObj.name === '') {
       handleError('001')
     } else {
       const chosenBurger = burger
@@ -132,326 +99,29 @@ const MenuItems = ({ option, addItem, handleError }) => {
   }
 
   const createItemObject = (code, count) => {
-    const updatedItem = dataTranslated.find((i) => i.id == code)
+    const updatedItem = dataTranslated.find((i) => i.id === code)
     const newProduct = { quantity: count, ...updatedItem }
     addItem(newProduct)
   }
 
-  const Snacks = ({ list }) => {
-    return (
-      <>
-        <section className='menu-description'>
-          {list.length &&
-            list.map((item) => {
-              let count
-
-              if (items[item.id]) count = items[item.id]
-              else count = 0
-
-              return (
-                <section className='item-description' key={item.name}>
-                  <p className='product'>{item.name}</p>
-                  <p className='price'>${item.price}</p>
-                  <section className='input-group'>
-                    <button
-                      className='count-button'
-                      onClick={() =>
-                        setItems({ ...items, [item.id]: count + 1 })
-                      }
-                    >
-                      {' '}
-                      +{' '}
-                    </button>
-                    <p className='quantity-field'>{count}</p>
-                    <button
-                      className='count-button'
-                      onClick={() =>
-                        count > 0 &&
-                        setItems({ ...items, [item.id]: count - 1 })
-                      }
-                    >
-                      {' '}
-                      -{' '}
-                    </button>
-                  </section>
-                </section>
-              )
-            })}
-        </section>
-        <button className='send-button' onClick={() => handleClick(items)}>
-          ADD ITEM
-        </button>
-      </>
-    )
-  }
-
-  const Coffee = ({ list }) => {
-    return (
-      <>
-        <section className='menu-description'>
-          {list.length &&
-            list.map((item) => {
-              let count
-
-              if (items[item.id]) count = items[item.id]
-              else count = 0
-
-              return (
-                <section className='item-description' key={item.name}>
-                  <p className='product'>{item.name}</p>
-                  <p className='price'>${item.price}</p>
-                  <section className='input-group'>
-                    <button
-                      className='count-button'
-                      onClick={() =>
-                        setItems({ ...items, [item.id]: count + 1 })
-                      }
-                    >
-                      {' '}
-                      +{' '}
-                    </button>
-                    <p className='quantity-field'>{count}</p>
-                    <button
-                      className='count-button'
-                      onClick={() =>
-                        count > 0 &&
-                        setItems({ ...items, [item.id]: count - 1 })
-                      }
-                    >
-                      {' '}
-                      -{' '}
-                    </button>
-                  </section>
-                </section>
-              )
-            })}
-        </section>
-        <button className='send-button' onClick={() => handleClick(items)}>
-          ADD ITEM
-        </button>
-      </>
-    )
-  }
-
-  const Burger = () => {
-    return (
-      <>
-        <section className='burger-details'>
-          <section>
-            <section className='burger-items'>
-              <label className={burger.name === 'Smash burger' ? 'active' : ''}>
-                Smash burger $10
-                <input
-                  type='radio'
-                  name='size'
-                  value='Smash burger'
-                  onChange={(event) => {
-                    setBurger({ ...burger, name: event.target.value })
-                  }}
-                />
-              </label>
-
-              <label
-                className={burger.name === 'Double burger' ? 'active' : ''}
-              >
-                Double burger $10
-                <input
-                  type='radio'
-                  name='size'
-                  value='Double burger'
-                  onChange={(event) => {
-                    setBurger({ ...burger, name: event.target.value })
-                  }}
-                />
-              </label>
-            </section>
-
-            <section className='burger-items'>
-              <label className={burger.flavor === 'Meat' ? 'active' : ''}>
-                Meat
-                <input
-                  type='radio'
-                  name='burger'
-                  value='Meat'
-                  onChange={(event) => {
-                    setBurger({ ...burger, flavor: event.target.value })
-                  }}
-                />
-              </label>
-
-              <label className={burger.flavor === 'Chicken' ? 'active' : ''}>
-                Chicken
-                <input
-                  type='radio'
-                  name='burger'
-                  value='Chicken'
-                  onChange={(event) => {
-                    setBurger({ ...burger, flavor: event.target.value })
-                  }}
-                />
-              </label>
-
-              <label className={burger.flavor === 'Veggie' ? 'active' : ''}>
-                Veggie
-                <input
-                  type='radio'
-                  name='burger'
-                  value='Veggie'
-                  onChange={(event) => {
-                    setBurger({ ...burger, flavor: event.target.value })
-                  }}
-                />
-              </label>
-            </section>
-
-            <section className='burger-items'>
-              <label className={burger.complement === 'Cheese' ? 'active' : ''}>
-                Cheese $1
-                <input
-                  type='radio'
-                  name='extra'
-                  value='Cheese'
-                  onChange={(event) => {
-                    setBurger({ ...burger, complement: event.target.value })
-                  }}
-                />
-              </label>
-
-              <label className={burger.complement === 'Egg' ? 'active' : ''}>
-                Egg $1
-                <input
-                  type='radio'
-                  name='extra'
-                  value='Egg'
-                  onChange={(event) => {
-                    setBurger({ ...burger, complement: event.target.value })
-                  }}
-                />
-              </label>
-            </section>
-          </section>
-        </section>
-        <button
-          className='send-button'
-          onClick={() => {
-            getBurgerId(burger)
-          }}
-        >
-          ADD ITEM
-        </button>
-      </>
-    )
-  }
-
-  const Sides = ({ list }) => {
-    return (
-      <>
-        <section className='menu-description'>
-          {list.length &&
-            list.map((item) => {
-              let count
-
-              if (items[item.id]) count = items[item.id]
-              else count = 0
-
-              return (
-                <section className='item-description' key={item.name}>
-                  <p className='product'>{item.name}</p>
-                  <p className='price'>${item.price}</p>
-                  <section className='input-group'>
-                    <button
-                      className='count-button'
-                      onClick={() =>
-                        setItems({ ...items, [item.id]: count + 1 })
-                      }
-                    >
-                      {' '}
-                      +{' '}
-                    </button>
-                    <p className='quantity-field'>{count}</p>
-                    <button
-                      className='count-button'
-                      onClick={() =>
-                        count > 0 &&
-                        setItems({ ...items, [item.id]: count - 1 })
-                      }
-                    >
-                      {' '}
-                      -{' '}
-                    </button>
-                  </section>
-                </section>
-              )
-            })}
-        </section>
-        <button className='send-button' onClick={() => handleClick(items)}>
-          ADD ITEM
-        </button>
-      </>
-    )
-  }
-
-  const Drinks = ({ list }) => {
-    return (
-      <>
-        <section className='menu-description'>
-          {list.length &&
-            list.map((item) => {
-              let count
-
-              if (items[item.id]) count = items[item.id]
-              else count = 0
-
-              return (
-                <section className='item-description' key={item.name}>
-                  <p className='product'>{item.name}</p>
-                  <p className='price'>${item.price}</p>
-                  <section className='input-group'>
-                    <button
-                      className='count-button'
-                      onClick={() =>
-                        setItems({ ...items, [item.id]: count + 1 })
-                      }
-                    >
-                      {' '}
-                      +{' '}
-                    </button>
-                    <p className='quantity-field'>{count}</p>
-                    <button
-                      className='count-button'
-                      onClick={() =>
-                        count > 0 &&
-                        setItems({ ...items, [item.id]: count - 1 })
-                      }
-                    >
-                      {' '}
-                      -{' '}
-                    </button>
-                  </section>
-                </section>
-              )
-            })}
-        </section>
-        <button className='send-button' onClick={() => handleClick(items)}>
-          ADD ITEM
-        </button>
-      </>
-    )
-  }
+  // burger
+  /// Coffee, Snacks, Sides, Drinks quando chamar o componente passar list
 
   return (
     <>
       {option === 'Snacks' && <Snacks list={snacksList} />}
       {option === 'DrinksCoffee' && <Coffee list={coffeeList} />}
-
-      {option === 'Burgers' && <Burger />}
-
       {option === 'Sides' && <Sides list={sidesList} />}
       {option === 'Drinks' && <Drinks list={drinksList} />}
-
-      {/* {loading && <Loading />} */}
+      {option === 'Burgers' && <Burger />}
     </>
   )
+}
+
+MenuItems.propTypes = {
+  option: PropTypes.string.isRequired,
+  addItem: PropTypes.func.isRequired,
+  handleError: PropTypes.func.isRequired,
 }
 
 export default MenuItems
