@@ -1,6 +1,3 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable consistent-return */
-/* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import Accordion from 'react-bootstrap/Accordion'
@@ -16,22 +13,22 @@ const Menu = () => {
   const { token } = nameLS
 
   const newOrder = {
-    client: '',
-    table: '',
+    client: ' ',
+    table: ' ',
     products: [],
   }
 
   const [order, setOrder] = useState(newOrder)
   const [modalShow, setModalShow] = useState(false)
   const [menuSection, setMenuSection] = useState('')
-  const [products, setProducts] = useState([])
+  const [productsChart, setProducts] = useState([])
   const [totalToPay, setTotal] = useState(0)
   const [show, setShow] = useState(false)
   const [errCode, setCode] = useState('')
 
   useEffect(() => {
     setTotal(() => {
-      const newTotal = products.reduce((accumulator, current) => {
+      const newTotal = productsChart.reduce((accumulator, current) => {
         const { quantity, price } = current
         accumulator = Number(quantity * price + accumulator)
         return accumulator
@@ -39,17 +36,19 @@ const Menu = () => {
 
       return newTotal
     })
-  }, [products])
+  }, [productsChart])
 
   const addItem = (product) => {
     const productToSet = product
-    const isOnTheList = products.some((item) => item.id === productToSet.id)
+    const isOnTheList = productsChart.some(
+      (item) => item.id === productToSet.id
+    )
 
     if (!isOnTheList) {
       setProducts((productsState) => [...productsState, productToSet])
     } else {
       const newQuantity = productToSet.quantity
-      const itemUptaded = products.map((i) => {
+      const itemUptaded = productsChart.map((i) => {
         if (i.id === productToSet.id) {
           i.quantity += newQuantity
         }
@@ -60,19 +59,19 @@ const Menu = () => {
   }
 
   const deleteProduct = (index) => {
-    const getProductsArray = [...products]
+    const getProductsArray = [...productsChart]
     getProductsArray.splice(index, 1)
     setProducts(getProductsArray)
   }
 
   const handlePlusClick = (index) => {
-    const productsList = [...products]
+    const productsList = [...productsChart]
     productsList[index].quantity = +productsList[index].quantity + 1
     setProducts(productsList)
   }
 
   const handleMinusClick = (index) => {
-    const productsList = [...products]
+    const productsList = [...productsChart]
     if (productsList[index].quantity > 1) {
       productsList[index].quantity = +productsList[index].quantity - 1
       setProducts(productsList)
@@ -91,7 +90,7 @@ const Menu = () => {
     if (answer === true) {
       setOrder(newOrder)
       setProducts([])
-      if (products.length !== 0) {
+      if (productsChart.length !== 0) {
         setCode('002')
         setShow(true)
       }
@@ -138,7 +137,7 @@ const Menu = () => {
 
   const handleSendOrder = (event) => {
     event.preventDefault()
-    const productsList = [...products]
+    const productsList = [...productsChart]
     const updateOrder = { ...order, products: productsList }
     setOrder(updateOrder)
     createOrder(updateOrder)
@@ -146,8 +145,11 @@ const Menu = () => {
 
   const handleCancel = () => {
     setModalShow(true)
-    // eslint-disable-next-line no-console
-    console.log(modalShow)
+  }
+
+  const handleOrderChange = (event, key) => {
+    if (key === 'client') setOrder({ ...order, client: event.target.value })
+    else setOrder({ ...order, table: event.target.value })
   }
 
   return (
@@ -255,7 +257,8 @@ const Menu = () => {
         handleSendOrder={handleSendOrder}
         handleCancel={handleCancel}
         order={order}
-        products={products}
+        products={productsChart}
+        handleOrderChange={handleOrderChange}
       />
 
       <ToastGroup code={errCode} onClose={() => setShow(false)} show={show} />
