@@ -144,9 +144,10 @@ const Menu = () => {
     createOrder(updateOrder)
   }
 
-  const handleCancel = (event) => {
-    event.preventDefault()
+  const handleCancel = () => {
     setModalShow(true)
+    // eslint-disable-next-line no-console
+    console.log(modalShow)
   }
 
   return (

@@ -111,7 +111,7 @@ const Order = ({
           <button
             type='button'
             className='cancel-button'
-            onClick={(event) => handleCancel(event)}
+            onClick={() => handleCancel()}
           >
             CANCEL{' '}
           </button>

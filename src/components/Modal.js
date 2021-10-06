@@ -3,9 +3,14 @@ import PropTypes from 'prop-types'
 import 'bootstrap/dist/css/bootstrap.css'
 import Modal from 'react-bootstrap/Modal'
 
-const ModalMessage = ({ cancelOrder }) => (
+const ModalMessage = ({ show, cancelOrder }) => (
   <div className='back'>
-    <Modal size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
+    <Modal
+      show={show}
+      size='lg'
+      aria-labelledby='contained-modal-title-vcenter'
+      centered
+    >
       <Modal.Body>
         <p className='modal-text'>Do you really want to delete?</p>
         <section className='modal-bottom'>
@@ -31,6 +36,7 @@ const ModalMessage = ({ cancelOrder }) => (
 
 ModalMessage.propTypes = {
   cancelOrder: PropTypes.func.isRequired,
+  show: PropTypes.bool.isRequired,
 }
 
 export default ModalMessage
