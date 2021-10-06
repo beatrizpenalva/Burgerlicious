@@ -257,7 +257,7 @@ const Menu = () => {
         handleSendOrder={handleSendOrder}
         handleCancel={handleCancel}
         order={order}
-        products={productsChart}
+        productsChart={productsChart}
         handleOrderChange={handleOrderChange}
       />
 

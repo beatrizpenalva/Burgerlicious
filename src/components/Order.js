@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
-/* eslint-disable consistent-return */
 import React from 'react'
 import PropTypes from 'prop-types'
+import Chart from './Chart'
 
 const Order = ({
   totalToPay,
@@ -10,7 +10,7 @@ const Order = ({
   deleteProduct,
   handleSendOrder,
   handleCancel,
-  products,
+  productsChart,
   order,
   handleOrderChange,
 }) => (
@@ -45,51 +45,14 @@ const Order = ({
       </label>
     </section>
 
-    <section className='products-info'>
-      {products.length > 0 &&
-        products.map((item, index) => {
-          if (item.quantity > 0) {
-            return (
-              <section key={item.id}>
-                <section className='item-description list-items'>
-                  <button
-                    type='button'
-                    className='delete-item'
-                    onClick={() => deleteProduct(index)}
-                  >
-                    <span className='material-icons'>delete</span>
-                  </button>
-                  <p className='product'>{item.name}</p>
-                  <section className='input-group'>
-                    <button
-                      type='button'
-                      className='count-button'
-                      onClick={() => handlePlusClick(index)}
-                    >
-                      {' '}
-                      +{' '}
-                    </button>
-                    <p className='quantity-field'>{item.quantity}</p>
-                    <button
-                      type='button'
-                      className='count-button'
-                      onClick={() =>
-                        item.quantity > 0 && handleMinusClick(index)
-                      }
-                    >
-                      {' '}
-                      -{' '}
-                    </button>
-                  </section>
-                </section>
-                <p className='product burger-info'>
-                  {item.flavor} {item.complement}
-                </p>
-              </section>
-            )
-          }
-        })}
-    </section>
+    {productsChart.length > 0 && (
+      <Chart
+        handleMinusClick={handleMinusClick}
+        handlePlusClick={handlePlusClick}
+        deleteProduct={deleteProduct}
+        productsChart={productsChart}
+      />
+    )}
 
     <section className='bottom-section'>
       <p className='total-price'>
@@ -126,7 +89,7 @@ Order.propTypes = {
     table: PropTypes.string,
     products: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
-  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  productsChart: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 export default Order
