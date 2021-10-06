@@ -1,10 +1,9 @@
 // burger
 
 import Button from './Buttonorderstatus'
-// spread em props
 
 import ButtonSidebar from './Buttonsidebar'
-// dependencia / spread em uma props
+// dependencia
 
 import CardsKitchen from './CardsKitchen'
 import CardsBody from './ComponentsCardsBody'
@@ -35,3 +34,5 @@ import SidebarStorage from './SidebarContext'
 // props validation - dependencia
 
 import ToastGroup from './Toast'
+
+// sidebarstorage: some o props, o que tem spread some também

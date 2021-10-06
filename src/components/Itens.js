@@ -1,7 +1,10 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Drinks = ({ list }) => {
+const Itens = ({ list, createItemObject }) => {
   const [items, setItems] = useState({})
 
   const handleClick = (elements) => {
@@ -61,8 +64,9 @@ const Drinks = ({ list }) => {
   )
 }
 
-Drinks.propTypes = {
+Itens.propTypes = {
   list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  createItemObject: PropTypes.func.isRequired,
 }
 
-export default Drinks
+export default Itens

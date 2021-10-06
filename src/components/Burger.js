@@ -1,14 +1,16 @@
-import React from 'react'
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Burger = () => {
-  const [burger, setBurger] = useState(newBurger)
+const Burgers = ({ getBurgerId }) => {
   const newBurger = {
     name: '',
     flavor: '',
     complement: '',
     quantity: 1,
   }
+
+  const [burger, setBurger] = useState(newBurger)
 
   return (
     <>
@@ -118,9 +120,8 @@ const Burger = () => {
   )
 }
 
-Burger.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleClick: PropTypes.func.isRequired,
+Burgers.propTypes = {
+  getBurgerId: PropTypes.func.isRequired,
 }
 
-export default Burger
+export default Burgers

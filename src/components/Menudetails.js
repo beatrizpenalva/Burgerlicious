@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import useFetch from '../services/Hooks/useFetch'
 import requestOptions from './object/requestOptions'
+import Itens from './Itens'
+import Burgers from './Burger'
 
 const MenuItems = ({ option, addItem, handleError }) => {
   const translatePTtoEN = {
@@ -79,7 +81,7 @@ const MenuItems = ({ option, addItem, handleError }) => {
     if (burgerObj.name === '') {
       handleError('001')
     } else {
-      const chosenBurger = burger
+      const chosenBurger = burgerObj
       const burgerById = burgerList.find((item) => {
         if (!chosenBurger.complement)
           return (
@@ -99,21 +101,26 @@ const MenuItems = ({ option, addItem, handleError }) => {
   }
 
   const createItemObject = (code, count) => {
-    const updatedItem = dataTranslated.find((i) => i.id === code)
+    const updatedItem = dataTranslated.find((i) => i.id === +code)
     const newProduct = { quantity: count, ...updatedItem }
     addItem(newProduct)
   }
 
-  // burger
-  /// Coffee, Snacks, Sides, Drinks quando chamar o componente passar list
-
   return (
     <>
-      {option === 'Snacks' && <Snacks list={snacksList} />}
-      {option === 'DrinksCoffee' && <Coffee list={coffeeList} />}
-      {option === 'Sides' && <Sides list={sidesList} />}
-      {option === 'Drinks' && <Drinks list={drinksList} />}
-      {option === 'Burgers' && <Burger />}
+      {option === 'Snacks' && (
+        <Itens list={snacksList} createItemObject={createItemObject} />
+      )}
+      {option === 'DrinksCoffee' && (
+        <Itens list={coffeeList} createItemObject={createItemObject} />
+      )}
+      {option === 'Sides' && (
+        <Itens list={sidesList} createItemObject={createItemObject} />
+      )}
+      {option === 'Drinks' && (
+        <Itens list={drinksList} createItemObject={createItemObject} />
+      )}
+      {option === 'Burgers' && <Burgers getBurgerId={getBurgerId} />}
     </>
   )
 }

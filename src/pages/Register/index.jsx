@@ -18,8 +18,8 @@ const Register = () => {
     setUser({ ...user, completeName: `${user.name} ${user.lastName}` })
   }, [user.name, user.lastName])
 
-  const createUser = (props) => {
-    const { email, password, role, completeName, users } = props
+  const createUser = (userObj) => {
+    const { email, password, role, completeName, users } = userObj
     if (role === '') {
       setStatusCode('')
       setStatusCode('000')

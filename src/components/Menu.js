@@ -1,10 +1,14 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable consistent-return */
+/* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
-import CallAPI from '../services/api'
 import MenuItems from './Menudetails'
+import Order from './Order'
 import ToastGroup from './Toast'
+import CallAPI from '../services/api'
 import ModalMessage from './Modal'
 
 const Menu = () => {
@@ -17,13 +21,13 @@ const Menu = () => {
     products: [],
   }
 
+  const [order, setOrder] = useState(newOrder)
+  const [modalShow, setModalShow] = useState(false)
   const [menuSection, setMenuSection] = useState('')
   const [products, setProducts] = useState([])
   const [totalToPay, setTotal] = useState(0)
-  const [order, setOrder] = useState(newOrder)
   const [show, setShow] = useState(false)
   const [errCode, setCode] = useState('')
-  const [modalShow, setModalShow] = useState(false)
 
   useEffect(() => {
     setTotal(() => {
@@ -82,7 +86,20 @@ const Menu = () => {
     setShow(true)
   }
 
-  const createOrder = ({ client, table, products }) => {
+  const cancelOrder = (answer) => {
+    setModalShow(false)
+    if (answer === true) {
+      setOrder(newOrder)
+      setProducts([])
+      if (products.length !== 0) {
+        setCode('002')
+        setShow(true)
+      }
+    }
+  }
+
+  const createOrder = (orderObj) => {
+    const { client, table, products } = orderObj
     if (products.length === 0) {
       handleError('003')
     } else {
@@ -130,18 +147,6 @@ const Menu = () => {
   const handleCancel = (event) => {
     event.preventDefault()
     setModalShow(true)
-  }
-
-  const cancelOrder = (answer) => {
-    setModalShow(false)
-    if (answer === true) {
-      setOrder(newOrder)
-      setProducts([])
-      if (products.length !== 0) {
-        setCode('002')
-        setShow(true)
-      }
-    }
   }
 
   return (
@@ -238,113 +243,21 @@ const Menu = () => {
         </section>
       </section>
 
-      <form
-        className='order-summary'
-        onSubmit={(event) => handleSendOrder(event)}
-      >
-        <section className='client-info'>
-          <label htmlFor='client-name'>
-            Client:
-            <input
-              id='client-name'
-              type='text'
-              placeholder='Client name'
-              className='form-input'
-              value={order.client}
-              onChange={(event) => {
-                setOrder({ ...order, client: event.target.value })
-              }}
-              required
-            />
-          </label>
-
-          <label htmlFor='table'>
-            Table:
-            <input
-              id='table'
-              type='number'
-              placeholder='Table number'
-              className='form-input'
-              min='1'
-              max='30'
-              value={order.table}
-              onChange={(event) => {
-                setOrder({ ...order, table: event.target.value })
-              }}
-              required
-            />
-          </label>
-        </section>
-
-        <section className='products-info'>
-          {products.length > 0 &&
-            products.map((item, index) => {
-              if (item.quantity > 0) {
-                return (
-                  <section key={item.id}>
-                    <section className='item-description list-items'>
-                      <button
-                        type='button'
-                        className='delete-item'
-                        onClick={() => deleteProduct(index)}
-                      >
-                        <span className='material-icons'>delete</span>
-                      </button>
-                      <p className='product'>{item.name}</p>
-                      <section className='input-group'>
-                        <button
-                          type='button'
-                          className='count-button'
-                          onClick={() => handlePlusClick(index)}
-                        >
-                          {' '}
-                          +{' '}
-                        </button>
-                        <p className='quantity-field'>{item.quantity}</p>
-                        <button
-                          type='button'
-                          className='count-button'
-                          onClick={() =>
-                            item.quantity > 0 && handleMinusClick(index)
-                          }
-                        >
-                          {' '}
-                          -{' '}
-                        </button>
-                      </section>
-                    </section>
-                    <p className='product burger-info'>
-                      {item.flavor} {item.complement}
-                    </p>
-                  </section>
-                )
-              }
-            })}
-        </section>
-
-        <section className='bottom-section'>
-          <p className='total-price'>
-            {' '}
-            TOTAL PRICE: <span className='total-value'>${totalToPay}</span>
-          </p>
-          <section className='order-button-section'>
-            <button
-              type='button'
-              className='cancel-button'
-              onClick={(event) => handleCancel(event)}
-            >
-              CANCEL{' '}
-            </button>
-            <button type='submit' className='form-order'>
-              {' '}
-              SEND{' '}
-            </button>
-          </section>
-        </section>
-      </form>
+      <Order
+        totalToPay={totalToPay}
+        handleMinusClick={handleMinusClick}
+        handlePlusClick={handlePlusClick}
+        handleError={handleError}
+        cancelOrder={cancelOrder}
+        createOrder={createOrder}
+        deleteProduct={deleteProduct}
+        handleSendOrder={handleSendOrder}
+        handleCancel={handleCancel}
+        order={order}
+        products={products}
+      />
 
       <ToastGroup code={errCode} onClose={() => setShow(false)} show={show} />
-
       <ModalMessage show={modalShow} cancelOrder={cancelOrder} />
     </>
   )

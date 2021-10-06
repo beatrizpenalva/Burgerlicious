@@ -15,8 +15,8 @@ const Login = () => {
   const [user, setUser] = useState(userData)
   const [statusCode, setStatusCode] = useState('')
 
-  const loginPage = (props) => {
-    const { email, password, auth } = props
+  const loginPage = (userObj) => {
+    const { email, password, auth } = userObj
     const body = `email=${email}&password=${password}`
     const method = RequestOptions.post(body)
 

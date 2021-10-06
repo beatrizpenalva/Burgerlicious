@@ -1,8 +1,9 @@
+/* eslint-disable import/no-cycle */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { SidebarContext } from './SidebarContext'
 
-const ButtonSidebar = ({ children, ...props }) => {
+const ButtonSidebar = ({ children }) => {
   const sidebar = React.useContext(SidebarContext)
 
   function handleClick(event) {
@@ -14,7 +15,7 @@ const ButtonSidebar = ({ children, ...props }) => {
 
   return (
     <>
-      <button type='button' {...props} onClick={(e) => handleClick(e)}>
+      <button type='button' onClick={(e) => handleClick(e)}>
         {' '}
         {children}{' '}
       </button>

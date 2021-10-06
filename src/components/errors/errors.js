@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const ErrorAuth = ({ code }) => {
   const verifyErrorCode = {
@@ -21,6 +22,10 @@ const ErrorAuth = ({ code }) => {
       <p id='error-login'>{errorMessage}</p>
     </>
   )
+}
+
+ErrorAuth.propTypes = {
+  code: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 }
 
 export default ErrorAuth
