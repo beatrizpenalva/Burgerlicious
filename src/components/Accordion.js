@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 
-const MenuAccordion = ({ handleChange }) => (
+const MenuAccordion = ({ handleChangeSection }) => (
   <Accordion defaultActiveKey='0'>
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey='0'>
@@ -16,7 +16,7 @@ const MenuAccordion = ({ handleChange }) => (
             <button
               type='button'
               className='menu-button'
-              onClick={handleChange('Snacks')}
+              onClick={() => handleChangeSection('Snacks')}
             >
               Snacks{' '}
               <span className='material-icons'> keyboard_arrow_right </span>
@@ -24,7 +24,7 @@ const MenuAccordion = ({ handleChange }) => (
             <button
               type='button'
               className='menu-button last-menu-item'
-              onClick={handleChange('DrinksCoffee')}
+              onClick={() => handleChangeSection('DrinksCoffee')}
             >
               Drinks{' '}
               <span className='material-icons'> keyboard_arrow_right</span>
@@ -43,7 +43,7 @@ const MenuAccordion = ({ handleChange }) => (
             <button
               type='button'
               className='menu-button'
-              onClick={handleChange('Burgers')}
+              onClick={() => handleChangeSection('Burgers')}
             >
               Burgers
               <span className='material-icons'> keyboard_arrow_right </span>
@@ -51,7 +51,7 @@ const MenuAccordion = ({ handleChange }) => (
             <button
               type='button'
               className='menu-button'
-              onClick={handleChange('Sides')}
+              onClick={() => handleChangeSection('Sides')}
             >
               Sides{' '}
               <span className='material-icons'> keyboard_arrow_right </span>
@@ -59,7 +59,7 @@ const MenuAccordion = ({ handleChange }) => (
             <button
               type='button'
               className='menu-button last-menu-item'
-              onClick={handleChange('Drinks')}
+              onClick={() => handleChangeSection('Drinks')}
             >
               Drinks
               <span className='material-icons'> keyboard_arrow_right </span>
@@ -72,7 +72,7 @@ const MenuAccordion = ({ handleChange }) => (
 )
 
 MenuAccordion.propTypes = {
-  handleChange: PropTypes.func.isRequired,
+  handleChangeSection: PropTypes.func.isRequired,
 }
 
 export default MenuAccordion

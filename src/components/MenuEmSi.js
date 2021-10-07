@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import MenuItems from './Menudetails'
@@ -6,15 +7,16 @@ import MenuAccordion from './Accordion'
 const MenuEmSi = ({ addItem, handleError }) => {
   const [menuSection, setMenuSection] = useState('')
 
-  const handleChange = (option) => {
+  const handleChangeSection = (option) => {
     setMenuSection(option)
+    console.log(menuSection)
   }
 
   return (
     <>
       <section className='menu-info'>
         <section className='items-accordion'>
-          <MenuAccordion handleChange={handleChange} />
+          <MenuAccordion handleChangeSection={handleChangeSection} />
         </section>
 
         <section className='section-details'>

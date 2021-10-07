@@ -9,13 +9,7 @@ const HallContent = () => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
   const { token } = nameLS
 
-  const newOrder = {
-    client: ' ',
-    table: ' ',
-    products: [],
-  }
-
-  const [order, setOrder] = useState(newOrder)
+  const [order, setOrder] = useState({})
   const [modalShow, setModalShow] = useState(false)
   const [productsChart, setProducts] = useState([])
   const [totalToPay, setTotal] = useState(0)
@@ -84,7 +78,7 @@ const HallContent = () => {
   const cancelOrder = (answer) => {
     setModalShow(false)
     if (answer === true) {
-      setOrder(newOrder)
+      setOrder({})
       setProducts([])
       if (productsChart.length !== 0) {
         setCode('002')
@@ -121,7 +115,7 @@ const HallContent = () => {
         if (!json.code) {
           setCode('200')
           setShow(true)
-          setOrder(newOrder)
+          setOrder({})
           setProducts([])
         } else {
           setCode(String(json.code))
