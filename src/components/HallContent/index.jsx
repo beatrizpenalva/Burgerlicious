@@ -3,7 +3,7 @@ import Order from '../Order/index'
 import ToastGroup from '../Toast'
 import CallAPI from '../../services/api'
 import ModalMessage from '../Modal'
-import MenuEmSi from '../MenuEmSi'
+import Menu from '../Menu/index'
 
 const HallContent = () => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
@@ -150,7 +150,7 @@ const HallContent = () => {
 
   return (
     <>
-      <MenuEmSi addItem={addItem} handleError={handleError} />
+      <Menu addItem={addItem} handleError={handleError} />
 
       <Order
         totalToPay={totalToPay}

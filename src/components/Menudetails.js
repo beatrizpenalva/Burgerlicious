@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import useFetch from '../services/Hooks/useFetch'
 import requestOptions from './object/requestOptions'
 import Itens from './Itens'
-import Burgers from './Burger'
+import BurgerSection from './MenuSectionBurger/index'
 
 const MenuItems = ({ option, addItem, handleError }) => {
   const translatePTtoEN = {
@@ -120,7 +120,7 @@ const MenuItems = ({ option, addItem, handleError }) => {
       {option === 'Drinks' && (
         <Itens list={drinksList} createItemObject={createItemObject} />
       )}
-      {option === 'Burgers' && <Burgers getBurgerId={getBurgerId} />}
+      {option === 'Burgers' && <BurgerSection getBurgerId={getBurgerId} />}
     </>
   )
 }

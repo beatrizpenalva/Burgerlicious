@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import MenuItems from './Menudetails'
-import MenuAccordion from './Accordion'
+import MenuItems from '../Menudetails'
+import MenuAccordion from '../MenuAccordion/index'
 
-const MenuEmSi = ({ addItem, handleError }) => {
+const Menu = ({ addItem, handleError }) => {
   const [menuSection, setMenuSection] = useState('')
 
   const handleChangeSection = (option) => {
@@ -29,9 +29,9 @@ const MenuEmSi = ({ addItem, handleError }) => {
   )
 }
 
-MenuEmSi.propTypes = {
+Menu.propTypes = {
   addItem: PropTypes.func.isRequired,
   handleError: PropTypes.func.isRequired,
 }
 
-export default MenuEmSi
+export default Menu
