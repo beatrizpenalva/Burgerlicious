@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Order from './Order'
-import ToastGroup from './Toast'
-import CallAPI from '../services/api'
-import ModalMessage from './Modal'
-import MenuEmSi from './MenuEmSi'
+import Order from '../Order'
+import ToastGroup from '../Toast'
+import CallAPI from '../../services/api'
+import ModalMessage from '../Modal'
+import MenuEmSi from '../MenuEmSi'
 
-const Menu = () => {
+const HallContent = () => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
   const { token } = nameLS
 
@@ -173,4 +173,4 @@ const Menu = () => {
   )
 }
 
-export default Menu
+export default HallContent
