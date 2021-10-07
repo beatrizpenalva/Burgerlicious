@@ -1,16 +1,16 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 const Itens = ({ list, createItemObject }) => {
   const [items, setItems] = useState({})
 
+  function callCreate(array) {
+    array.map((arr) => createItemObject(arr[0], arr[1]))
+  }
+
   const handleClick = (elements) => {
-    for (const property in elements) {
-      createItemObject(property, elements[property])
-    }
+    const getEntries = Object.entries(elements)
+    callCreate(getEntries)
     setItems({})
   }
 
