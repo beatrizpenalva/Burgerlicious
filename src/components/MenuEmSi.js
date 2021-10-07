@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import MenuItems from './Menudetails'
@@ -9,7 +8,6 @@ const MenuEmSi = ({ addItem, handleError }) => {
 
   const handleChangeSection = (option) => {
     setMenuSection(option)
-    console.log(menuSection)
   }
 
   return (
