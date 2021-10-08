@@ -8,7 +8,7 @@ const Order = ({
   handlePlusClick,
   deleteProduct,
   handleSendOrder,
-  handleCancel,
+  handleCancelOrder,
   productsChart,
   order,
   handleOrderChange,
@@ -62,7 +62,7 @@ const Order = ({
         <button
           type='button'
           className='cancel-button'
-          onClick={() => handleCancel()}
+          onClick={() => handleCancelOrder()}
         >
           CANCEL{' '}
         </button>
@@ -81,7 +81,7 @@ Order.propTypes = {
   handlePlusClick: PropTypes.func.isRequired,
   deleteProduct: PropTypes.func.isRequired,
   handleSendOrder: PropTypes.func.isRequired,
-  handleCancel: PropTypes.func.isRequired,
+  handleCancelOrder: PropTypes.func.isRequired,
   handleOrderChange: PropTypes.func.isRequired,
   order: PropTypes.exact({
     client: PropTypes.string,

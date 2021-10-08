@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import MenuItems from '../Menudetails'
-import MenuAccordion from '../MenuAccordion/index'
+import MenuAccordion from '../MenuAccordion'
 
 const Menu = ({ addItem, handleError }) => {
   const [menuSection, setMenuSection] = useState('')

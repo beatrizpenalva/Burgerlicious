@@ -4,6 +4,12 @@ import ToastGroup from '../Toast'
 import CallAPI from '../../services/api'
 import ModalMessage from '../Modal'
 import Menu from '../Menu/index'
+import {
+  calculateTotal,
+  updateChartItem,
+  isOnTheList,
+  listItemsOrder,
+} from '../../utils/index'
 
 const HallContent = () => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
@@ -23,41 +29,22 @@ const HallContent = () => {
   const [errCode, setCode] = useState('')
 
   useEffect(() => {
-    setTotal(() => {
-      const newTotal = productsChart.reduce((accumulator, current) => {
-        const { quantity, price } = current
-        accumulator = Number(quantity * price + accumulator)
-        return accumulator
-      }, 0)
-
-      return newTotal
-    })
+    setTotal(() => calculateTotal(productsChart))
   }, [productsChart])
 
   const addItem = (product) => {
     const productToSet = product
-    const isOnTheList = productsChart.some(
-      (item) => item.id === productToSet.id
-    )
-
-    if (!isOnTheList) {
+    if (!isOnTheList(productToSet, productsChart)) {
       setProducts((productsState) => [...productsState, productToSet])
     } else {
-      const newQuantity = productToSet.quantity
-      const itemUptaded = productsChart.map((i) => {
-        if (i.id === productToSet.id) {
-          i.quantity += newQuantity
-        }
-        return i
-      })
-      setProducts(() => itemUptaded)
+      setProducts(() => updateChartItem(productToSet, productsChart))
     }
   }
 
   const deleteProduct = (index) => {
-    const getProductsArray = [...productsChart]
-    getProductsArray.splice(index, 1)
-    setProducts(getProductsArray)
+    const productsList = [...productsChart]
+    productsList.splice(index, 1)
+    setProducts(productsList)
   }
 
   const handlePlusClick = (index) => {
@@ -81,32 +68,15 @@ const HallContent = () => {
     setShow(true)
   }
 
-  const cancelOrder = (answer) => {
-    setModalShow(false)
-    if (answer === true) {
-      setOrder(newOrder)
-      setProducts([])
-      if (productsChart.length !== 0) {
-        setCode('002')
-        setShow(true)
-      }
-    }
-  }
-
   const createOrder = (orderObj) => {
     const { client, table, products } = orderObj
     if (products.length === 0) {
       handleError('003')
     } else {
-      const listItemsOrder = products.map((item) => ({
-        id: item.id,
-        qtd: item.quantity,
-      }))
-
       const body = JSON.stringify({
         client,
         table,
-        products: listItemsOrder,
+        products: listItemsOrder(products),
       })
 
       CallAPI('https://lab-api-bq.herokuapp.com/orders', {
@@ -123,6 +93,8 @@ const HallContent = () => {
           setShow(true)
           setOrder(newOrder)
           setProducts([])
+          // eslint-disable-next-line no-console
+          console.log('entrou aqui')
         } else {
           setCode(String(json.code))
           setShow(true)
@@ -131,16 +103,20 @@ const HallContent = () => {
     }
   }
 
-  const handleSendOrder = (event) => {
-    event.preventDefault()
-    const productsList = [...productsChart]
-    const updateOrder = { ...order, products: productsList }
-    setOrder(updateOrder)
-    createOrder(updateOrder)
+  const handleCancelOrder = () => {
+    setModalShow(true)
   }
 
-  const handleCancel = () => {
-    setModalShow(true)
+  const cancelOrder = (answer) => {
+    setModalShow(false)
+    if (answer === true) {
+      setOrder(newOrder)
+      setProducts([])
+      if (productsChart.length !== 0) {
+        setCode('002')
+        setShow(true)
+      }
+    }
   }
 
   const handleOrderChange = (event, key) => {
@@ -148,23 +124,30 @@ const HallContent = () => {
     else setOrder({ ...order, table: event.target.value })
   }
 
+  const handleSendOrder = (event) => {
+    event.preventDefault()
+    const orderUptaded = { ...order, products: [...productsChart] }
+    setOrder(orderUptaded)
+    createOrder(orderUptaded)
+  }
+
   return (
     <>
       <Menu addItem={addItem} handleError={handleError} />
 
       <Order
+        order={order}
+        productsChart={productsChart}
         totalToPay={totalToPay}
         handleMinusClick={handleMinusClick}
         handlePlusClick={handlePlusClick}
         handleError={handleError}
-        cancelOrder={cancelOrder}
         createOrder={createOrder}
         deleteProduct={deleteProduct}
-        handleSendOrder={handleSendOrder}
-        handleCancel={handleCancel}
-        order={order}
-        productsChart={productsChart}
         handleOrderChange={handleOrderChange}
+        handleSendOrder={handleSendOrder}
+        handleCancelOrder={handleCancelOrder}
+        cancelOrder={cancelOrder}
       />
 
       <ToastGroup code={errCode} onClose={() => setShow(false)} show={show} />

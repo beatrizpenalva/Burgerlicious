@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import useFetch from '../services/Hooks/useFetch'
-import requestOptions from './object/requestOptions'
-import Itens from './MenuItens/index'
-import BurgerSection from './MenuSectionBurger/index'
+import useFetch from '../../services/Hooks/useFetch'
+import requestOptions from '../object/requestOptions'
+import Itens from '../MenuItens/index'
+import BurgerSection from '../MenuSectionBurger/index'
+import { getBurger, sectionFiltered } from '../../utils/index'
 
 const MenuItems = ({ option, addItem, handleError }) => {
   const translatePTtoEN = {
@@ -66,15 +67,9 @@ const MenuItems = ({ option, addItem, handleError }) => {
         (item) => item.name.includes('Coffee') || item.name.includes('Juice')
       )
     )
-    setBurgerList(
-      productsTranslated.filter((item) => item.sub_type.includes('hamburguer'))
-    )
-    setDrinksList(
-      productsTranslated.filter((item) => item.sub_type.includes('drinks'))
-    )
-    setSidesList(
-      productsTranslated.filter((item) => item.sub_type.includes('side'))
-    )
+    setBurgerList(sectionFiltered(productsTranslated, 'hamburguer'))
+    setDrinksList(sectionFiltered(productsTranslated, 'drinks'))
+    setSidesList(sectionFiltered(productsTranslated, 'side'))
   }, [data])
 
   const getBurgerId = (burgerObj) => {
@@ -82,20 +77,7 @@ const MenuItems = ({ option, addItem, handleError }) => {
       handleError('001')
     } else {
       const chosenBurger = burgerObj
-      const burgerById = burgerList.find((item) => {
-        if (!chosenBurger.complement)
-          return (
-            item.name === chosenBurger.name &&
-            item.flavor === chosenBurger.flavor &&
-            item.complement === null
-          )
-        return (
-          item.name === chosenBurger.name &&
-          item.flavor === chosenBurger.flavor &&
-          item.complement === chosenBurger.complement
-        )
-      })
-
+      const burgerById = getBurger(burgerList, chosenBurger)
       addItem({ ...chosenBurger, ...burgerById })
     }
   }
