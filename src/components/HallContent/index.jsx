@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Order from '../Order/index'
-import ToastGroup from '../Toast'
+import ToastGroup from '../Toast/index'
 import ModalMessage from '../Modal'
 import Menu from '../Menu/index'
 import { calculateTotal, updateChartItem, isOnTheList } from '../../utils/index'
