@@ -4,7 +4,7 @@ import CallAPI from '../../services/api'
 import RequestOptions from '../../components/object/requestOptions'
 import AllModelsObject from '../../components/object/models'
 import Footer from '../../components/Footer/index'
-import Logo from '../../components/Logo'
+import Logo from '../../components/Logo/index'
 import ErrorAuth from '../../components/errors/errors'
 
 const Register = () => {
