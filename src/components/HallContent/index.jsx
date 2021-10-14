@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Order from '../Order/index'
 import ToastGroup from '../Toast/index'
-import ModalMessage from '../Modal'
+import ModalMessage from '../Modal/index'
 import Menu from '../Menu/index'
 import { calculateTotal, updateChartItem, isOnTheList } from '../../utils/index'
 import { createOrdermethod, productOrder } from '../../utils/adapter'

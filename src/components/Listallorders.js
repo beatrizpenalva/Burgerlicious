@@ -5,7 +5,7 @@ import useFetch from '../services/Hooks/useFetch'
 import CardsKitchen from './CardsKitchen'
 import Button from './Buttonorderstatus'
 import ToastGroup from './Toast/index'
-import ModalMessage from './Modal'
+import ModalMessage from './Modal/index'
 import { translatePTtoEN } from '../utils/adapter'
 
 function ListOrders({ filterType }) {
