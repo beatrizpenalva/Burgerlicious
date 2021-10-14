@@ -28,11 +28,11 @@ const Chart = ({
               {' '}
               +{' '}
             </button>
-            <p className='quantity-field'>{item.quantity}</p>
+            <p className='quantity-field'>{item.qtd}</p>
             <button
               type='button'
               className='count-button'
-              onClick={() => item.quantity > 0 && handleMinusClick(index)}
+              onClick={() => item.qtd > 0 && handleMinusClick(index)}
             >
               {' '}
               -{' '}

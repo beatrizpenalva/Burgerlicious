@@ -6,7 +6,7 @@ const BurgerSection = ({ getBurgerId }) => {
     name: '',
     flavor: '',
     complement: '',
-    quantity: 1,
+    qtd: 1,
   }
 
   const [burger, setBurger] = useState(newBurger)

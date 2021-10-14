@@ -4,7 +4,7 @@ import RequestOptions from '../../components/object/requestOptions'
 import AllModelsObject from '../../components/object/models'
 import Logo from '../../components/Logo'
 import Container from '../../components/Main'
-import Footer from '../../components/Footer'
+import Footer from '../../components/Footer/index'
 import CallAPI from '../../services/api'
 import ErrorAuth from '../../components/errors/errors'
 

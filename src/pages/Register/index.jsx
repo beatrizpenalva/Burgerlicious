@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 import CallAPI from '../../services/api'
 import RequestOptions from '../../components/object/requestOptions'
 import AllModelsObject from '../../components/object/models'
-import Footer from '../../components/Footer'
+import Footer from '../../components/Footer/index'
 import Logo from '../../components/Logo'
 import ErrorAuth from '../../components/errors/errors'
 

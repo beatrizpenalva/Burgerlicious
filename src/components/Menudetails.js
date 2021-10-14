@@ -102,7 +102,7 @@ const MenuItems = ({ option, addItem, handleError }) => {
 
   const createItemObject = (code, count) => {
     const updatedItem = dataTranslated.find((i) => i.id === +code)
-    const newProduct = { quantity: count, ...updatedItem }
+    const newProduct = { qtd: count, ...updatedItem }
     addItem(newProduct)
   }
 
