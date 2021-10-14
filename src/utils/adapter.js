@@ -47,3 +47,14 @@ export const translatePTtoEN = {
   queijo: 'Cheese',
   ovo: 'Egg',
 }
+
+export const verifyErrorCode = {
+  '001': 'You have to chose a burger option. Please, try again.',
+  '002': 'Order canceled!',
+  '003': 'There is nothing to order. Please, chose the products.',
+  200: 'Order sent to the kitchen succesfully!',
+  400: 'Missing required data or no changes applied. Please, try again.',
+  401: 'User not authenticated. Please, sign in and try again.',
+  403: 'Order belongs to another restaurant. Please, try with a different info.',
+  404: 'Ops! Something went wrong. Please, try again.',
+}
