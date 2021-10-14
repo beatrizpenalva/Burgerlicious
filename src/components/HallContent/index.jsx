@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Order from '../Order/index'
 import ToastGroup from '../Toast'
-import CallAPI from '../../services/api'
 import ModalMessage from '../Modal'
 import Menu from '../Menu/index'
-import {
-  calculateTotal,
-  updateChartItem,
-  isOnTheList,
-  listItemsOrder,
-} from '../../utils/index'
+import { calculateTotal, updateChartItem, isOnTheList } from '../../utils/index'
+import CallAPI from '../../services/api'
 
 const HallContent = () => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
@@ -49,14 +44,14 @@ const HallContent = () => {
 
   const handlePlusClick = (index) => {
     const productsList = [...productsChart]
-    productsList[index].quantity = +productsList[index].quantity + 1
+    productsList[index].qtd = +productsList[index].qtd + 1
     setProducts(productsList)
   }
 
   const handleMinusClick = (index) => {
     const productsList = [...productsChart]
-    if (productsList[index].quantity > 1) {
-      productsList[index].quantity = +productsList[index].quantity - 1
+    if (productsList[index].qtd > 1) {
+      productsList[index].qtd = +productsList[index].qtd - 1
       setProducts(productsList)
     } else {
       deleteProduct(index)
@@ -68,6 +63,36 @@ const HallContent = () => {
     setShow(true)
   }
 
+  const adapterProduct = (array) => {
+    const copyArray = [...array]
+    const newObjList = copyArray.map(
+      ({
+        complement,
+        createAt,
+        flavor,
+        image,
+        name,
+        price,
+        // eslint-disable-next-line camelcase
+        sub_type,
+        type,
+        updateAt,
+        ...rest
+      }) => rest
+    )
+    return newObjList
+  }
+
+  const adapterMethod = (body) => ({
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      accept: 'application/json',
+      Authorization: token,
+    },
+    body,
+  })
+
   const createOrder = (orderObj) => {
     const { client, table, products } = orderObj
     if (products.length === 0) {
@@ -76,30 +101,24 @@ const HallContent = () => {
       const body = JSON.stringify({
         client,
         table,
-        products: listItemsOrder(products),
+        products: adapterProduct(products),
       })
 
-      CallAPI('https://lab-api-bq.herokuapp.com/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          accept: 'application/json',
-          Authorization: token,
-        },
-        body,
-      }).then((json) => {
-        if (!json.code) {
-          setCode('200')
-          setShow(true)
-          setOrder(newOrder)
-          setProducts([])
-          // eslint-disable-next-line no-console
-          console.log('entrou aqui')
-        } else {
-          setCode(String(json.code))
-          setShow(true)
+      const method = adapterMethod(body)
+
+      CallAPI('https://lab-api-bq.herokuapp.com/orders', method).then(
+        (json) => {
+          if (!json.code) {
+            setCode('200')
+            setShow(true)
+            setOrder(newOrder)
+            setProducts([])
+          } else {
+            setCode(String(json.code))
+            setShow(true)
+          }
         }
-      })
+      )
     }
   }
 
