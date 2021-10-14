@@ -6,28 +6,9 @@ import CardsKitchen from './CardsKitchen'
 import Button from './Buttonorderstatus'
 import ToastGroup from './Toast'
 import ModalMessage from './Modal'
+import { translatePTtoEN } from '../utils/adapter'
 
 function ListOrders({ filterType }) {
-  const translatePTtoEN = {
-    'Misto quente': 'Cheese Sandwich',
-    'Café americano': 'Americano Coffee',
-    'Café com leite': 'Espresso Coffee',
-    'Suco de fruta natural': 'Orange juice',
-    'Batata frita': 'Fries',
-    'Anéis de cebola': 'Onion rings',
-    'Água 500mL': 'Water 500mL',
-    'Água 750mL': 'Water 750mL',
-    'Refrigerante 500mL': 'Soda 500mL',
-    'Refrigerante 750mL': 'Soda 750mL',
-    'Hambúrguer simples': 'Smash burger',
-    'Hambúrguer duplo': 'Double burger',
-    carne: 'Meat',
-    frango: 'Chicken',
-    vegetariano: 'Veggie',
-    queijo: 'Cheese',
-    ovo: 'Egg',
-  }
-
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
   const { token, role } = nameLS
   const type = filterType
