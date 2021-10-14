@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import MenuItems from '../Menudetails'
+import MenuContent from '../MenuContent'
 import MenuAccordion from '../MenuAccordion'
 
 const Menu = ({ addItem, handleError }) => {
@@ -18,7 +18,7 @@ const Menu = ({ addItem, handleError }) => {
         </section>
 
         <section className='section-details'>
-          <MenuItems
+          <MenuContent
             option={menuSection}
             addItem={addItem}
             handleError={handleError}

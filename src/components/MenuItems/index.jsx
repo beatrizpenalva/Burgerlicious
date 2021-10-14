@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Itens = ({ list, createItemObject }) => {
+const Items = ({ list, createItemObject }) => {
   const [items, setItems] = useState({})
 
   function callCreate(array) {
@@ -64,9 +64,9 @@ const Itens = ({ list, createItemObject }) => {
   )
 }
 
-Itens.propTypes = {
+Items.propTypes = {
   list: PropTypes.arrayOf(PropTypes.object).isRequired,
   createItemObject: PropTypes.func.isRequired,
 }
 
-export default Itens
+export default Items

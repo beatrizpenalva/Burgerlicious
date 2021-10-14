@@ -4,6 +4,7 @@ import ToastGroup from '../Toast'
 import ModalMessage from '../Modal'
 import Menu from '../Menu/index'
 import { calculateTotal, updateChartItem, isOnTheList } from '../../utils/index'
+import { createOrdermethod, productOrder } from '../../utils/adapter'
 import CallAPI from '../../services/api'
 
 const HallContent = () => {
@@ -63,36 +64,6 @@ const HallContent = () => {
     setShow(true)
   }
 
-  const adapterProduct = (array) => {
-    const copyArray = [...array]
-    const newObjList = copyArray.map(
-      ({
-        complement,
-        createAt,
-        flavor,
-        image,
-        name,
-        price,
-        // eslint-disable-next-line camelcase
-        sub_type,
-        type,
-        updateAt,
-        ...rest
-      }) => rest
-    )
-    return newObjList
-  }
-
-  const adapterMethod = (body) => ({
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      accept: 'application/json',
-      Authorization: token,
-    },
-    body,
-  })
-
   const createOrder = (orderObj) => {
     const { client, table, products } = orderObj
     if (products.length === 0) {
@@ -101,10 +72,10 @@ const HallContent = () => {
       const body = JSON.stringify({
         client,
         table,
-        products: adapterProduct(products),
+        products: productOrder(products),
       })
 
-      const method = adapterMethod(body)
+      const method = createOrdermethod(body, token)
 
       CallAPI('https://lab-api-bq.herokuapp.com/orders', method).then(
         (json) => {

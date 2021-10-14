@@ -2,31 +2,12 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import useFetch from '../../services/Hooks/useFetch'
 import requestOptions from '../object/requestOptions'
-import Itens from '../MenuItens/index'
+import Items from '../MenuItems/index'
 import BurgerSection from '../MenuSectionBurger/index'
 import { getBurger, sectionFiltered } from '../../utils/index'
+import { translatePTtoEN } from '../../utils/adapter'
 
-const MenuItems = ({ option, addItem, handleError }) => {
-  const translatePTtoEN = {
-    'Misto quente': 'Cheese Sandwich',
-    'Café americano': 'Americano Coffee',
-    'Café com leite': 'Espresso Coffee',
-    'Suco de fruta natural': 'Orange juice',
-    'Batata frita': 'Fries',
-    'Anéis de cebola': 'Onion rings',
-    'Água 500mL': 'Water 500mL',
-    'Água 750mL': 'Water 750mL',
-    'Refrigerante 500mL': 'Soda 500mL',
-    'Refrigerante 750mL': 'Soda 750mL',
-    'Hambúrguer simples': 'Smash burger',
-    'Hambúrguer duplo': 'Double burger',
-    carne: 'Meat',
-    frango: 'Chicken',
-    vegetariano: 'Veggie',
-    queijo: 'Cheese',
-    ovo: 'Egg',
-  }
-
+const MenuContent = ({ option, addItem, handleError }) => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
   const { data, request } = useFetch()
 
@@ -91,26 +72,26 @@ const MenuItems = ({ option, addItem, handleError }) => {
   return (
     <>
       {option === 'Snacks' && (
-        <Itens list={snacksList} createItemObject={createItemObject} />
+        <Items list={snacksList} createItemObject={createItemObject} />
       )}
       {option === 'DrinksCoffee' && (
-        <Itens list={coffeeList} createItemObject={createItemObject} />
+        <Items list={coffeeList} createItemObject={createItemObject} />
       )}
       {option === 'Sides' && (
-        <Itens list={sidesList} createItemObject={createItemObject} />
+        <Items list={sidesList} createItemObject={createItemObject} />
       )}
       {option === 'Drinks' && (
-        <Itens list={drinksList} createItemObject={createItemObject} />
+        <Items list={drinksList} createItemObject={createItemObject} />
       )}
       {option === 'Burgers' && <BurgerSection getBurgerId={getBurgerId} />}
     </>
   )
 }
 
-MenuItems.propTypes = {
+MenuContent.propTypes = {
   option: PropTypes.string.isRequired,
   addItem: PropTypes.func.isRequired,
   handleError: PropTypes.func.isRequired,
 }
 
-export default MenuItems
+export default MenuContent
