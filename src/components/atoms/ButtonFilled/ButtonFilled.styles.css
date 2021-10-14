@@ -1,0 +1,13 @@
+.button-filled {
+  min-width: 150px;
+  width: 325px;
+  height: 45px;
+  background: #ffbb5a;
+  border: transparent;
+  outline: none;
+  border-radius: 10px;
+  font-weight: 500;
+  align-items: center;
+  text-align: center;
+  color: #fff8d8;
+}
