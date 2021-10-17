@@ -8,6 +8,7 @@ import Logo from '../../components/Logo/index'
 import ErrorAuth from '../../components/errors/errors'
 import ButtonContained from '../../components/atoms/ButtonContained'
 import TextField from '../../components/atoms/TextField'
+import SelectField from '../../components/atoms/SelectField'
 
 const Register = () => {
   const userData = AllModelsObject.authAndUsers
@@ -121,24 +122,12 @@ const Register = () => {
             handleChange={(e) => handleChange(e, 'confirmPassword')}
             required
           />
-          {/* minLength='8' maxLength='12' */}
 
-          <label htmlFor='team'>
-            Team:
-            <select
-              id='team'
-              className='select-style'
-              onChange={(event) => {
-                setUser({ ...user, role: event.target.value })
-              }}
-              defaultValue='Team work'
-              required
-            >
-              <option disabled>Team work</option>
-              <option value='Hall'>Hall</option>
-              <option value='Kitchen'>Kitchen</option>
-            </select>
-          </label>
+          <SelectField
+            label='Team:'
+            options={['Team work', 'Hall', 'Kitchen']}
+            handleChange={(e) => handleChange(e, 'role')}
+          />
 
           {statusCode && <ErrorAuth code={statusCode} />}
 
