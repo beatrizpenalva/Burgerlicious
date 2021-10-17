@@ -8,6 +8,7 @@ import Footer from '../../components/Footer/index'
 import CallAPI from '../../services/api'
 import ErrorAuth from '../../components/errors/errors'
 import ButtonContained from '../../components/atoms/ButtonContained'
+import TextField from '../../components/atoms/TextField'
 
 const userData = AllModelsObject.authAndUsers
 
@@ -27,21 +28,21 @@ const Login = () => {
       if (json.code) {
         setStatusCode('')
         setStatusCode(String(json.code))
-      }
-
-      if (json.role === 'hall') {
+      } else if (json.role === 'hall') {
         history.push('/Hall')
-      }
-
-      if (json.role === 'kitchen') {
+      } else {
         history.push('/Kitchen')
       }
     })
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault()
     loginPage(user)
+  }
+
+  const handleChange = (e, key) => {
+    setUser({ ...user, [key]: e.target.value })
   }
 
   return (
@@ -50,49 +51,35 @@ const Login = () => {
         <div className='inputs-container'>
           <Logo />
           <form
-            onSubmit={(event) => {
-              handleSubmit(event)
+            onSubmit={(e) => {
+              handleSubmit(e)
             }}
           >
-            <label htmlFor='login'>
-              Login:
-              <input
-                id='login'
-                type='email'
-                className='form-input'
-                value={user.email}
-                onChange={(event) => {
-                  setUser({ ...user, email: event.target.value })
-                }}
-                placeholder='email@email.com'
-                required
-              />
-            </label>
-            <label htmlFor='password'>
-              Password:
-              <input
-                id='password'
-                type='password'
-                className='form-input'
-                minLength='8'
-                maxLength='12'
-                value={user.password}
-                onChange={(event) => {
-                  setUser({ ...user, password: event.target.value })
-                }}
-                placeholder='Password'
-                required
-              />
-            </label>
-            {statusCode && <ErrorAuth code={statusCode} />}
+            <TextField
+              label='Login:'
+              type='email'
+              value={user.email}
+              placeholder='email@email.com'
+              handleChange={(e) => handleChange(e, 'email')}
+              required
+            />
 
+            <TextField
+              label='Password:'
+              type='password'
+              value={user.password}
+              placeholder='********'
+              handleChange={(e) => handleChange(e, 'password')}
+              required
+            />
+
+            {statusCode && <ErrorAuth code={statusCode} />}
             <ButtonContained
               type='submit'
               classStyle='filled'
               label='SIGN IN'
               handleClick={handleSubmit}
             />
-
             <p className='message-text'>
               {' '}
               Do not have an account?{' '}
