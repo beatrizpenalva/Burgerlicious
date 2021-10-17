@@ -5,8 +5,7 @@ import useFetch from '../services/Hooks/useFetch'
 import ToastGroup from './Toast/index'
 import ModalMessage from './Modal/index'
 import { translatePTtoEN } from '../utils/adapter'
-
-import CardsKitchen from './CardsKitchen'
+import Card from './molecules/Card'
 import ButtonCard from './atoms/ButtonCard'
 
 function ListOrders({ filterType }) {
@@ -192,11 +191,10 @@ function ListOrders({ filterType }) {
             .sort((a, b) => (a.id > b.id ? 1 : -1))
             .map((item, index) => (
               <div key={item.id} className='card-template'>
-                <CardsKitchen key={item.name}>{item}</CardsKitchen>
+                <Card order={item} />
 
                 {pending && item.status !== 'finished' && (
                   <ButtonCard
-                    key={Math.random()}
                     onClick={() => handleStatus(index, item.id, item.status)}
                     label={getOrderStatus(item.status)}
                     classStyle={getOrderStatus(item.status)}
@@ -205,7 +203,6 @@ function ListOrders({ filterType }) {
 
                 {done && item.status === 'done' && (
                   <ButtonCard
-                    key={Math.random()}
                     onClick={() => handleStatus(index, item.id, item.status)}
                     label={getOrderStatus(item.status)}
                     className={getOrderStatus(item.status)}
@@ -214,7 +211,6 @@ function ListOrders({ filterType }) {
 
                 {done && item.status === 'pending' && role === 'hall' && (
                   <ButtonCard
-                    key={Math.random()}
                     onClick={() => handleDelete(index, item.id, item.status)}
                     label={getOrderStatus(item.status)}
                     classStyle={getOrderStatus(item.status)}
