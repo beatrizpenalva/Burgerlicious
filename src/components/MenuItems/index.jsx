@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import ButtonContained from '../atoms/ButtonContained'
 
 const Items = ({ list, createItemObject }) => {
   const [items, setItems] = useState({})
@@ -8,10 +9,18 @@ const Items = ({ list, createItemObject }) => {
     array.map((arr) => createItemObject(arr[0], arr[1]))
   }
 
-  const handleClick = (elements) => {
-    const getEntries = Object.entries(elements)
+  const handleClick = () => {
+    const getEntries = Object.entries(items)
     callCreate(getEntries)
     setItems({})
+  }
+
+  const handlePlusClick = (item, count) => {
+    setItems({ ...items, [item.id]: count + 1 })
+  }
+
+  const handleMinusClick = (item, count) => {
+    if (count > 0) setItems({ ...items, [item.id]: count - 1 })
   }
 
   return (
@@ -32,7 +41,7 @@ const Items = ({ list, createItemObject }) => {
                   <button
                     type='button'
                     className='count-button'
-                    onClick={() => setItems({ ...items, [item.id]: count + 1 })}
+                    onClick={() => handlePlusClick(item, count)}
                   >
                     {' '}
                     +{' '}
@@ -41,9 +50,7 @@ const Items = ({ list, createItemObject }) => {
                   <button
                     type='button'
                     className='count-button'
-                    onClick={() =>
-                      count > 0 && setItems({ ...items, [item.id]: count - 1 })
-                    }
+                    onClick={() => handleMinusClick(item, count)}
                   >
                     {' '}
                     -{' '}
@@ -53,13 +60,13 @@ const Items = ({ list, createItemObject }) => {
             )
           })}
       </section>
-      <button
+
+      <ButtonContained
+        label='ADD ITEM'
+        handleClick={handleClick}
+        classStyle='filled'
         type='button'
-        className='send-button'
-        onClick={() => handleClick(items)}
-      >
-        ADD ITEM
-      </button>
+      />
     </>
   )
 }

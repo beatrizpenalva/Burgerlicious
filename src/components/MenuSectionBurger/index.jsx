@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import ButtonContained from '../atoms/ButtonContained'
 
 const BurgerSection = ({ getBurgerId }) => {
   const newBurger = {
@@ -10,6 +11,10 @@ const BurgerSection = ({ getBurgerId }) => {
   }
 
   const [burger, setBurger] = useState(newBurger)
+
+  const handleClick = () => {
+    getBurgerId(burger)
+  }
 
   return (
     <>
@@ -134,15 +139,13 @@ const BurgerSection = ({ getBurgerId }) => {
           </section>
         </section>
       </section>
-      <button
+
+      <ButtonContained
+        label='ADD ITEM'
+        handleClick={handleClick}
+        classStyle='filled'
         type='button'
-        className='send-button'
-        onClick={() => {
-          getBurgerId(burger)
-        }}
-      >
-        ADD ITEM
-      </button>
+      />
     </>
   )
 }

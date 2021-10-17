@@ -7,6 +7,7 @@ import Container from '../../components/Main'
 import Footer from '../../components/Footer/index'
 import CallAPI from '../../services/api'
 import ErrorAuth from '../../components/errors/errors'
+import ButtonContained from '../../components/atoms/ButtonContained'
 
 const userData = AllModelsObject.authAndUsers
 
@@ -84,10 +85,14 @@ const Login = () => {
               />
             </label>
             {statusCode && <ErrorAuth code={statusCode} />}
-            <button className='form-button' type='submit'>
-              {' '}
-              SIGN IN{' '}
-            </button>
+
+            <ButtonContained
+              type='submit'
+              classStyle='filled'
+              label='SIGN IN'
+              handleClick={handleSubmit}
+            />
+
             <p className='message-text'>
               {' '}
               Do not have an account?{' '}

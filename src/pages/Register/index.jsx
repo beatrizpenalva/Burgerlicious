@@ -6,6 +6,7 @@ import AllModelsObject from '../../components/object/models'
 import Footer from '../../components/Footer/index'
 import Logo from '../../components/Logo/index'
 import ErrorAuth from '../../components/errors/errors'
+import ButtonContained from '../../components/atoms/ButtonContained'
 
 const Register = () => {
   const userData = AllModelsObject.authAndUsers
@@ -163,10 +164,12 @@ const Register = () => {
 
           {statusCode && <ErrorAuth code={statusCode} />}
 
-          <button className='form-button' type='submit'>
-            {' '}
-            SIGN UP{' '}
-          </button>
+          <ButtonContained
+            type='submit'
+            classStyle='filled'
+            label='SIGN UP'
+            handleClick={handleSubmit}
+          />
         </form>
       </div>
 
