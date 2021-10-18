@@ -15,7 +15,7 @@ const Card = ({ order }) => {
     preparationMinutes > 0 ? `${preparationMinutes}min` : '0min'
 
   return (
-    <>
+    <section className='card-container-text'>
       <section className='header'>
         <div className='card-table-info'>
           <p className='title-card'>Table</p>
@@ -71,7 +71,7 @@ const Card = ({ order }) => {
           ))}
         </tbody>
       </table>
-    </>
+    </section>
   )
 }
 
