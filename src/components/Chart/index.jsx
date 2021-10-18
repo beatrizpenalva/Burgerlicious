@@ -39,7 +39,6 @@ const Chart = ({
           handleChange={(e) => handleOrderChange(e, 'table')}
           required
         />
-        {/* min='1' max='30' */}
       </section>
 
       {productsChart.length > 0 && (
