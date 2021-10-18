@@ -3,7 +3,6 @@ import { Link, useHistory } from 'react-router-dom'
 import RequestOptions from '../../components/object/requestOptions'
 import AllModelsObject from '../../components/object/models'
 import Logo from '../../components/Logo/index'
-import Container from '../../components/Main'
 import Footer from '../../components/Footer/index'
 import CallAPI from '../../services/api'
 import ErrorAuth from '../../components/errors/errors'
@@ -47,50 +46,48 @@ const Login = () => {
 
   return (
     <>
-      <Container>
-        <div className='inputs-container'>
-          <Logo />
-          <form
-            onSubmit={(e) => {
-              handleSubmit(e)
-            }}
-          >
-            <TextField
-              label='Login:'
-              type='email'
-              value={user.email}
-              placeholder='email@email.com'
-              handleChange={(e) => handleChange(e, 'email')}
-              required
-            />
+      <div className='inputs-container'>
+        <Logo />
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e)
+          }}
+        >
+          <TextField
+            label='Login:'
+            type='email'
+            value={user.email}
+            placeholder='email@email.com'
+            handleChange={(e) => handleChange(e, 'email')}
+            required
+          />
 
-            <TextField
-              label='Password:'
-              type='password'
-              value={user.password}
-              placeholder='********'
-              handleChange={(e) => handleChange(e, 'password')}
-              required
-            />
+          <TextField
+            label='Password:'
+            type='password'
+            value={user.password}
+            placeholder='********'
+            handleChange={(e) => handleChange(e, 'password')}
+            required
+          />
 
-            {statusCode && <ErrorAuth code={statusCode} />}
-            <ButtonContained
-              type='submit'
-              classStyle='filled'
-              label='SIGN IN'
-              handleClick={handleSubmit}
-            />
-            <p className='message-text'>
+          {statusCode && <ErrorAuth code={statusCode} />}
+          <ButtonContained
+            type='submit'
+            classStyle='filled'
+            label='SIGN IN'
+            handleClick={handleSubmit}
+          />
+          <p className='message-text'>
+            {' '}
+            Do not have an account?{' '}
+            <span>
               {' '}
-              Do not have an account?{' '}
-              <span>
-                {' '}
-                <Link to='/Register'>Register</Link>{' '}
-              </span>
-            </p>
-          </form>
-        </div>
-      </Container>
+              <Link to='/Register'>Register</Link>{' '}
+            </span>
+          </p>
+        </form>
+      </div>
       <Footer />
     </>
   )
