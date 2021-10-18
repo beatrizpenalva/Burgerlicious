@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Order from '../Order/index'
+import Chart from '../Chart/index'
 import ToastGroup from '../Toast/index'
 import ModalMessage from '../Modal/index'
 import Menu from '../Menu/index'
@@ -125,7 +125,7 @@ const HallContent = () => {
     <>
       <Menu addItem={addItem} handleError={handleError} />
 
-      <Order
+      <Chart
         order={order}
         productsChart={productsChart}
         totalToPay={totalToPay}
