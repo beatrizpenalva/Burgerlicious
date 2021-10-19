@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Chart from '../Chart/index'
-import ModalMessage from '../Modal/index'
-import Menu from '../Menu/index'
 import { calculateTotal, updateChartItem, isOnTheList } from '../../utils/index'
 import { createOrdermethod, productOrder } from '../../utils/adapter'
 import CallAPI from '../../services/api'
+import ModalMessage from '../molecules/Modal'
 import ToastGroup from '../molecules/Toast'
+import Chart from '../Chart/index'
+import Menu from '../Menu/index'
 
 const HallContent = () => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import RequestOptions from './object/requestOptions'
 import CallAPI from '../services/api'
 import useFetch from '../services/Hooks/useFetch'
-import ToastGroup from './Toast/index'
-import ModalMessage from './Modal/index'
 import { translatePTtoEN } from '../utils/adapter'
-import Card from './molecules/Card'
 import ButtonCard from './atoms/ButtonCard'
+import Card from './molecules/Card'
+import ModalMessage from './molecules/Modal'
+import ToastGroup from './molecules/Toast'
 
 function ListOrders({ filterType }) {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
