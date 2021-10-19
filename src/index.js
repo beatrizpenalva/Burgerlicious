@@ -1,7 +1,6 @@
-/* eslint-disable prettier/prettier */
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Root from './components/Root'
+import Root from './pages/Root'
 import './style.css'
 import reportWebVitals from './reportWebVitals'
 

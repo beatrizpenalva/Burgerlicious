@@ -1,0 +1,14 @@
+.modal-text {
+  width: 100%;
+  text-align: center;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #584944;
+}

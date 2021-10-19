@@ -1,13 +1,14 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import CallAPI from '../../services/api'
 import RequestOptions from '../../components/object/requestOptions'
 import AllModelsObject from '../../components/object/models'
-import Footer from '../../components/Footer'
-import Logo from '../../components/Logo'
+import Footer from '../../components/Footer/index'
+import Logo from '../../components/Logo/index'
 import ErrorAuth from '../../components/errors/errors'
+import ButtonContained from '../../components/atoms/ButtonContained'
+import TextField from '../../components/atoms/TextField'
+import SelectField from '../../components/atoms/SelectField'
 
 const Register = () => {
   const userData = AllModelsObject.authAndUsers
@@ -20,8 +21,8 @@ const Register = () => {
     setUser({ ...user, completeName: `${user.name} ${user.lastName}` })
   }, [user.name, user.lastName])
 
-  const createUser = (props) => {
-    const { email, password, role, completeName, users } = props
+  const createUser = (userObj) => {
+    const { email, password, role, completeName, users } = userObj
     if (role === '') {
       setStatusCode('')
       setStatusCode('000')
@@ -49,13 +50,17 @@ const Register = () => {
     }
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault()
     if (user.password === user.confirmPassword) {
       createUser(user)
     } else {
       setStatusCode('405')
     }
+  }
+
+  const handleChange = (e, key) => {
+    setUser({ ...user, [key]: e.target.value })
   }
 
   return (
@@ -73,102 +78,65 @@ const Register = () => {
             handleSubmit(event)
           }}
         >
-          <label htmlFor='name'>
-            Name:
-            <input
-              id='name'
-              type='text'
-              className='form-input'
-              value={user.name}
-              onChange={(event) => {
-                setUser({ ...user, name: event.target.value })
-              }}
-              placeholder='Name'
-              required
-            />
-          </label>
-          <label htmlFor='last-name'>
-            Last name:
-            <input
-              id='last-name'
-              type='text'
-              className='form-input'
-              value={user.lastName}
-              onChange={(event) => {
-                setUser({ ...user, lastName: event.target.value })
-              }}
-              placeholder='Last name'
-              required
-            />
-          </label>
-          <label htmlFor='email'>
-            Email:
-            <input
-              id='email'
-              type='email'
-              className='form-input'
-              value={user.email}
-              onChange={(event) => {
-                setUser({ ...user, email: event.target.value })
-              }}
-              placeholder='email@email.com'
-              required
-            />
-          </label>
-          <label htmlFor='password'>
-            Password:
-            <input
-              id='password'
-              type='password'
-              className='form-input'
-              minLength='8'
-              maxLength='12'
-              value={user.password}
-              onChange={(event) => {
-                setUser({ ...user, password: event.target.value })
-              }}
-              placeholder='Password'
-              required
-            />
-          </label>
-          <label htmlFor='confirm-password'>
-            Confirm password:
-            <input
-              id='confirm-password'
-              type='password'
-              className='form-input'
-              value={user.confirmPassword}
-              onChange={(event) => {
-                setUser({ ...user, confirmPassword: event.target.value })
-              }}
-              placeholder='Password'
-              required
-            />
-          </label>
+          <TextField
+            label='Name:'
+            type='text'
+            value={user.name}
+            placeholder='Name'
+            handleChange={(e) => handleChange(e, 'name')}
+            required
+          />
 
-          <label htmlFor='team'>
-            Team:
-            <select
-              id='team'
-              className='select-style'
-              onChange={(event) => {
-                setUser({ ...user, role: event.target.value })
-              }}
-              defaultValue='Team work'
-              required
-            >
-              <option disabled>Team work</option>
-              <option value='Hall'>Hall</option>
-              <option value='Kitchen'>Kitchen</option>
-            </select>
-          </label>
+          <TextField
+            label='Last name:'
+            type='text'
+            value={user.lastName}
+            placeholder='Last name'
+            handleChange={(e) => handleChange(e, 'lastName')}
+            required
+          />
+
+          <TextField
+            label='Email:'
+            type='email'
+            value={user.email}
+            placeholder='email@email.com'
+            handleChange={(e) => handleChange(e, 'email')}
+            required
+          />
+
+          <TextField
+            label='Password:'
+            type='password'
+            value={user.password}
+            placeholder='********'
+            handleChange={(e) => handleChange(e, 'password')}
+            required
+          />
+
+          <TextField
+            label='Confirm password:'
+            type='password'
+            value={user.confirmPassword}
+            placeholder='********'
+            handleChange={(e) => handleChange(e, 'confirmPassword')}
+            required
+          />
+
+          <SelectField
+            label='Team:'
+            options={['Team work', 'Hall', 'Kitchen']}
+            handleChange={(e) => handleChange(e, 'role')}
+          />
 
           {statusCode && <ErrorAuth code={statusCode} />}
 
-          <button className='form-button' type='submit'>
-            {' '}
-            SIGN UP{' '}
-          </button>
+          <ButtonContained
+            type='submit'
+            classStyle='filled'
+            label='SIGN UP'
+            handleClick={handleSubmit}
+          />
         </form>
       </div>
 

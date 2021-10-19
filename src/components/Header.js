@@ -1,17 +1,14 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import logo from '../img/logo.png'
 import ButtonSidebar from './Buttonsidebar'
-import Button from './Buttonorderstatus'
+import ButtonCard from './atoms/ButtonCard'
 import { SidebarStorage } from './SidebarContext'
 
 const Header = ({ role, name }) => {
   const nameFunction = () => {
-    if (role === 'hall') {
-      return 'Attendant'
-    }
+    if (role === 'hall') return 'Attendant'
     return 'Chef'
   }
 
@@ -29,7 +26,7 @@ const Header = ({ role, name }) => {
             <span className='team-work'>{nameFunction().toUpperCase()}:</span>{' '}
             {name.toUpperCase()}
           </div>
-          <Button
+          <ButtonCard
             className='orders-button'
             onClick={() => {
               history.push('/')
@@ -38,7 +35,7 @@ const Header = ({ role, name }) => {
           >
             <span className='material-icons'>logout</span>
             <span className='button-text'>LOGOUT</span>
-          </Button>
+          </ButtonCard>
         </section>
 
         <img
@@ -51,7 +48,7 @@ const Header = ({ role, name }) => {
 
         <section className='buttons'>
           {role === 'kitchen' && (
-            <Button
+            <ButtonCard
               value='refresh'
               id='refresh'
               key='button-order-refresh'
@@ -62,7 +59,7 @@ const Header = ({ role, name }) => {
             >
               <span className='material-icons'>notifications</span>
               <span className='button-text'>UPDATE ORDERS</span>
-            </Button>
+            </ButtonCard>
           )}
 
           {role === 'hall' && (
@@ -94,6 +91,11 @@ const Header = ({ role, name }) => {
       </header>
     </>
   )
+}
+
+Header.propTypes = {
+  role: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 }
 
 export default Header

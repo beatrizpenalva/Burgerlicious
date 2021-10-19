@@ -1,13 +1,7 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable consistent-return */
 const CallAPI = async (url, method) => {
-  try {
-    const response = await fetch(url, method)
-    const data = await response.json()
-    return data
-  } catch {
-    // alert('Ops! Something went wrong. Please, try again.')
-  }
+  const response = await fetch(url, method)
+  const data = await response.json()
+  return data
 }
 
 export default CallAPI

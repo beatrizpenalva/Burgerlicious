@@ -1,14 +1,13 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import RequestOptions from '../../components/object/requestOptions'
 import AllModelsObject from '../../components/object/models'
-import Logo from '../../components/Logo'
-import Container from '../../components/Main'
-import Footer from '../../components/Footer'
+import Logo from '../../components/Logo/index'
+import Footer from '../../components/Footer/index'
 import CallAPI from '../../services/api'
 import ErrorAuth from '../../components/errors/errors'
+import ButtonContained from '../../components/atoms/ButtonContained'
+import TextField from '../../components/atoms/TextField'
 
 const userData = AllModelsObject.authAndUsers
 
@@ -17,8 +16,8 @@ const Login = () => {
   const [user, setUser] = useState(userData)
   const [statusCode, setStatusCode] = useState('')
 
-  const loginPage = (props) => {
-    const { email, password, auth } = props
+  const loginPage = (userObj) => {
+    const { email, password, auth } = userObj
     const body = `email=${email}&password=${password}`
     const method = RequestOptions.post(body)
 
@@ -28,79 +27,67 @@ const Login = () => {
       if (json.code) {
         setStatusCode('')
         setStatusCode(String(json.code))
-      }
-
-      if (json.role === 'hall') {
+      } else if (json.role === 'hall') {
         history.push('/Hall')
-      }
-
-      if (json.role === 'kitchen') {
+      } else {
         history.push('/Kitchen')
       }
     })
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault()
     loginPage(user)
+  }
+
+  const handleChange = (e, key) => {
+    setUser({ ...user, [key]: e.target.value })
   }
 
   return (
     <>
-      <Container>
-        <div className='inputs-container'>
-          <Logo />
-          <form
-            onSubmit={(event) => {
-              handleSubmit(event)
-            }}
-          >
-            <label htmlFor='login'>
-              Login:
-              <input
-                id='login'
-                type='email'
-                className='form-input'
-                value={user.email}
-                onChange={(event) => {
-                  setUser({ ...user, email: event.target.value })
-                }}
-                placeholder='email@email.com'
-                required
-              />
-            </label>
-            <label htmlFor='password'>
-              Password:
-              <input
-                id='password'
-                type='password'
-                className='form-input'
-                minLength='8'
-                maxLength='12'
-                value={user.password}
-                onChange={(event) => {
-                  setUser({ ...user, password: event.target.value })
-                }}
-                placeholder='Password'
-                required
-              />
-            </label>
-            {statusCode && <ErrorAuth code={statusCode} />}
-            <button className='form-button' type='submit'>
+      <div className='inputs-container'>
+        <Logo />
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e)
+          }}
+        >
+          <TextField
+            label='Login:'
+            type='email'
+            value={user.email}
+            placeholder='email@email.com'
+            handleChange={(e) => handleChange(e, 'email')}
+            required
+          />
+
+          <TextField
+            label='Password:'
+            type='password'
+            value={user.password}
+            placeholder='********'
+            handleChange={(e) => handleChange(e, 'password')}
+            required
+          />
+
+          {statusCode && <ErrorAuth code={statusCode} />}
+          <ButtonContained
+            type='submit'
+            classStyle='filled'
+            label='SIGN IN'
+            handleClick={handleSubmit}
+          />
+          <p className='message-text'>
+            {' '}
+            Do not have an account?{' '}
+            <span>
               {' '}
-              SIGN IN{' '}
-            </button>
-            <p className='message-text'>
-              {' '}
-              Do not have an account?{' '}
-              <span>
-                {' '}
-                <Link to='/Register'>Register</Link>{' '}
-              </span>
-            </p>
-          </form>
-        </div>
-      </Container>
+              <Link to='/Register'>Register</Link>{' '}
+            </span>
+          </p>
+        </form>
+      </div>
       <Footer />
     </>
   )

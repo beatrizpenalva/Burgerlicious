@@ -1,7 +1,6 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 /* eslint-disable import/no-cycle */
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import ButtonSidebar from './Buttonsidebar'
 import ListOrders from './Listallorders'
 
@@ -31,6 +30,11 @@ const Sidebar = ({ filterType, title }) => {
       </div>
     </section>
   )
+}
+
+Sidebar.propTypes = {
+  filterType: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default Sidebar

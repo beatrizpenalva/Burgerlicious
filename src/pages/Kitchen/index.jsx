@@ -1,9 +1,8 @@
-/* eslint-disable prettier/prettier */
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import Header from '../../components/Header'
 import ListOrders from '../../components/Listallorders'
-import Footer from '../../components/Footer'
+import Footer from '../../components/Footer/index'
 
 const Kitchen = () => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))

@@ -1,9 +1,7 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const ErrorAuth = (props) => {
+const ErrorAuth = ({ code }) => {
   const verifyErrorCode = {
     '000': 'You have to choose your team-work. Please, try again.',
     400: 'Invalid email and/or password. Please, try again.',
@@ -13,7 +11,7 @@ const ErrorAuth = (props) => {
     405: 'Passwords do not match. Please try again.',
   }
 
-  let errorMessage = verifyErrorCode[props.code]
+  let errorMessage = verifyErrorCode[code]
 
   if (!errorMessage) {
     errorMessage = 'Ops! Something went wrong. Please, try again.'
@@ -24,6 +22,10 @@ const ErrorAuth = (props) => {
       <p id='error-login'>{errorMessage}</p>
     </>
   )
+}
+
+ErrorAuth.propTypes = {
+  code: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 }
 
 export default ErrorAuth

@@ -1,53 +1,33 @@
-/* eslint-disable prettier/prettier */
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import RequestOptions from './object/requestOptions'
 import CallAPI from '../services/api'
 import useFetch from '../services/Hooks/useFetch'
-import CardsKitchen from './CardsKitchen'
-import Button from './Buttonorderstatus'
-import ToastGroup from './Toast'
-import ModalMessage from './Modal'
+import { translatePTtoEN } from '../utils/adapter'
+import ButtonCard from './atoms/ButtonCard'
+import Card from './molecules/Card'
+import ModalMessage from './molecules/Modal'
+import ToastGroup from './molecules/Toast'
 
 function ListOrders({ filterType }) {
-  const translatePTtoEN = {
-    'Misto quente': 'Cheese Sandwich',
-    'Café americano': 'Americano Coffee',
-    'Café com leite': 'Espresso Coffee',
-    'Suco de fruta natural': 'Orange juice',
-    'Batata frita': 'Fries',
-    'Anéis de cebola': 'Onion rings',
-    'Água 500mL': 'Water 500mL',
-    'Água 750mL': 'Water 750mL',
-    'Refrigerante 500mL': 'Soda 500mL',
-    'Refrigerante 750mL': 'Soda 750mL',
-    'Hambúrguer simples': 'Smash burger',
-    'Hambúrguer duplo': 'Double burger',
-    'carne': 'Meat',
-    'frango': 'Chicken',
-    'vegetariano': 'Veggie',
-    'queijo': 'Cheese',
-    'ovo': 'Egg'
-}
-
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
   const { token, role } = nameLS
   const type = filterType
 
   const { data, request } = useFetch()
-  const [dataTranslated, setDataTranslated] = React.useState([])
-  const [pending, setPending] = React.useState(null)
-  const [done, setDone] = React.useState(null)
-  const [finish, setFinish] = React.useState(null)
-  const [orderlist, setOrderlist] = React.useState(null)
+  const [dataTranslated, setDataTranslated] = useState([])
+  const [pending, setPending] = useState(null)
+  const [done, setDone] = useState(null)
+  const [finish, setFinish] = useState(null)
+  const [orderlist, setOrderlist] = useState(null)
 
-  const [show, setShow] = React.useState(false)
-  const [errCode, setCode] = React.useState('')
-  const [modalShow, setModalShow] = React.useState(false)
-  const [deleteID, setDeleteID] = React.useState(null)
-  const [deleteIndex, setDeleteIndex] = React.useState(null)
-  const [deleteStatus, setDeleteStatus] = React.useState(null)
+  const [show, setShow] = useState(false)
+  const [errCode, setCode] = useState('')
+  const [modalShow, setModalShow] = useState(false)
+  const [deleteID, setDeleteID] = useState(null)
+  const [deleteIndex, setDeleteIndex] = useState(null)
+  const [deleteStatus, setDeleteStatus] = useState(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchOrders() {
       const method = RequestOptions.getAndDelete('GET', token)
       const URL = 'https://lab-api-bq.herokuapp.com/orders  '
@@ -56,7 +36,7 @@ function ListOrders({ filterType }) {
     fetchOrders()
   }, [request, token])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!data) return
 
     const allOrders = data
@@ -78,7 +58,7 @@ function ListOrders({ filterType }) {
     setDataTranslated(ordersTranslated)
   }, [data])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!dataTranslated) return
 
     if (role === 'kitchen') {
@@ -103,7 +83,7 @@ function ListOrders({ filterType }) {
     }
   }, [data, dataTranslated, role, type])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!dataTranslated) return
 
     if (pending) {
@@ -192,6 +172,17 @@ function ListOrders({ filterType }) {
     setDeleteStatus(status)
   }
 
+  // eslint-disable-next-line consistent-return
+  const getOrderStatus = (status) => {
+    if (role === 'hall') {
+      if (status === 'pending') return 'delete'
+    } else {
+      if (status === 'pending') return 'doing'
+      if (status === 'doing') return 'done'
+      if (status === 'done') return 'delivery'
+    }
+  }
+
   function result() {
     if (orderlist) {
       return (
@@ -200,49 +191,30 @@ function ListOrders({ filterType }) {
             .sort((a, b) => (a.id > b.id ? 1 : -1))
             .map((item, index) => (
               <div key={item.id} className='card-template'>
-                <CardsKitchen key={item.name}>{item}</CardsKitchen>
+                <Card order={item} />
 
-                {pending &&
-                  item.status === 'pending' &&
-                  item.status !== 'finished' && (
-                    <Button
-                      key={Math.random()}
-                      onClick={() => handleStatus(index, item.id, item.status)}
-                      className={item.status === 'pending' && 'btn-doing'}
-                    >
-                      {item.status === 'pending' && 'DOING'}
-                    </Button>
-                  )}
-
-                {pending &&
-                  item.status === 'doing' &&
-                  item.status !== 'finished' && (
-                    <Button
-                      key={Math.random()}
-                      onClick={() => handleStatus(index, item.id, item.status)}
-                      className={item.status === 'doing' && 'btn-done'}
-                    >
-                      {item.status === 'doing' && 'DONE'}
-                    </Button>
-                  )}
+                {pending && item.status !== 'finished' && (
+                  <ButtonCard
+                    onClick={() => handleStatus(index, item.id, item.status)}
+                    label={getOrderStatus(item.status)}
+                    classStyle={getOrderStatus(item.status)}
+                  />
+                )}
 
                 {done && item.status === 'done' && (
-                  <Button
-                    key={Math.random()}
+                  <ButtonCard
                     onClick={() => handleStatus(index, item.id, item.status)}
-                    className={item.status === 'done' && 'btn-finish'}
-                  >
-                    DELIVERY
-                  </Button>
+                    label={getOrderStatus(item.status)}
+                    className={getOrderStatus(item.status)}
+                  />
                 )}
+
                 {done && item.status === 'pending' && role === 'hall' && (
-                  <Button
-                    key={Math.random()}
+                  <ButtonCard
                     onClick={() => handleDelete(index, item.id, item.status)}
-                    className={item.status === 'pending' && 'btn-delete'}
-                  >
-                    DELETE
-                  </Button>
+                    label={getOrderStatus(item.status)}
+                    classStyle={getOrderStatus(item.status)}
+                  />
                 )}
               </div>
             ))}
