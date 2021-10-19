@@ -76,26 +76,6 @@ label {
   flex-direction: column;
 }
 
-.form-button {
-  width: 325px;
-  height: 45px;
-  left: 222px;
-  top: 625px;
-  margin: 25px 0px;
-  background: #ffbb5a;
-  border-color: transparent;
-  border-radius: 12px;
-  outline: none;
-  font-size: 18px;
-  color: #fff8d8;
-}
-
-.form-button:active,
-.form-button:hover {
-  background-color: #ffe1ac;
-  color: #584944;
-}
-
 .message-text {
   text-align: center;
 }
@@ -291,51 +271,6 @@ input[type='radio'] {
   display: none;
 }
 
-/* modal */
-
-.modal-text {
-  width: 100%;
-  text-align: center;
-}
-
-.modal-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #584944;
-}
-
-.modal-bottom {
-  display: flex;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.modal-button {
-  width: 90px;
-  height: 30px;
-  margin: 0 20px;
-  padding: 0 15px;
-  border-radius: 5px;
-  border-color: transparent;
-  background: #f0504a;
-  outline: none;
-  font-weight: 500;
-  align-items: center;
-  text-align: center;
-  color: #fff8d8;
-}
-
-.yes-button {
-  border: solid 3px #f0504a;
-  border-radius: 10px;
-  background-color: transparent;
-  color: #f0504a;
-}
-
 /* */
 
 input,
@@ -474,16 +409,6 @@ input[type='number'] {
 
 .total-value {
   font-weight: 700;
-}
-
-.delete-item {
-  background-color: transparent;
-  border: none;
-  color: #f19390;
-}
-
-.delete-item:active, .delete-item:hover {
-  color: #f0504a;
 }
 
 .list-items {
