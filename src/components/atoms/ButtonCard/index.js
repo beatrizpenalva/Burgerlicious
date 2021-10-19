@@ -1,3 +1,1 @@
-import ButtonCard from './ButtonCard'
-
-export default ButtonCard
+export { default } from './ButtonCard'

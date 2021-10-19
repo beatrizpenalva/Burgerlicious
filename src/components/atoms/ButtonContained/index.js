@@ -1,3 +1,1 @@
-import ButtonContained from './ButtonContained'
-
-export default ButtonContained
+export { default } from './ButtonContained'

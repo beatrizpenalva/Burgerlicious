@@ -1,3 +1,1 @@
-import ToastGroup from './Toast'
-
-export default ToastGroup
+export { default } from './Toast'

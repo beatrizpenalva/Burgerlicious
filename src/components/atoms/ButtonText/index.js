@@ -1,3 +1,1 @@
-import ButtonText from './ButtonText'
-
-export default ButtonText
+export { default } from './ButtonText'
