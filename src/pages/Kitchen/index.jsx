@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import Header from '../../components/Header'
+import Header from '../../components/organisms/Header'
 import OrderList from '../../components/organisms/OrderList'
 import Footer from '../../components/Footer/index'
 

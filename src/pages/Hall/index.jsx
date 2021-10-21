@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../../components/Header'
+import Header from '../../components/organisms/Header'
 import Footer from '../../components/Footer/index'
 import HallContent from '../../components/HallContent/index'
 
