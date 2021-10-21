@@ -26,7 +26,7 @@ p {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-}  
+}
 
 #error-login {
   display: flex;
@@ -61,7 +61,6 @@ img {
 img.logo {
   margin: 0;
 }
-
 
 form {
   display: flex;
@@ -112,67 +111,6 @@ footer a {
   color: #584944;
   font-weight: bold;
   padding: 10px 0px;
-}
-
-/* header */
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 200px;
-  background-color: #ffe1ac;
-  flex-wrap: wrap;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-}
-
-.orders-button span {
-  pointer-events: none;
-  color: #ffe1ac;
-  padding-right: 5px;
-}
-
-.orders-button {
-  border: none;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  background-color: #ffbb5a;
-  border-radius: 10px;
-  padding: 8px;
-  margin: 4px 0px;
-  font-size: 15px;
-  font-weight: bold;
-  color: #ffe1ac;
-}
-
-.orders-button:active,
-.orders-button:hover {
-  border: 0;
-  outline: none;
-  background-color: #fff8d8;
-  color: #584944;
-}
-
-.orders-button:active span,
-.orders-button:hover span{
-  color: #584944;
-}
-
-.user-info {
-  font-size: 18px;
-  margin-bottom: 20px;
-  color: #584944;
-}
-
-.team-work {
-  font-weight: bold;
-  color: #584944;
 }
 
 .home {
@@ -283,7 +221,7 @@ input[type='number'] {
   min-height: 405px;
   margin: 20px 0px 40px;
   padding: 25px;
-  background: #FEF4C6;
+  background: #fef4c6;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -302,7 +240,8 @@ input[type='number'] {
   margin-right: 30px;
 }
 
-.client-info, .bottom-section {
+.client-info,
+.bottom-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -359,14 +298,15 @@ input[type='number'] {
   align-items: center;
   color: #584944;
   background-color: #ffe1ac00;
-  width:25px;
+  width: 25px;
   height: 25px;
   border-radius: 25px;
 }
 
-.count-button:active, .count-button:focus {
+.count-button:active,
+.count-button:focus {
   background-color: #ffe1ac;
-  width:25px;
+  width: 25px;
   height: 25px;
   border-radius: 25px;
 }
@@ -416,10 +356,10 @@ input[type='number'] {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   background: #ffbb5a;
-  -webkit-box-shadow: inset 0 0 6px #ffe1ac; 
+  -webkit-box-shadow: inset 0 0 6px #ffe1ac;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D9D2B0;
+  background: #d9d2b0;
 }
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px #c2a87c;
@@ -436,7 +376,7 @@ input[type='number'] {
   position: fixed;
   top: 0;
   right: -100%;
-  background: #FFF8D8;
+  background: #fff8d8;
   z-index: 1;
   overflow-y: auto;
   box-shadow: -5px 0px 8px rgb(0 0 0 / 20%);
@@ -474,7 +414,7 @@ input[type='number'] {
   height: 100%;
   background-color: transparent;
   z-index: 1;
-  transition: background .6s linear;
+  transition: background 0.6s linear;
 }
 
 .open .overlay-dark {
@@ -491,7 +431,7 @@ input[type='number'] {
   .body-default {
     align-items: baseline;
   }
-  
+
   .inputs-container {
     flex-direction: column;
   }
@@ -499,7 +439,7 @@ input[type='number'] {
   .menu-details {
     display: flex;
     align-items: center;
-    flex-direction: column; 
+    flex-direction: column;
     justify-content: space-between;
   }
 
@@ -517,7 +457,7 @@ input[type='number'] {
     margin-left: 30px;
     margin-top: 0;
   }
-  
+
   .order-summary {
     width: 682px;
     min-height: 525px;
@@ -536,8 +476,8 @@ input[type='number'] {
 }
 
 @media (max-width: 414px) {
-
- .order-button-section, .total-price {
+  .order-button-section,
+  .total-price {
     margin-top: 30px;
   }
 
@@ -559,7 +499,8 @@ input[type='number'] {
     width: 375px;
   }
 
-  .item-description, .list-items {
+  .item-description,
+  .list-items {
     min-width: 265px;
   }
 
@@ -567,7 +508,8 @@ input[type='number'] {
     max-width: 265px;
   }
 
-  .client-info, .bottom-section {
+  .client-info,
+  .bottom-section {
     width: 260px;
     justify-content: center;
     align-items: center;
@@ -590,7 +532,7 @@ input[type='number'] {
   }
 
   img {
-    transform: scale(.75);
+    transform: scale(0.75);
     margin: 10px 0;
   }
 
@@ -608,7 +550,8 @@ input[type='number'] {
     padding-right: 30px;
   }
 
-  .toast-body, .toast-header {
+  .toast-body,
+  .toast-header {
     min-width: 300px;
     flex-wrap: wrap;
   }
