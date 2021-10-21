@@ -1,0 +1,9 @@
+.card-template {
+  margin: 1rem;
+  width: 320px;
+  left: 44px;
+  top: 579px;
+  background: #ffe1ac;
+  border-radius: 10px;
+  box-shadow: 2px 5px 5px hsl(0deg 0% 0% / 30%);
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import Header from '../../components/Header'
-import ListOrders from '../../components/Listallorders'
+import OrderList from '../../components/organisms/OrderList'
 import Footer from '../../components/Footer/index'
 
 const Kitchen = () => {
@@ -17,7 +17,7 @@ const Kitchen = () => {
     <section>
       <Header role={role} name={name} />
       <section className='container-cards'>
-        <ListOrders />
+        <OrderList />
       </section>
       <Footer />
     </section>
