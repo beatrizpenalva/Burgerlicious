@@ -72,7 +72,7 @@ const Header = ({ role, name }) => {
               classStyle='filled'
               type='button'
               handleClick={() =>
-                handleOpenSidebar('order in progress', 'doing')
+                handleOpenSidebar('order in progress', 'processing')
               }
             />
           )}
@@ -81,7 +81,7 @@ const Header = ({ role, name }) => {
             label='finish orders'
             classStyle='filled'
             type='button'
-            handleClick={() => handleOpenSidebar('finish orders', 'finish')}
+            handleClick={() => handleOpenSidebar('finish orders', 'finished')}
           />
         </section>
       </header>
