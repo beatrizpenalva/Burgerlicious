@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import RequestOptions from '../../object/requestOptions'
+import RequestOptions from '../../../services/requestOptions'
 import CallAPI from '../../../services/api'
 import useFetch from '../../../services/Hooks/useFetch'
 import { translatePTtoEN } from '../../../utils/adapter'

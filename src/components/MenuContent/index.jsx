@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import useFetch from '../../services/Hooks/useFetch'
-import requestOptions from '../object/requestOptions'
+import requestOptions from '../../services/requestOptions'
 import Items from '../MenuItems/index'
 import BurgerSection from '../MenuSectionBurger/index'
 import { getBurger, sectionFiltered } from '../../utils/index'

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import CallAPI from '../../services/api'
-import RequestOptions from '../../components/object/requestOptions'
-import AllModelsObject from '../../components/object/models'
+import RequestOptions from '../../services/requestOptions'
 import Footer from '../../components/Footer/index'
 import Logo from '../../components/atoms/Logo'
 import ErrorMessage from '../../components/atoms/ErrorMessage'
@@ -11,7 +10,17 @@ import TextField from '../../components/atoms/TextField'
 import SelectField from '../../components/atoms/SelectField'
 
 const Register = () => {
-  const userData = AllModelsObject.authAndUsers
+  const userData = {
+    auth: 'https://lab-api-bq.herokuapp.com/auth',
+    users: 'https://lab-api-bq.herokuapp.com/users',
+    name: '',
+    lastName: '',
+    email: '',
+    role: '',
+    password: '',
+    confirmPassword: '',
+    token: '',
+  }
   const history = useHistory()
 
   const [user, setUser] = useState(userData)
