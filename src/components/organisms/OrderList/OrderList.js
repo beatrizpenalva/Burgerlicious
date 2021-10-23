@@ -8,6 +8,7 @@ import ButtonCard from '../../atoms/ButtonCard'
 import Card from '../../molecules/Card'
 import ModalMessage from '../../molecules/Modal'
 import ToastGroup from '../../molecules/Toast'
+import './OrderList.styles.css'
 
 const OrderList = ({ filterType }) => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))

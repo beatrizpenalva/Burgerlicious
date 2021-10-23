@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Logo from '../../atoms/Logo'
-import Sidebar from '../../Sidebar'
+import Sidebar from '../Sidebar'
 import ButtonContained from '../../atoms/ButtonContained'
+import './Header.styles.css'
 
 const Header = ({ role, name }) => {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false)
