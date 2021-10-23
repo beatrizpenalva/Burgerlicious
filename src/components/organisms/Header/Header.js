@@ -1,17 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import logo from '../../../img/logo.png'
-import ButtonSidebar from '../../Buttonsidebar'
+import Sidebar from '../../Sidebar'
 import ButtonContained from '../../atoms/ButtonContained'
 
 const Header = ({ role, name }) => {
+  const [sidebarIsOpen, setSidebarIsOpen] = useState(false)
+  const [sidebarTitle, setSidebarTitle] = useState('')
+  const [orderStatus, setOrderStatus] = useState('')
+  const history = useHistory()
+
   const nameFunction = () => {
     if (role === 'hall') return 'Attendant'
     return 'Chef'
   }
 
-  const history = useHistory()
+  // <span className='material-icons'>logout</span>
+  // <span className='material-icons'>notifications</span>
+  // <span className='material-icons'>history</span>
+  // <span className='material-icons'>close</span>
+
+  const handleLogout = () => {
+    history.push('/')
+    localStorage.clear()
+  }
+
+  const handleOpenSidebar = (title, status) => {
+    setOrderStatus(status)
+    setSidebarTitle(title)
+    setSidebarIsOpen(true)
+  }
 
   return (
     <>
@@ -22,14 +41,11 @@ const Header = ({ role, name }) => {
             {name.toUpperCase()}
           </div>
           <ButtonContained
-            onClick={() => {
-              history.push('/')
-              localStorage.clear()
-            }}
-          >
-            <span className='material-icons'>logout</span>
-            <span className='button-text'>LOGOUT</span>
-          </ButtonContained>
+            label='logout'
+            classStyle='filled'
+            type='button'
+            handleClick={handleLogout}
+          />
         </section>
 
         <img
@@ -43,28 +59,39 @@ const Header = ({ role, name }) => {
         <section className='buttons'>
           {role === 'kitchen' && (
             <ButtonContained
-              value='refresh'
-              id='refresh'
-              onClick={() => window.location.reload()}
-            >
-              <span className='material-icons'>notifications</span>
-              <span className='button-text'>UPDATE ORDERS</span>
-            </ButtonContained>
+              label='update orders'
+              classStyle='filled'
+              type='button'
+              handleClick={() => window.location.reload()}
+            />
           )}
 
           {role === 'hall' && (
-            <ButtonSidebar value='ORDERS IN PROGRESS' id='processing'>
-              <span className='material-icons'>notifications</span>
-              <span className='button-text'>ORDERS IN PROGRESS</span>
-            </ButtonSidebar>
+            <ButtonContained
+              label='order in progress'
+              classStyle='filled'
+              type='button'
+              handleClick={() =>
+                handleOpenSidebar('order in progress', 'doing')
+              }
+            />
           )}
 
-          <ButtonSidebar value='FINISHED ORDERS' id='finished'>
-            <span className='material-icons'>history</span>
-            <span className='button-text'>FINISHED ORDERS</span>
-          </ButtonSidebar>
+          <ButtonContained
+            label='finish orders'
+            classStyle='filled'
+            type='button'
+            handleClick={() => handleOpenSidebar('finish orders', 'finish')}
+          />
         </section>
       </header>
+      {sidebarIsOpen && (
+        <Sidebar
+          filterType={orderStatus}
+          title={sidebarTitle}
+          onClose={setSidebarIsOpen}
+        />
+      )}
     </>
   )
 }
