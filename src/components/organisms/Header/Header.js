@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import logo from '../../../img/logo.png'
+import Logo from '../../atoms/Logo'
 import Sidebar from '../../Sidebar'
 import ButtonContained from '../../atoms/ButtonContained'
 
@@ -48,13 +48,7 @@ const Header = ({ role, name }) => {
           />
         </section>
 
-        <img
-          className='logo'
-          src={logo}
-          alt='logo'
-          height='116px'
-          width='141,6px'
-        />
+        <Logo size='small' />
 
         <section className='buttons'>
           {role === 'kitchen' && (

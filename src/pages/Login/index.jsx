@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import RequestOptions from '../../components/object/requestOptions'
 import AllModelsObject from '../../components/object/models'
-import Logo from '../../components/Logo/index'
+import Logo from '../../components/atoms/Logo'
 import Footer from '../../components/Footer/index'
 import CallAPI from '../../services/api'
 import ErrorMessage from '../../components/atoms/ErrorMessage'
@@ -47,7 +47,7 @@ const Login = () => {
   return (
     <>
       <div className='inputs-container'>
-        <Logo />
+        <Logo size='large' />
         <form
           onSubmit={(e) => {
             handleSubmit(e)

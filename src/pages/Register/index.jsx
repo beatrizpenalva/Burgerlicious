@@ -4,7 +4,7 @@ import CallAPI from '../../services/api'
 import RequestOptions from '../../components/object/requestOptions'
 import AllModelsObject from '../../components/object/models'
 import Footer from '../../components/Footer/index'
-import Logo from '../../components/Logo/index'
+import Logo from '../../components/atoms/Logo'
 import ErrorMessage from '../../components/atoms/ErrorMessage'
 import ButtonContained from '../../components/atoms/ButtonContained'
 import TextField from '../../components/atoms/TextField'
@@ -70,7 +70,7 @@ const Register = () => {
           <p className='back-button'>
             <Link to='/'>BACK</Link>
           </p>
-          <Logo />
+          <Logo size='large' />
         </div>
 
         <form
