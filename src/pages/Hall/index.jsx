@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../../components/organisms/Header'
-import Footer from '../../components/Footer/index'
+import Footer from '../../components/molecules/Footer'
 import HallContent from '../../components/HallContent/index'
 
 const Hall = () => {

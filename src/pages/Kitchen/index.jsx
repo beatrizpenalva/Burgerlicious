@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import Header from '../../components/organisms/Header'
 import OrderList from '../../components/organisms/OrderList'
-import Footer from '../../components/Footer/index'
+import Footer from '../../components/molecules/Footer'
 
 const Kitchen = () => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
