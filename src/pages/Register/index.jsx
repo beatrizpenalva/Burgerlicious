@@ -5,7 +5,7 @@ import RequestOptions from '../../components/object/requestOptions'
 import AllModelsObject from '../../components/object/models'
 import Footer from '../../components/Footer/index'
 import Logo from '../../components/Logo/index'
-import ErrorAuth from '../../components/errors/errors'
+import ErrorMessage from '../../components/atoms/ErrorMessage'
 import ButtonContained from '../../components/atoms/ButtonContained'
 import TextField from '../../components/atoms/TextField'
 import SelectField from '../../components/atoms/SelectField'
@@ -129,7 +129,7 @@ const Register = () => {
             handleChange={(e) => handleChange(e, 'role')}
           />
 
-          {statusCode && <ErrorAuth code={statusCode} />}
+          {statusCode && <ErrorMessage code={statusCode} />}
 
           <ButtonContained
             type='submit'

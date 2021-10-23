@@ -5,7 +5,7 @@ import AllModelsObject from '../../components/object/models'
 import Logo from '../../components/Logo/index'
 import Footer from '../../components/Footer/index'
 import CallAPI from '../../services/api'
-import ErrorAuth from '../../components/errors/errors'
+import ErrorMessage from '../../components/atoms/ErrorMessage'
 import ButtonContained from '../../components/atoms/ButtonContained'
 import TextField from '../../components/atoms/TextField'
 
@@ -71,7 +71,7 @@ const Login = () => {
             required
           />
 
-          {statusCode && <ErrorAuth code={statusCode} />}
+          {statusCode && <ErrorMessage code={statusCode} />}
           <ButtonContained
             type='submit'
             classStyle='filled'
