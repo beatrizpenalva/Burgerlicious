@@ -76,31 +76,8 @@ label {
   justify-content: center;
 }
 
-.item-menu {
-  display: flex;
-  flex-direction: column;
-}
-
-.menu-button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 0;
-  border-bottom: 1px solid #d1beb8;
-  background-color: transparent;
-  font-weight: 500;
-  font-size: 16px;
-  color: #584944;
-  padding: 5px 20px;
-}
-
 .last-menu-item {
   border: 0;
-}
-
-.menu-button:active {
-  color: #ffbb5a;
-  font-weight: 700;
 }
 
 .menu-details {
