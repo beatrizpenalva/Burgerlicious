@@ -86,27 +86,6 @@ label {
   align-items: baseline;
 }
 
-.burger-details {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.burger-items {
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  line-height: 1.3;
-  color: #584944;
-  border-bottom: 1px solid #ffe1ac;
-  font-size: 14px;
-}
-
-.burger-items label.active {
-  font-weight: 700;
-  color: #fca730;
-}
-
 .add-items {
   display: flex;
 }
@@ -167,13 +146,6 @@ input[type='number'] {
   justify-content: space-between;
 }
 
-.menu-info {
-  display: flex;
-  flex-direction: column;
-  min-height: 400px;
-  margin-right: 30px;
-}
-
 .client-info,
 .bottom-section {
   display: flex;
@@ -192,65 +164,10 @@ input[type='number'] {
   max-width: 570px;
 }
 
-.item-description {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 325px;
-  margin: 0px 0px 15px;
-}
-
 .order-button-section {
   display: flex;
   flex-direction: space-between;
   max-width: 300px;
-}
-
-.section-details {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  margin-top: 10px;
-}
-
-.input-group {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 70px;
-  background-color: transparent;
-  border: none;
-  font-weight: 500;
-  font-size: 16px;
-  color: #f0504a;
-}
-
-.count-button {
-  background-color: transparent;
-  border: none;
-  font-weight: 500;
-  align-items: center;
-  color: #584944;
-  background-color: #ffe1ac00;
-  width: 25px;
-  height: 25px;
-  border-radius: 25px;
-}
-
-.count-button:active,
-.count-button:focus {
-  background-color: #ffe1ac;
-  width: 25px;
-  height: 25px;
-  border-radius: 25px;
-}
-
-.product {
-  flex: 1;
-  max-width: 175px;
-  margin: 0px 10px;
-  font-size: 16px;
-  color: #584944;
 }
 
 .total-price {
@@ -273,12 +190,6 @@ input[type='number'] {
   margin: 0 0 15px 35px;
   font-size: 14px;
   font-weight: normal;
-}
-
-.menu-description {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 }
 
 /* scroll */
@@ -326,11 +237,6 @@ input[type='number'] {
     margin: 25px 0;
   }
 
-  .section-details {
-    margin-left: 30px;
-    margin-top: 0;
-  }
-
   .order-summary {
     width: 682px;
     min-height: 525px;
@@ -341,10 +247,6 @@ input[type='number'] {
   .products-info {
     max-width: 682px;
     flex: 1;
-  }
-
-  header {
-    padding: 10px 30px;
   }
 }
 
@@ -386,12 +288,6 @@ input[type='number'] {
     width: 260px;
     justify-content: center;
     align-items: center;
-  }
-
-  .menu-info {
-    width: unset;
-    justify-content: center;
-    flex-direction: column;
   }
 
   .order-summary {
