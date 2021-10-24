@@ -1,0 +1,53 @@
+.menu-description {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.item-description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 325px;
+  margin: 0px 0px 15px;
+}
+
+.product {
+  flex: 1;
+  max-width: 175px;
+  margin: 0px 10px;
+  font-size: 16px;
+  color: #584944;
+}
+
+.input-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 70px;
+  background-color: transparent;
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  color: #f0504a;
+}
+
+.count-button {
+  background-color: transparent;
+  border: none;
+  font-weight: 500;
+  align-items: center;
+  color: #584944;
+  background-color: #ffe1ac00;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+}
+
+.count-button:active,
+.count-button:focus {
+  background-color: #ffe1ac;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+}

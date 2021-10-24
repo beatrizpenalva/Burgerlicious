@@ -5,7 +5,7 @@ import CallAPI from '../../services/api'
 import ModalMessage from '../molecules/Modal'
 import ToastGroup from '../molecules/Toast'
 import Chart from '../Chart/index'
-import Menu from '../Menu/index'
+import Menu from '../organisms/Menu'
 
 const HallContent = () => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))

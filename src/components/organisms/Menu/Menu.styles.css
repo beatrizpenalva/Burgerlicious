@@ -1,0 +1,16 @@
+.menu-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: unset;
+  min-height: 400px;
+  margin-right: 30px;
+}
+
+.section-details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-left: 30px;
+}
