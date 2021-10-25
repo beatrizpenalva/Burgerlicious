@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import 'bootstrap/dist/css/bootstrap.css'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
+import './AccordionGroup.styles.css'
 
 const AccordionGroup = ({ sections, handleChangeSection }) => (
   <Accordion defaultActiveKey='0'>
