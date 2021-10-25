@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 export const createOrdermethod = (body, token) => ({
   method: 'POST',
   headers: {
@@ -18,7 +20,6 @@ export const productOrder = (array) => {
       image,
       name,
       price,
-      // eslint-disable-next-line camelcase
       sub_type,
       type,
       updateAt,

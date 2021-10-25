@@ -10,6 +10,7 @@ import Dialog from '../../molecules/Dialog'
 import Snackbar from '../../molecules/Snackbar'
 import Cart from '../Cart'
 import Menu from '../Menu'
+import './HallContent.styles.css'
 
 const HallContent = () => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))
@@ -126,7 +127,7 @@ const HallContent = () => {
   }
 
   return (
-    <>
+    <section className='home'>
       <Menu addItem={addItem} handleError={handleError} />
 
       <Cart
@@ -146,7 +147,7 @@ const HallContent = () => {
 
       <Snackbar code={errCode} onClose={() => setShow(false)} show={show} />
       <Dialog show={dialogShow} cancelOrder={cancelOrder} />
-    </>
+    </section>
   )
 }
 
