@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../../components/organisms/Header'
 import Footer from '../../components/molecules/Footer'
-import HallContent from '../../components/HallContent/index'
+import HallContent from '../../components/organisms/HallContent'
 
 const Hall = () => {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'))

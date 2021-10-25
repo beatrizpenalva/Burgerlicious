@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import ButtonContained from '../../atoms/ButtonContained'
+import ButtonText from '../../atoms/ButtonText'
 import './MenuItems.styles.css'
 
 const Items = ({ list, onClick }) => {
@@ -38,23 +39,15 @@ const Items = ({ list, onClick }) => {
                 <p className='product'>{item.name}</p>
                 <p>${item.price}</p>
                 <section className='input-group'>
-                  <button
-                    type='button'
-                    className='count-button'
-                    onClick={() => handlePlusClick(item, count)}
-                  >
-                    {' '}
-                    +{' '}
-                  </button>
+                  <ButtonText
+                    label='+'
+                    handleClick={() => handlePlusClick(item, count)}
+                  />
                   <p>{count}</p>
-                  <button
-                    type='button'
-                    className='count-button'
-                    onClick={() => handleMinusClick(item, count)}
-                  >
-                    {' '}
-                    -{' '}
-                  </button>
+                  <ButtonText
+                    label='-'
+                    handleClick={() => handleMinusClick(item, count)}
+                  />
                 </section>
               </section>
             )

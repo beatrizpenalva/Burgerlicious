@@ -6,8 +6,8 @@ import useFetch from '../../../services/Hooks/useFetch'
 import { translatePTtoEN } from '../../../utils/adapter'
 import ButtonCard from '../../atoms/ButtonCard'
 import Card from '../../molecules/Card'
-import ModalMessage from '../../molecules/Modal'
-import ToastGroup from '../../molecules/Toast'
+import Dialog from '../../molecules/Dialog'
+import Snackbar from '../../molecules/Snackbar'
 import './OrderList.styles.css'
 
 const OrderList = ({ filterType }) => {
@@ -23,7 +23,7 @@ const OrderList = ({ filterType }) => {
   const [orderlist, setOrderlist] = useState(null)
   const [show, setShow] = useState(false)
   const [errCode, setCode] = useState('')
-  const [modalShow, setModalShow] = useState(false)
+  const [dialogShow, setDialogShow] = useState(false)
   const [deleteID, setDeleteID] = useState(null)
   const [deleteIndex, setDeleteIndex] = useState(null)
   const [deleteStatus, setDeleteStatus] = useState(null)
@@ -99,7 +99,7 @@ const OrderList = ({ filterType }) => {
   }, [dataTranslated, done, finish, pending])
 
   const cancelOrder = (answer) => {
-    setModalShow(false)
+    setDialogShow(false)
     if (answer === true) {
       if (deleteStatus === 'pending') {
         const method = RequestOptions.getAndDelete('DELETE', token)
@@ -167,7 +167,7 @@ const OrderList = ({ filterType }) => {
   }
 
   const handleDelete = (index, id, status) => {
-    setModalShow(true)
+    setDialogShow(true)
     setDeleteID(id)
     setDeleteIndex(index)
     setDeleteStatus(status)
@@ -219,8 +219,8 @@ const OrderList = ({ filterType }) => {
             </div>
           ))}
 
-      <ToastGroup code={errCode} onClose={() => setShow(false)} show={show} />
-      <ModalMessage show={modalShow} cancelOrder={cancelOrder} />
+      <Snackbar code={errCode} onClose={() => setShow(false)} show={show} />
+      <Dialog show={dialogShow} cancelOrder={cancelOrder} />
     </>
   )
 }
