@@ -1,13 +1,15 @@
 import React from 'react'
+import Anchor from '../../atoms/Anchor'
 import './Footer.styles.css'
 
 const Footer = () => (
   <>
     <footer>
       © developed by
-      <a href='https://github.com/beatrizpenalva/burgerlicious'>
-        foodie! systems
-      </a>
+      <Anchor
+        link='https://github.com/beatrizpenalva/burgerlicious'
+        label='foodie! systems'
+      />
     </footer>
   </>
 )
