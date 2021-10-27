@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import Logo from '../../atoms/Logo'
 import Sidebar from '../Sidebar'
 import ButtonContained from '../../atoms/ButtonContained'
+import { getCurrentUser } from '../../../utils'
 import './Header.styles.css'
 
-const Header = ({ role, name }) => {
+const Header = () => {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false)
   const [sidebarTitle, setSidebarTitle] = useState('')
   const [orderStatus, setOrderStatus] = useState('')
   const history = useHistory()
+  const { name, role } = getCurrentUser
 
   const nameFunction = () => {
     if (role === 'hall') return 'Attendant'
@@ -89,11 +90,6 @@ const Header = ({ role, name }) => {
       )}
     </>
   )
-}
-
-Header.propTypes = {
-  role: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
 }
 
 export default Header
