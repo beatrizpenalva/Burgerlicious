@@ -1,8 +1,12 @@
-export const isAuthenticated = () => {
-  const validation = localStorage.getItem(`token`)
-  if (validation !== undefined && validation !== null) {
+export const getCurrentUser = JSON.parse(localStorage.getItem('currentUser'))
+
+export const validatePageAccess = (pageName) => {
+  const isAuthenticated = localStorage.getItem(`token`)
+  const { role } = getCurrentUser
+
+  if (!role) return false
+  if (isAuthenticated && role.toUpperCase() === pageName.toUpperCase())
     return true
-  }
   return false
 }
 
