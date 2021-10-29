@@ -4,8 +4,8 @@ import {
   updateChartItem,
   isOnTheList,
 } from '../../../utils/index'
-import { createOrdermethod, productOrder } from '../../../utils/adapter'
-import CallAPI from '../../../services/api'
+import { productOrder } from '../../../utils/adapter'
+import { CallAPI, RequestOptions } from '../../../services/api'
 import Dialog from '../../molecules/Dialog'
 import Snackbar from '../../molecules/Snackbar'
 import Cart from '../Cart'
@@ -13,8 +13,7 @@ import Menu from '../Menu'
 import './HallContent.styles.css'
 
 const HallContent = () => {
-  const nameLS = JSON.parse(localStorage.getItem('currentUser'))
-  const { token } = nameLS
+  const { token } = JSON.parse(localStorage.getItem('currentUser'))
 
   const newOrder = {
     client: '',
@@ -28,10 +27,24 @@ const HallContent = () => {
   const [totalToPay, setTotal] = useState(0)
   const [show, setShow] = useState(false)
   const [errCode, setCode] = useState('')
+  const [productsList, setProductsList] = useState([])
+
+  const handleError = (message) => {
+    setCode(message)
+    setShow(true)
+  }
 
   useEffect(() => {
     setTotal(() => calculateTotal(productsChart))
   }, [productsChart])
+
+  useEffect(() => {
+    const requestMethod = RequestOptions.get(token)
+    CallAPI('products', requestMethod).then((json) => {
+      if (json.code) handleError(String(json.code))
+      else setProductsList(json)
+    })
+  }, [token])
 
   const addItem = (product) => {
     const productToSet = product
@@ -43,58 +56,52 @@ const HallContent = () => {
   }
 
   const deleteProduct = (index) => {
-    const productsList = [...productsChart]
-    productsList.splice(index, 1)
-    setProducts(productsList)
+    const products = [...productsChart]
+    products.splice(index, 1)
+    setProducts(products)
   }
 
   const handlePlusClick = (index) => {
-    const productsList = [...productsChart]
-    productsList[index].qtd = +productsList[index].qtd + 1
-    setProducts(productsList)
+    const products = [...productsChart]
+    products[index].qtd = +products[index].qtd + 1
+    setProducts(products)
   }
 
   const handleMinusClick = (index) => {
-    const productsList = [...productsChart]
-    if (productsList[index].qtd > 1) {
-      productsList[index].qtd = +productsList[index].qtd - 1
-      setProducts(productsList)
+    const products = [...productsChart]
+    if (products[index].qtd > 1) {
+      products[index].qtd = +products[index].qtd - 1
+      setProducts(products)
     } else {
       deleteProduct(index)
     }
   }
 
-  const handleError = (message) => {
-    setCode(message)
-    setShow(true)
+  const handleRequest = (method) => {
+    CallAPI('orders', method).then((json) => {
+      if (!json.code) {
+        setCode('200')
+        setShow(true)
+        setOrder(newOrder)
+        setProducts([])
+      } else {
+        handleError(String(json.code))
+      }
+    })
   }
 
   const createOrder = (orderObj) => {
     const { client, table, products } = orderObj
-    if (products.length === 0) {
-      handleError('003')
-    } else {
-      const body = JSON.stringify({
+    if (!products.length) handleError('003')
+    else {
+      const requestBody = JSON.stringify({
         client,
         table,
         products: productOrder(products),
       })
 
-      const method = createOrdermethod(body, token)
-
-      CallAPI('https://lab-api-bq.herokuapp.com/orders', method).then(
-        (json) => {
-          if (!json.code) {
-            setCode('200')
-            setShow(true)
-            setOrder(newOrder)
-            setProducts([])
-          } else {
-            setCode(String(json.code))
-            setShow(true)
-          }
-        }
-      )
+      const requestMethod = RequestOptions.postAndAuth(requestBody, token)
+      handleRequest(requestMethod)
     }
   }
 
@@ -128,7 +135,11 @@ const HallContent = () => {
 
   return (
     <section className='home'>
-      <Menu addItem={addItem} handleError={handleError} />
+      <Menu
+        addItem={addItem}
+        handleError={handleError}
+        productsList={productsList}
+      />
 
       <Cart
         order={order}

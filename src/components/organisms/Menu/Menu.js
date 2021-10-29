@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import AccordionGroup from '../../molecules/AccordionGroup'
-import useFetch from '../../../services/Hooks/useFetch'
-import requestOptions from '../../../services/requestOptions'
 import BurgerSection from '../MenuSectionBurger'
 import Items from '../MenuItems'
 import { getBurger, sectionFiltered } from '../../../utils/index'
 import { translatePTtoEN } from '../../../utils/adapter'
 import './Menu.styles.css'
 
-const Menu = ({ addItem, handleError }) => {
-  const nameLS = JSON.parse(localStorage.getItem('currentUser'))
-  const { data, request } = useFetch()
-
+const Menu = ({ addItem, handleError, productsList }) => {
   const [snacksList, setSnacksList] = useState([])
   const [coffeeList, setCoffeeList] = useState([])
   const [burgerList, setBurgerList] = useState([])
@@ -22,19 +17,10 @@ const Menu = ({ addItem, handleError }) => {
   const [menuSection, setMenuSection] = useState('')
 
   useEffect(() => {
-    async function fetchProducts() {
-      const method = requestOptions.getAndDelete('GET', nameLS.token)
-      const URL = 'https://lab-api-bq.herokuapp.com/products'
-      await request(URL, method)
-    }
-    fetchProducts()
-  }, [request, nameLS.token])
+    const data = productsList
+    if (!data.length) return
 
-  useEffect(() => {
-    if (!data) return
-
-    const allProducts = data
-    const productsTranslated = allProducts.map((item) => ({
+    const productsTranslated = data.map((item) => ({
       ...item,
       name: translatePTtoEN[item.name],
       flavor: translatePTtoEN[item.flavor],
@@ -54,7 +40,7 @@ const Menu = ({ addItem, handleError }) => {
     setBurgerList(sectionFiltered(productsTranslated, 'hamburguer'))
     setDrinksList(sectionFiltered(productsTranslated, 'drinks'))
     setSidesList(sectionFiltered(productsTranslated, 'side'))
-  }, [data])
+  }, [])
 
   const getBurgerId = (burgerObj) => {
     if (burgerObj.name === '') {
@@ -120,6 +106,7 @@ const Menu = ({ addItem, handleError }) => {
 Menu.propTypes = {
   addItem: PropTypes.func.isRequired,
   handleError: PropTypes.func.isRequired,
+  productsList: PropTypes.arrayOf[PropTypes.object].isRequired,
 }
 
 export default Menu
