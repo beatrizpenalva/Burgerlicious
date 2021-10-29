@@ -9,6 +9,7 @@ const Footer = () => (
       <Anchor
         link='https://github.com/beatrizpenalva/burgerlicious'
         label='foodie! systems'
+        isLink={false}
       />
     </footer>
   </>
