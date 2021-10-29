@@ -1,57 +1,48 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import RequestOptions from '../../services/requestOptions'
-import Logo from '../../components/atoms/Logo'
-import Footer from '../../components/molecules/Footer'
-import CallAPI from '../../services/api'
-import ErrorMessage from '../../components/atoms/ErrorMessage'
+import { useHistory } from 'react-router-dom'
+import { CallAPI, RequestOptions } from '../../services/api'
+import Anchor from '../../components/atoms/Anchor'
 import ButtonContained from '../../components/atoms/ButtonContained'
+import ErrorMessage from '../../components/atoms/ErrorMessage'
+import Footer from '../../components/molecules/Footer'
+import Logo from '../../components/atoms/Logo'
 import TextField from '../../components/atoms/TextField'
 import './Login.styles.css'
 
-const userData = {
-  auth: 'https://lab-api-bq.herokuapp.com/auth',
-  users: 'https://lab-api-bq.herokuapp.com/users',
-  name: '',
-  lastName: '',
-  email: '',
-  role: '',
-  password: '',
-  confirmPassword: '',
-  token: '',
-}
-
 const Login = () => {
   const history = useHistory()
-  const [user, setUser] = useState(userData)
+  const [user, setUser] = useState({})
   const [statusCode, setStatusCode] = useState('')
 
-  const loginPage = (userObj) => {
-    const { email, password, auth } = userObj
-    const body = `email=${email}&password=${password}`
-    const method = RequestOptions.post(body)
-
-    CallAPI(auth, method).then((json) => {
-      localStorage.setItem(`currentUser`, JSON.stringify(json))
-      localStorage.setItem(`token`, `${json.token}`)
-      if (json.code) {
-        setStatusCode('')
-        setStatusCode(String(json.code))
-      } else if (json.role === 'hall') {
-        history.push('/Hall')
-      } else {
-        history.push('/Kitchen')
-      }
-    })
+  const redirectUser = (role) => {
+    if (role === 'hall') history.push('/Hall')
+    else if (role === 'kitchen') history.push('/Kitchen')
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    loginPage(user)
+  const handleError = (error) => {
+    setStatusCode('')
+    setStatusCode(error)
+  }
+
+  const handleRequest = (requestMethod) => {
+    CallAPI('auth', requestMethod).then((json) => {
+      const { token, code, role } = json
+      localStorage.setItem(`currentUser`, JSON.stringify(json))
+      localStorage.setItem(`token`, `${token}`)
+
+      return code ? handleError(String(code)) : redirectUser(role)
+    })
   }
 
   const handleChange = (e, key) => {
     setUser({ ...user, [key]: e.target.value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const requestBody = `email=${user.email}&password=${user.password}`
+    const requestMethod = RequestOptions.post(requestBody)
+    handleRequest(requestMethod)
   }
 
   return (
@@ -89,12 +80,8 @@ const Login = () => {
             handleClick={handleSubmit}
           />
           <p className='message-text'>
-            {' '}
-            Do not have an account?{' '}
-            <span>
-              {' '}
-              <Link to='/Register'>Register</Link>{' '}
-            </span>
+            Do not have an account?
+            <Anchor link='/Register' label='Register' isLink />
           </p>
         </form>
       </div>
