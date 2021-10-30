@@ -14,9 +14,10 @@ const Login = () => {
   const [user, setUser] = useState({})
   const [statusCode, setStatusCode] = useState('')
 
+  // eslint-disable-next-line consistent-return
   const redirectUser = (role) => {
-    if (role === 'hall') history.push('/Hall')
-    else if (role === 'kitchen') history.push('/Kitchen')
+    if (role === 'hall') return history.push('/Hall')
+    if (role === 'kitchen') return history.push('/Kitchen')
   }
 
   const handleError = (error) => {
@@ -29,8 +30,8 @@ const Login = () => {
       const { token, code, role } = json
       localStorage.setItem(`currentUser`, JSON.stringify(json))
       localStorage.setItem(`token`, `${token}`)
-
-      return code ? handleError(String(code)) : redirectUser(role)
+      if (!json.code) redirectUser(role)
+      else handleError(String(code))
     })
   }
 
