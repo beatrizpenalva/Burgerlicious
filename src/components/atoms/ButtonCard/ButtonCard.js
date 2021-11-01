@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './ButtonCard.styles.css'
 
-const ButtonCard = ({ label, handleClick, classStyle }) => (
+const ButtonCard = ({ label, onClick, classStyle }) => (
   <button
     type='button'
-    onClick={() => handleClick()}
+    onClick={() => onClick()}
     className={`button-card ${classStyle}`}
   >
     {' '}
@@ -15,7 +15,7 @@ const ButtonCard = ({ label, handleClick, classStyle }) => (
 
 ButtonCard.propTypes = {
   label: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   classStyle: PropTypes.string.isRequired,
 }
 
