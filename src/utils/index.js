@@ -2,12 +2,13 @@
 export const getCurrentUser = JSON.parse(localStorage.getItem('currentUser'))
 
 export const validatePageAccess = (pageName) => {
-  const isAuthenticated = localStorage.getItem(`token`)
-  const { role } = getCurrentUser
-
-  if (!role) return false
-  if (isAuthenticated && role.toUpperCase() === pageName.toUpperCase())
-    return true
+  if (getCurrentUser) {
+    const isAuthenticated = localStorage.getItem(`token`)
+    const { role } = getCurrentUser
+    if (isAuthenticated && role.toUpperCase() === pageName.toUpperCase())
+      return true
+    return false
+  }
   return false
 }
 
