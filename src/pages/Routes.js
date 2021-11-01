@@ -1,5 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
@@ -27,9 +25,14 @@ const PrivateRoute = ({ path, pageName, ...rest }) => {
 }
 
 PrivateRoute.propTypes = {
-  location: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  location: PropTypes.object,
   path: PropTypes.string.isRequired,
   pageName: PropTypes.string.isRequired,
+}
+
+PrivateRoute.defaultProps = {
+  location: {},
 }
 
 const Routes = () => (
