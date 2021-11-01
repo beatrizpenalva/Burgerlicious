@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import CallAPI from '../../services/api'
-import RequestOptions from '../../services/requestOptions'
+import { useHistory } from 'react-router-dom'
+import { CallAPI, RequestOptions } from '../../services/api'
+import Anchor from '../../components/atoms/Anchor'
 import Footer from '../../components/molecules/Footer'
 import Logo from '../../components/atoms/Logo'
 import ErrorMessage from '../../components/atoms/ErrorMessage'
@@ -10,74 +10,53 @@ import TextField from '../../components/atoms/TextField'
 import SelectField from '../../components/atoms/SelectField'
 
 const Register = () => {
-  const userData = {
-    auth: 'https://lab-api-bq.herokuapp.com/auth',
-    users: 'https://lab-api-bq.herokuapp.com/users',
-    name: '',
-    lastName: '',
-    email: '',
-    role: '',
-    password: '',
-    confirmPassword: '',
-    token: '',
-  }
   const history = useHistory()
-
-  const [user, setUser] = useState(userData)
+  const [user, setUser] = useState({})
   const [statusCode, setStatusCode] = useState('')
 
   useEffect(() => {
     setUser({ ...user, completeName: `${user.name} ${user.lastName}` })
   }, [user.name, user.lastName])
 
-  const createUser = (userObj) => {
-    const { email, password, role, completeName, users } = userObj
-    if (role === '') {
-      setStatusCode('')
-      setStatusCode('000')
-    } else {
-      const body = `email=${email}&password=${password}&role=${role}&restaurant=Burgerlicious&name=${completeName}`
-      const method = RequestOptions.post(body)
+  const handleError = (code) => {
+    setStatusCode('')
+    setStatusCode(code)
+  }
 
-      CallAPI(users, method).then((json) => {
-        localStorage.setItem(`currentUser`, JSON.stringify(json))
-        localStorage.setItem(`token`, `${json.token}`)
+  const redirectUser = (role) => {
+    if (role === 'hall') history.push('/Hall')
+    else if (role === 'kitchen') history.push('/Kitchen')
+  }
 
-        if (json.code) {
-          setStatusCode('')
-          setStatusCode(String(json.code))
-        }
+  const handleRequest = (requestMethod) => {
+    CallAPI('users', requestMethod).then((json) => {
+      const { token, code, role } = json
+      localStorage.setItem(`currentUser`, JSON.stringify(json))
+      localStorage.setItem(`token`, `${token}`)
 
-        if (json.role === 'hall') {
-          history.push('/Hall')
-        }
-
-        if (json.role === 'kitchen') {
-          history.push('/Kitchen')
-        }
-      })
-    }
+      return code ? handleError(String(code)) : redirectUser(role)
+    })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (user.password === user.confirmPassword) {
-      createUser(user)
-    } else {
-      setStatusCode('405')
+    const { email, password, confirmPassword, role, completeName } = user
+    if (password !== confirmPassword) handleError('405')
+    else {
+      const body = `email=${email}&password=${password}&role=${role}&restaurant=Burgerlicious&name=${completeName}`
+      const method = RequestOptions.post(body)
+      handleRequest(method)
     }
   }
 
-  const handleChange = (e, key) => {
-    setUser({ ...user, [key]: e.target.value })
-  }
+  const handleChange = (e, key) => setUser({ ...user, [key]: e.target.value })
 
   return (
     <>
       <div className='inputs-container'>
         <div className='container-logo-btn'>
           <p className='back-button'>
-            <Link to='/'>BACK</Link>
+            <Anchor link='/' label='BACK' isLink />
           </p>
           <Logo size='large' />
         </div>

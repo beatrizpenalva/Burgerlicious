@@ -28,9 +28,13 @@ TextField.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
   required: PropTypes.bool.isRequired,
+}
+
+TextField.defaultProps = {
+  value: '',
 }
 
 export default TextField

@@ -1,12 +1,14 @@
+/* eslint-disable camelcase */
 export const getCurrentUser = JSON.parse(localStorage.getItem('currentUser'))
 
 export const validatePageAccess = (pageName) => {
-  const isAuthenticated = localStorage.getItem(`token`)
-  const { role } = getCurrentUser
-
-  if (!role) return false
-  if (isAuthenticated && role.toUpperCase() === pageName.toUpperCase())
-    return true
+  if (getCurrentUser) {
+    const isAuthenticated = localStorage.getItem(`token`)
+    const { role } = getCurrentUser
+    if (isAuthenticated && role.toUpperCase() === pageName.toUpperCase())
+      return true
+    return false
+  }
   return false
 }
 
@@ -26,23 +28,40 @@ export const updateChartItem = (productToSet, productsChart) =>
   })
 
 export const isOnTheList = (productToSet, productsChart) =>
-  productsChart.some((item) => item.id === productToSet.id)
+  productsChart.some(({ id }) => id === productToSet.id)
 
 export const getBurger = (burgerList, chosenBurger) => {
-  burgerList.find((item) => {
+  burgerList.find(({ name, flavor, complement }) => {
     if (!chosenBurger.complement)
       return (
-        item.name === chosenBurger.name &&
-        item.flavor === chosenBurger.flavor &&
-        item.complement === null
+        name === chosenBurger.name &&
+        flavor === chosenBurger.flavor &&
+        complement === null
       )
     return (
-      item.name === chosenBurger.name &&
-      item.flavor === chosenBurger.flavor &&
-      item.complement === chosenBurger.complement
+      name === chosenBurger.name &&
+      flavor === chosenBurger.flavor &&
+      complement === chosenBurger.complement
     )
   })
 }
 
 export const sectionFiltered = (productsTranslated, type) =>
-  productsTranslated.filter((item) => item.sub_type.includes(type))
+  productsTranslated.filter(({ sub_type }) => sub_type.includes(type))
+
+export const filterOrder = (array, type) => {
+  const listFiltered = array.filter(({ status }) => status.includes(type))
+  return listFiltered
+}
+
+export const filterOrderByTwoConditions = (
+  array,
+  firstCondition,
+  secondCondition
+) => {
+  const listFiltered = array.filter(
+    ({ status }) =>
+      status.includes(firstCondition) || status.includes(secondCondition)
+  )
+  return listFiltered
+}

@@ -1,15 +1,4 @@
 /* eslint-disable camelcase */
-
-export const createOrdermethod = (body, token) => ({
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    accept: 'application/json',
-    Authorization: token,
-  },
-  body,
-})
-
 export const productOrder = (array) => {
   const copyArray = [...array]
   const newObjList = copyArray.map(

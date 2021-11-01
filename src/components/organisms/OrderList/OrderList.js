@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import RequestOptions from '../../../services/requestOptions'
-import CallAPI from '../../../services/api'
-import useFetch from '../../../services/Hooks/useFetch'
+import { CallAPI, RequestOptions } from '../../../services/api'
+import {
+  filterOrder,
+  filterOrderByTwoConditions,
+  getCurrentUser,
+} from '../../../utils/index'
 import { translatePTtoEN } from '../../../utils/adapter'
 import ButtonCard from '../../atoms/ButtonCard'
 import Card from '../../molecules/Card'
@@ -11,207 +14,126 @@ import Snackbar from '../../molecules/Snackbar'
 import './OrderList.styles.css'
 
 const OrderList = ({ filterType }) => {
-  const nameLS = JSON.parse(localStorage.getItem('currentUser'))
-  const { token, role } = nameLS
-  const type = filterType
+  const { token, role } = getCurrentUser
 
-  const { data, request } = useFetch()
-  const [dataTranslated, setDataTranslated] = useState([])
-  const [pending, setPending] = useState(null)
-  const [done, setDone] = useState(null)
-  const [finish, setFinish] = useState(null)
-  const [orderlist, setOrderlist] = useState(null)
+  const [orders, setOrders] = useState([])
+  const [ordersFiltered, setOrderFiltered] = useState([])
+  const [ordersFinished, setOrdersFinished] = useState([])
+  const [orderToDelete, setOrderToDelete] = useState({})
   const [show, setShow] = useState(false)
   const [errCode, setCode] = useState('')
   const [dialogShow, setDialogShow] = useState(false)
-  const [deleteID, setDeleteID] = useState(null)
-  const [deleteIndex, setDeleteIndex] = useState(null)
-  const [deleteStatus, setDeleteStatus] = useState(null)
+
+  const handleError = (code) => {
+    setCode(code)
+    setShow(true)
+  }
+
+  const getRenderScenario = (array) => {
+    const ordersList = array
+    if (role === 'kitchen')
+      return filterOrderByTwoConditions(ordersList, 'doing', 'pending')
+    if (role === 'hall')
+      return filterOrderByTwoConditions(ordersList, 'done', 'pending')
+    return null
+  }
 
   useEffect(() => {
-    async function fetchOrders() {
-      const method = RequestOptions.getAndDelete('GET', token)
-      const URL = 'https://lab-api-bq.herokuapp.com/orders  '
-      await request(URL, method)
+    const translateOrders = (array) => {
+      const dataTranslated = array.map((order) => {
+        const translatedProducts = order.Products.map((item) => ({
+          ...item,
+          name: translatePTtoEN[item.name],
+          flavor: translatePTtoEN[item.flavor],
+          complement: translatePTtoEN[item.complement],
+        }))
+
+        return {
+          ...order,
+          Products: translatedProducts,
+        }
+      })
+      setOrders(dataTranslated)
+      setOrderFiltered(getRenderScenario(dataTranslated))
+      setOrdersFinished(filterOrder(dataTranslated, 'finished'))
     }
-    fetchOrders()
-  }, [request, token])
 
-  useEffect(() => {
-    if (!data) return
-
-    const allOrders = data
-
-    const ordersTranslated = allOrders.map((order) => {
-      const translatedProducts = order.Products.map((item) => ({
-        ...item,
-        name: translatePTtoEN[item.name],
-        flavor: translatePTtoEN[item.flavor],
-        complement: translatePTtoEN[item.complement],
-      }))
-
-      return {
-        ...order,
-        Products: translatedProducts,
-      }
+    const requestMethod = RequestOptions.get(token)
+    CallAPI('orders', requestMethod).then((json) => {
+      if (json.code) handleError(String(json.code))
+      else translateOrders(json)
     })
+  }, [])
 
-    setDataTranslated(ordersTranslated)
-  }, [data])
-
-  useEffect(() => {
-    if (!dataTranslated) return
-
-    if (role === 'kitchen') {
-      const orderPending = dataTranslated.filter(
-        ({ status }) => status !== 'done' && status !== 'finished'
-      )
-      setPending(orderPending)
-    }
-
-    if (role === 'hall' && type === 'processing') {
-      const orderDone = dataTranslated.filter(
-        ({ status }) => status !== 'finished'
-      )
-      setDone(orderDone)
-    }
-
-    if (type === 'finished') {
-      const orderDone = dataTranslated.filter(
-        ({ status }) => status === 'finished'
-      )
-      setFinish(orderDone)
-    }
-  }, [data, dataTranslated, role, type])
-
-  useEffect(() => {
-    if (!dataTranslated) return
-
-    if (pending) {
-      setOrderlist(pending)
-    }
-    if (done) {
-      setOrderlist(done)
-    }
-    if (finish) {
-      setOrderlist(finish)
-    }
-  }, [dataTranslated, done, finish, pending])
-
-  const cancelOrder = (answer) => {
-    setDialogShow(false)
-    if (answer === true) {
-      if (deleteStatus === 'pending') {
-        const method = RequestOptions.getAndDelete('DELETE', token)
-        const URL = `https://lab-api-bq.herokuapp.com/orders/${deleteID}  `
-        CallAPI(URL, method).then((json) => {
-          if (!json.code) {
-            const newOrders = [...orderlist]
-            newOrders.splice(deleteIndex, 1)
-            setOrderlist(newOrders)
-          } else {
-            setCode(String(json.code))
-            setShow(true)
-          }
-        })
-      }
-    }
-  }
-
-  const handleStatus = (index, id, status) => {
-    const URL = `https://lab-api-bq.herokuapp.com/orders/${id}  `
-
-    if (status === 'pending') {
-      const body = 'doing'
-      const method = RequestOptions.put(token, body)
-      CallAPI(URL, method).then((json) => {
-        if (!json.code) {
-          const newOrders = [...orderlist]
-          newOrders.splice(index, 1, json)
-          setOrderlist(newOrders)
-        } else {
-          setCode(String(json.code))
-          setShow(true)
-        }
-      })
-    }
-    if (status === 'doing') {
-      const body = 'done'
-      const method = RequestOptions.put(token, body)
-      CallAPI(URL, method).then((json) => {
-        if (!json.code) {
-          const newOrders = [...orderlist]
-          newOrders.splice(index, 1)
-          setOrderlist(newOrders)
-        } else {
-          setCode(String(json.code))
-          setShow(true)
-        }
-      })
-    }
-
-    if (status === 'done') {
-      const body = 'finished'
-      const method = RequestOptions.put(token, body)
-      CallAPI(URL, method).then((json) => {
-        if (!json.code) {
-          const newOrders = [...orderlist]
-          newOrders.splice(index, 1)
-          setOrderlist(newOrders)
-        } else {
-          setCode(String(json.code))
-          setShow(true)
-        }
-      })
-    }
-  }
-
-  const handleDelete = (index, id, status) => {
+  const handleDelete = (index, id, orderStatus) => {
     setDialogShow(true)
-    setDeleteID(id)
-    setDeleteIndex(index)
-    setDeleteStatus(status)
+    const order = {
+      index,
+      id,
+      orderStatus,
+    }
+    setOrderToDelete(order)
   }
 
-  const getKitchenButtonLabel = {
+  const cancelOrder = () => {
+    // { index, id, orderStatus } = orderToDelete
+    setDialogShow(false)
+    if (orderToDelete.orderStatus === 'pending') {
+      const requestMethod = RequestOptions.delete(token)
+      CallAPI(`getOneOrder${orderToDelete.id}`, requestMethod).then((json) => {
+        if (!json.code) {
+          const newOrders = [...orders]
+          newOrders.splice(orderToDelete.index, 1)
+          setOrders(newOrders)
+        } else handleError(String(json.code))
+      })
+    }
+  }
+
+  const handleSuccessRequest = (index, json) => {
+    const newOrders = [...orders]
+    newOrders.splice(index, 1, json)
+    setOrders(newOrders)
+  }
+
+  const getOrderNextStep = {
     pending: 'doing',
     doing: 'done',
-    done: 'delivery',
+    done: 'finished',
+  }
+
+  const handleClick = (index, id, status) => {
+    if (status === 'pending' && role === 'hall') handleDelete(index, id, status)
+    else {
+      const URL = `getOneOrder${id}`
+      const requestMethod = RequestOptions.put(token, getOrderNextStep[status])
+
+      CallAPI(URL, requestMethod).then((json) => {
+        if (!json.code) handleSuccessRequest(index, json)
+        else handleError(String(json.code))
+      })
+    }
   }
 
   const getOrderStatus = (status) => {
     if (role === 'hall' && status === 'pending') return 'delete'
-    return getKitchenButtonLabel[status]
+    return getOrderNextStep[status]
   }
+
+  const renderScenario = filterType ? ordersFinished : ordersFiltered
 
   return (
     <>
-      {orderlist &&
-        orderlist
+      {renderScenario &&
+        renderScenario
           .sort((a, b) => (a.id > b.id ? 1 : -1))
           .map((item, index) => (
             <div key={item.id} className='card-template'>
               <Card order={item} />
 
-              {pending && item.status !== 'finished' && (
+              {item.status !== 'finished' && (
                 <ButtonCard
-                  onClick={() => handleStatus(index, item.id, item.status)}
-                  label={getOrderStatus(item.status)}
-                  classStyle={getOrderStatus(item.status)}
-                />
-              )}
-
-              {done && item.status === 'done' && (
-                <ButtonCard
-                  onClick={() => handleStatus(index, item.id, item.status)}
-                  label={getOrderStatus(item.status)}
-                  className={getOrderStatus(item.status)}
-                />
-              )}
-
-              {done && item.status === 'pending' && role === 'hall' && (
-                <ButtonCard
-                  onClick={() => handleDelete(index, item.id, item.status)}
+                  onClick={() => handleClick(index, item.id, item.status)}
                   label={getOrderStatus(item.status)}
                   classStyle={getOrderStatus(item.status)}
                 />
@@ -226,7 +148,11 @@ const OrderList = ({ filterType }) => {
 }
 
 OrderList.propTypes = {
-  filterType: PropTypes.string.isRequired,
+  filterType: PropTypes.string,
+}
+
+OrderList.defaultProps = {
+  filterType: '',
 }
 
 export default OrderList

@@ -1,4 +1,4 @@
-/* eslint-disable react/forbid-prop-types */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
@@ -8,16 +8,11 @@ import Kitchen from './Kitchen'
 import Login from './Login'
 import Register from './Register'
 
-const PrivateRoute = ({ Component, path, pageName }) => {
+const PrivateRoute = ({ path, pageName, ...rest }) => {
   const hasAccess = validatePageAccess(pageName)
-
   return (
     <>
-      {hasAccess && (
-        <Route exact path={path}>
-          <Component />
-        </Route>
-      )}
+      {hasAccess && <Route exact path={path} {...rest} />}
       {!hasAccess && (
         <Route
           exact
@@ -31,10 +26,14 @@ const PrivateRoute = ({ Component, path, pageName }) => {
 }
 
 PrivateRoute.propTypes = {
-  Component: PropTypes.element.isRequired,
-  location: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  location: PropTypes.object,
   path: PropTypes.string.isRequired,
   pageName: PropTypes.string.isRequired,
+}
+
+PrivateRoute.defaultProps = {
+  location: {},
 }
 
 const Routes = () => (

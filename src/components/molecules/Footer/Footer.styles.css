@@ -2,9 +2,9 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 0px;
   font-size: 14px;
   width: 100%;
+  height: 2.5rem;
   position: fixed;
   background-color: #ffe1ac;
   color: #584944;
@@ -13,7 +13,5 @@ footer {
 }
 
 footer a {
-  color: #584944;
-  font-weight: bold;
-  padding: 10px 0px;
+  margin-left: .25rem;
 }
