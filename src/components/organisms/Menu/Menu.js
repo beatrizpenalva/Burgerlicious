@@ -106,7 +106,12 @@ const Menu = ({ addItem, handleError, productsList }) => {
 Menu.propTypes = {
   addItem: PropTypes.func.isRequired,
   handleError: PropTypes.func.isRequired,
-  productsList: PropTypes.arrayOf[PropTypes.object].isRequired,
+  // eslint-disable-next-line react/no-typos
+  productsList: PropTypes.arrayOf[PropTypes.object],
+}
+
+Menu.defaultProps = {
+  productsList: [],
 }
 
 export default Menu
