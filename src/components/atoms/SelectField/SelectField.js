@@ -19,7 +19,7 @@ const SelectField = ({ label, options, handleChange }) => (
         }
 
         return (
-          <option value={item} disabled={isDisabled()}>
+          <option value={item} disabled={isDisabled()} key={item}>
             {item}
           </option>
         )
