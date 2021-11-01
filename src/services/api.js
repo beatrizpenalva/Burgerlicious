@@ -2,7 +2,7 @@ const getURL = {
   auth: 'https://lab-api-bq.herokuapp.com/auth',
   users: 'https://lab-api-bq.herokuapp.com/users',
   products: 'https://lab-api-bq.herokuapp.com/products',
-  getAllOrders: 'https://lab-api-bq.herokuapp.com/orders',
+  orders: 'https://lab-api-bq.herokuapp.com/orders',
   getOneOrder(id) {
     return `https://lab-api-bq.herokuapp.com/orders/${id}`
   },
