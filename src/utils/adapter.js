@@ -39,6 +39,7 @@ export const translatePTtoEN = {
 }
 
 export const verifyErrorCode = {
+  '000': `Ops! Something wen't wrong. Please, try again.`,
   '001': 'You have to chose a burger option. Please, try again.',
   '002': 'Order canceled!',
   '003': 'There is nothing to order. Please, chose the products.',

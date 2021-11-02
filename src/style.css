@@ -9,35 +9,6 @@ p {
   margin-bottom: 0;
 }
 
-.body-default {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.text {
-  color: #584944;
-  font-size: 18px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  font-weight: 500;
-  font-size: 18px;
-  color: #584944;
-}
-
-label {
-  display: flex;
-  flex-direction: column;
-}
-
-.message-text {
-  text-align: center;
-}
-
 .last-menu-item {
   border: 0;
 }
