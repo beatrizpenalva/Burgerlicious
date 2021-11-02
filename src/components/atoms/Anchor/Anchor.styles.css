@@ -2,6 +2,7 @@ a {
   font-weight: bold;
   text-decoration: none;
   color: #ffbb5a;
+  transition: 0.5s ease-in-out;
 }
 
 a:active,
