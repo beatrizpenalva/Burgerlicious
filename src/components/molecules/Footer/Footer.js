@@ -5,10 +5,16 @@ import './Footer.styles.css'
 const Footer = () => (
   <>
     <footer>
-      © developed by
+      <i className='fab fa-github-alt footer-icon' /> Developed by
       <Anchor
-        link='https://github.com/beatrizpenalva/burgerlicious'
-        label='foodie! systems'
+        link='https://github.com/beatrizpenalva/'
+        label='Beatriz Penalva'
+        isLink={false}
+      />
+      &
+      <Anchor
+        link='https://github.com/cbalieiro'
+        label='Camila Oliveira'
         isLink={false}
       />
     </footer>
