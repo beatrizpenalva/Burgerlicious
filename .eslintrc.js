@@ -21,12 +21,24 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     'linebreak-style': 0,
-    'prettier/prettier': ["error",{
-      "endOfLine": "auto"}
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
     ],
     'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', '.js'] }],
     'import/prefer-default-export': 'off',
     'no-param-reassign': 'off',
     'no-console': ['error', { allow: ['tron'] }],
+    'jsx-a11y/label-has-associated-control': [
+      2,
+      {
+        labelComponents: ['CustomInputLabel'],
+        labelAttributes: ['label'],
+        controlComponents: ['CustomInput'],
+        depth: 3,
+      },
+    ],
   },
 }

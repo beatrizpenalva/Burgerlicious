@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { CallAPI, RequestOptions } from '../../services/api'
 import Anchor from '../../components/atoms/Anchor'
+import ButtonContained from '../../components/atoms/ButtonContained'
+import ErrorMessage from '../../components/atoms/ErrorMessage'
 import Footer from '../../components/molecules/Footer'
 import Logo from '../../components/atoms/Logo'
-import ErrorMessage from '../../components/atoms/ErrorMessage'
-import ButtonContained from '../../components/atoms/ButtonContained'
-import TextField from '../../components/atoms/TextField'
 import SelectField from '../../components/atoms/SelectField'
+import TextField from '../../components/atoms/TextField'
+import './Register.styles.css'
 
 const Register = () => {
   const history = useHistory()
@@ -53,13 +54,11 @@ const Register = () => {
 
   return (
     <>
-      <div className='inputs-container'>
-        <div className='container-logo-btn'>
-          <p className='back-button'>
-            <Anchor link='/' label='BACK' isLink />
-          </p>
-          <Logo size='large' />
+      <main>
+        <div className='back-btn'>
+          <Anchor link='/' label='BACK' isLink />
         </div>
+        <Logo size='large' />
 
         <form
           onSubmit={(event) => {
@@ -126,7 +125,7 @@ const Register = () => {
             handleClick={handleSubmit}
           />
         </form>
-      </div>
+      </main>
 
       <Footer />
     </>
