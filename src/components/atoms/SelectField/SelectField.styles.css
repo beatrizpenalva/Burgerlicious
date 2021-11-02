@@ -3,39 +3,50 @@
 }
 
 .select-style {
+  padding: .75rem 0.5rem .75rem;
+  line-height: 1rem;
+  color: #9b8d89;
   background-color: #fff8d8;
   border: none;
   border-bottom: 2px solid #ffbb5a;
   outline: transparent;
-  line-height: 13px;
-  padding: 10px 8px 10px;
-  color: #9b8d89;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
 select.select-style {
-  margin-top: 6px;
-  background-image: linear-gradient(45deg, transparent 50%, #ffbb5a 50%),
+  margin-top: .5rem;
+  background-image: 
+    linear-gradient(45deg, transparent 50%, #ffbb5a 50%),
     linear-gradient(135deg, #ffbb5a 50%, transparent 50%),
     radial-gradient(#ffe1ac 70%, transparent 72%);
-  background-position: calc(100% - 17px) calc(1em - 4px),
-    calc(100% - 12px) calc(1em - 4px), calc(100% - 0.2em) 0.1em;
-  background-size: 5px 5px, 5px 5px, 1.5em 1.5em;
-  background-repeat: no-repeat;
+    
+  background-position: 
+    calc(100% - .9rem) calc(1rem - 0.3rem),
+    calc(100% - .6rem) calc(1rem - 0.3rem), 
+    calc(100% - 0.2rem) 0.1rem;
+  
+  background-size: 
+    0.4rem 0.4rem, 
+    0.4rem 0.4rem, 
+    1.5rem 1.5rem;
+  
+    background-repeat: no-repeat;
 }
 
 select.select-style:focus {
-  background-image: linear-gradient(45deg, #fff8d8 50%, transparent 50%),
+  background-image: 
+    linear-gradient(45deg, #fff8d8 50%, transparent 50%),
     linear-gradient(135deg, transparent 50%, #fff8d8 50%),
     radial-gradient(#ffbb5a 70%, transparent 72%);
-  background-position: calc(100% - 12px), calc(100% - 17px),
-    calc(100% - 0.2em) 0.3em;
-  background-size: 5px 5px, 5px 5px, 1.5em 1.5em;
+  background-position: 
+    calc(100% - 0.6rem) calc(1rem - 0.3rem), 
+    calc(100% - .9rem) calc(1rem - 0.3rem),
+    calc(100% - 0.2rem) 0.1rem;
+  background-size: 
+    0.4rem 0.4rem, 
+    0.4rem 0.4rem, 
+    1.5rem 1.5rem;
   background-repeat: no-repeat;
   border-color: #ffbb5a;
   outline: transparent;
