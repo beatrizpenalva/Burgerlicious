@@ -1,7 +1,33 @@
-.inputs-container {
+main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 30px 0;
+  min-height: 100vh;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #584944;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-text {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+a {
+  padding-left: .25rem;
+}
+
+i {
+  padding-right: .5rem;
 }

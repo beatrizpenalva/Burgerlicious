@@ -14,19 +14,19 @@ const Login = () => {
   const [user, setUser] = useState({})
   const [statusCode, setStatusCode] = useState('')
 
-  // eslint-disable-next-line consistent-return
-  const redirectUser = (role) => {
-    if (role === 'hall') return history.push('/Hall')
-    if (role === 'kitchen') return history.push('/Kitchen')
-  }
-
   const handleError = (error) => {
     setStatusCode('')
     setStatusCode(error)
   }
 
-  const handleRequest = (requestMethod) => {
-    CallAPI('auth', requestMethod).then((json) => {
+  const redirectUser = (role) => {
+    if (role === 'hall') return history.push('/Hall')
+    if (role === 'kitchen') return history.push('/Kitchen')
+    return handleError('000')
+  }
+
+  const handleRequest = (url, requestMethod) => {
+    CallAPI(url, requestMethod).then((json) => {
       const { token, code, role } = json
       localStorage.setItem(`currentUser`, JSON.stringify(json))
       localStorage.setItem(`token`, `${token}`)
@@ -43,12 +43,12 @@ const Login = () => {
     e.preventDefault()
     const requestBody = `email=${user.email}&password=${user.password}`
     const requestMethod = RequestOptions.post(requestBody)
-    handleRequest(requestMethod)
+    handleRequest('auth', requestMethod)
   }
 
   return (
     <>
-      <div className='inputs-container'>
+      <main>
         <Logo size='large' />
         <form
           onSubmit={(e) => {
@@ -85,7 +85,7 @@ const Login = () => {
             <Anchor link='/Register' label='Register' isLink />
           </p>
         </form>
-      </div>
+      </main>
       <Footer />
     </>
   )
