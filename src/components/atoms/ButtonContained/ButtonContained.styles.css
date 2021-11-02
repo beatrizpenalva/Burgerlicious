@@ -9,6 +9,7 @@
   text-align: center;
   color: #fff8d8;
   text-transform: uppercase;
+  transition: 0.5s ease-in-out;
 }
 
 .filled {
@@ -21,4 +22,12 @@
   border: solid 3px #ffbb5a;
   background-color: transparent;
   color: #ffbb5a;
+}
+
+.filled:hover {
+  background-color: #fca730;
+}
+
+.outlined:hover {
+  border-color: #fca730;
 }
