@@ -67,9 +67,7 @@ const Header = () => {
               label='order in progress'
               classStyle='filled'
               type='button'
-              handleClick={() =>
-                handleOpenSidebar('order in progress', 'processing')
-              }
+              handleClick={() => handleOpenSidebar('order in progress', 'done')}
             />
           )}
 
