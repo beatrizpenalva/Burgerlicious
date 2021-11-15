@@ -3,9 +3,6 @@ const getURL = {
   users: 'https://lab-api-bq.herokuapp.com/users',
   products: 'https://lab-api-bq.herokuapp.com/products',
   orders: 'https://lab-api-bq.herokuapp.com/orders',
-  getOneOrder(id) {
-    return `https://lab-api-bq.herokuapp.com/orders/${id}`
-  },
 }
 
 export const RequestOptions = {
@@ -72,8 +69,9 @@ export const RequestOptions = {
   },
 }
 
-export const CallAPI = async (url, method) => {
-  const findURL = getURL[url]
+export const CallAPI = async (url, method, id) => {
+  const hasId = id || ''
+  const findURL = `${getURL[url]}/${hasId}`
   const response = await fetch(findURL, method)
   const data = await response.json()
   return data
