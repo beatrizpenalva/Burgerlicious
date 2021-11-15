@@ -65,3 +65,9 @@ export const filterOrderByTwoConditions = (
   )
   return listFiltered
 }
+
+export const getOrderNextStep = {
+  pending: 'doing',
+  doing: 'done',
+  done: 'finished',
+}
