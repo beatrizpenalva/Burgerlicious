@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import ButtonContained from '../../atoms/ButtonContained'
 import './Dialog.styles.css'
 
-const Dialog = ({ show, cancelOrder }) => (
+const Dialog = ({ show, onCancel }) => (
   <div className='back'>
     <Modal
       show={show}
@@ -20,13 +20,13 @@ const Dialog = ({ show, cancelOrder }) => (
             label='YES'
             type='button'
             classStyle='outlined'
-            handleClick={() => cancelOrder(true)}
+            handleClick={() => onCancel(true)}
           />
           <ButtonContained
             label='NO'
             type='button'
             classStyle='filled'
-            handleClick={() => cancelOrder(false)}
+            handleClick={() => onCancel(false)}
           />
         </section>
       </Modal.Body>
@@ -35,7 +35,7 @@ const Dialog = ({ show, cancelOrder }) => (
 )
 
 Dialog.propTypes = {
-  cancelOrder: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
 }
 
